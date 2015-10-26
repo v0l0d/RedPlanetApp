@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" > 
+
+<suite name="RedPlanet" allow-return-values="true" verbose="2">
+
+	<test name="Grouping" preserve-order="true">
+
+		<classes>			
+			<!-- <class name="com.mobile.scripts.RP_001_TestLoginFromHome" /> -->
+			<class name="com.mobile.scripts.RP_002_LogInFromBookingScreen" />
+			<class name="com.mobile.scripts.RP_003_ValidateLinksInAboutUs" />
+			
+		</classes>
+	</test>
+
+</suite>
