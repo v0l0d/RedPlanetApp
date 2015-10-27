@@ -5,7 +5,7 @@
 	<test name="Grouping" preserve-order="true">
 
 		<classes>			
-			<!-- <class name="com.mobile.scripts.RP_001_TestLoginFromHome" /> -->
+			<class name="com.mobile.scripts.RP_001_TestLoginFromHome" />
 			<class name="com.mobile.scripts.RP_002_LogInFromBookingScreen" />
 			<class name="com.mobile.scripts.RP_003_ValidateLinksInAboutUs" />
 			
