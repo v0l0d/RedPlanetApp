@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
@@ -43,6 +44,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -135,11 +137,35 @@ public class ActionEngine extends TestEngine {
 		}
 	}
 
-	public static boolean scrollToText(String text)
+	public static boolean scrollToText(final String text)
 			throws Throwable {
 		boolean flag = false;
 		try {
-			Iosdriver.scrollToExact(text);
+			Iosdriver.scrollTo(text);
+			flag = true;
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} /*finally {
+			if (!flag) {
+				Reporter.failureReport("Check IsElementPresent ", locatorName
+						+ " Element is not present on the page");
+				Assert.assertTrue(flag,"Unable find the element "+ locatorName);
+			} else if (b && flag) {
+				Reporter.SuccessReport("IsElementPresent ",
+						"Able to locate element " + locatorName);
+			}
+		}*/
+	}
+	public static boolean scrollToElement(final String locator)
+			throws Throwable {
+		boolean flag = false;
+		try {
+			System.out.println("scrolling to element : "+ locator);
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+			executor.executeScript("mobile: scrollTo", new HashMap<String, String>() {{ put("element", 
+					((RemoteWebElement) driver.findElement(By.xpath(locator))).getId()); }});
 			flag = true;
 			return true;
 		} catch (Exception e) {
@@ -2259,7 +2285,7 @@ public class ActionEngine extends TestEngine {
 				}
 			}
 		} catch (Exception e) {
-			return true;
+			return false;
 		}
 		return flag;
 	}

@@ -13,4 +13,5 @@ public class BookPageLocators extends ActionEngine{
 	public static By guestDetailsFrame = By
 			.xpath("//UIAStaticText[contains(@name,'GUEST DETAILS')]");
 	
+	
 }

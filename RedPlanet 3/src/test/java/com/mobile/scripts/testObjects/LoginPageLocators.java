@@ -12,14 +12,6 @@ public class LoginPageLocators extends ActionEngine {
 			.xpath("//UIASecureTextField[@value='Password']");
 	public static By signInButton = By
 			.xpath("//*[@name ='Forgot Your Password?']");
-	public static By signInWithFaceBookButton = By
-			.xpath("//*[@resource-id='com.redplanethotels.staging:id/signin_btn_facebook']");
-	public static By forgotPasswordLink = By
-			.xpath("//*[@resource-id='com.redplanethotels.staging:id/signin_btn_forgotpassword']");
-	public static By forgotPasswordframe = By
-			.xpath("//*[@resource-id='android:id/alertTitle']");
-	public static By emailFieldForForgotPswd = By
-			.xpath("//*[@text='Email Address']");
 	public static By cancelButton = By
 			.xpath("//UIAButton[@name='Cancel']");
 	public static By resetButton = By

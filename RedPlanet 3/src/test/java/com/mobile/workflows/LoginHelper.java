@@ -89,36 +89,5 @@ public class LoginHelper extends HomePageHelper {
 			System.out.println(res);
 			return res;
 		}
-	//Forgot password
-	public boolean forgotPassword(String email) throws Throwable{
-		boolean res = false;
-		try{
-			waitForElementPresent(LoginPageLocators.forgotPasswordLink, 
-					"forgotPasswordLink");
-			click(LoginPageLocators.forgotPasswordLink, "forgotPasswordLink");
-			if(waitForElementPresent(LoginPageLocators.forgotPasswordframe,
-					"forgotPasswordframe")){
-				if(email.length()>0){
-					type(LoginPageLocators.emailFieldForForgotPswd, email,
-							"emailFieldForForgotPswd");
-					click(LoginPageLocators.resetButton, "resetButton");
-					Thread.sleep(2000);
-					if(!waitForElementPresent(LoginPageLocators.errorPop, "errorPop")){
-						res = true;
-					}else{
-						Reporter.failureReport("Verify forgot password", 
-								"Invalid email or left blank to reset the password");
-					}
-				}else{
-					click(LoginPageLocators.cancelButton, "cancelButton");
-					res = true;
-				}
-			}
-			
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-		return res;
-	}
+	
 }

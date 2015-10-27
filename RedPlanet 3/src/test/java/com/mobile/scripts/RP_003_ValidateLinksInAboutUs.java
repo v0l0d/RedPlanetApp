@@ -1,5 +1,8 @@
 package com.mobile.scripts;
 
+import java.util.HashMap;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -24,10 +27,9 @@ public class RP_003_ValidateLinksInAboutUs extends LoginHelper{
 		  //verify user already loggedIn, if yes signout
 		  validateUserLogin();
 		  navigateToAboutUs();		  
-		  Thread.sleep(2000);		  
-		  //scrollToText("CONNECT WITH US");	
+		  Thread.sleep(2000);		  //Privacy Policy
+		  scrollToElement("//UIAButton[@label='Terms of Use']");
 		  if(description.equals("Validate visible social integrations in AboutUs page")){
-			  
 			  if(isElementPresent(AboutUsLocators.facebookImage)){
 				  Reporter.SuccessReport("Validate Facebook link in AboutUs page", "Successful");
 			  }else{

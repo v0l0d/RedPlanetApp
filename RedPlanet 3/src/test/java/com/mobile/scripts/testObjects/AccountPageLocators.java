@@ -20,7 +20,7 @@ public class AccountPageLocators extends ActionEngine {
 			.xpath("//UIATableCell[@name='RESIDENCE']");
 	public static By userPhone = By
 			.xpath("//UIATableCell[@name='PHONE']");
-	public static By sinOutButton = By
+	public static By signOutButton = By
 			.xpath("//UIAButton[@name='SIGN OUT']");
 	//MyAccount
 	public static By logInButton = By

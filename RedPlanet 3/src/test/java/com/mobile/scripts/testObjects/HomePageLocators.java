@@ -18,12 +18,7 @@ public class HomePageLocators extends ActionEngine {
 	public static By searchButton = By.xpath("//UIAButton[@name='SEARCH']"); 
 	//Main Menu locators
 	public static By mainMenuIcon =  By.xpath("//*[@name='sidebar button']");
-	
-	
-	//In-stay Locators
-	public static By inStayFrame = By.xpath("//*[@resource-id='com.redplanethotels.staging:id/instay_ll_instay']");
 	public static By chatButton = By.xpath("//*[@name='CHAT WITH FRONT DESK']");
 	public static By inHousePhoneButton = By.xpath("//*[@name='IN-HOUSE PHONE']");
 	public static By localAttractionButton = By.xpath("//*[@name='LOCAL ATTRACTIONS']");
-	public static By instayPop = By.xpath("//*[@resource-id='com.redplanethotels.staging:id/instay_popup_iv_close']");
 }

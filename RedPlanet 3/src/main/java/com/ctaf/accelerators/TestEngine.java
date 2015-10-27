@@ -32,7 +32,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import com.redplanet.utils.RedPlanetUtils;
 import com.ctaf.support.ActionEngineSupport;
 import com.ctaf.support.ConfiguratorSupport;
 import com.ctaf.support.ExcelReader;
@@ -52,7 +51,7 @@ public class TestEngine extends HtmlReportSupport {
 			.replace(" ", "_").replace(":", "_").replace(".", "_");
 	public static boolean flag = false;
 	
-	public static EventFiringWebDriver driver=null;
+	public static WebDriver driver=null;
 	public static int stepNum = 0;
 	public static int PassNum =0;
 	public static int FailNum =0;
@@ -351,15 +350,17 @@ public class TestEngine extends HtmlReportSupport {
 					capabilitiesForAppium.setCapability("bundleId", bundleID);
 					/*capabilitiesForAppium.setCapability(
 							CapabilityType.BROWSER_NAME, browser);*/
-					capabilitiesForAppium.setCapability("newCommandTimeout","120");
+					capabilitiesForAppium.setCapability("newCommandTimeout","1200");
 					//capabilitiesForAppium.setCapability("autoWebview", "true");
-					capabilitiesForAppium.setCapability("autoWebviewTimeout","1200");
+					capabilitiesForAppium.setCapability("autoWebviewTimeout","12000");
 					capabilitiesForAppium.setCapability("autoLaunch",true);
 					//capabilitiesForAppium.setCapability("fullReset", true);
 					//capabilitiesForAppium.setCapability("noReset", "false");
 					Iosdriver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),
 							capabilitiesForAppium);
-					driver = new EventFiringWebDriver(Iosdriver);
+					Iosdriver.resetApp();
+					driver = Iosdriver;
+					driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 				} catch (Exception e) {
 					e.printStackTrace();
 					// Reporter.onFailure("ConfigurationFailure From setupSuite",
@@ -373,9 +374,9 @@ public class TestEngine extends HtmlReportSupport {
 					// ---------------------------------------------------
 					System.out.println("Starting Appium Server....");
 					String logFile = "C:/Log/RPMob_" + timeStamp + ".log";
-					while (!(new File(logFile).exists())) {
+					/*while (!(new File(logFile).exists())) {
 						RedPlanetUtils.startAppium(logFile);
-					}
+					}*/
 					if ((new File(logFile).exists())) {
 						/*Reporter.SuccessReport("StartAppiumServer",
 								"Successfully started Appium Server");*/
@@ -409,7 +410,7 @@ public class TestEngine extends HtmlReportSupport {
 							capabilitiesForAppium);
 					// driver// new EventFiringWebDriver(AndroidDriver2);
 
-					driver = new EventFiringWebDriver(AndroidDriver2);
+					driver = /*new EventFiringWebDriver*/(AndroidDriver2);
 
 
 				} catch (Exception e) {
@@ -427,9 +428,9 @@ public class TestEngine extends HtmlReportSupport {
 
 		
 		if((!(browser.equalsIgnoreCase("Android")))&(!(browser.equalsIgnoreCase("iPhone")))){
-			driver = new EventFiringWebDriver(webDriver);
-			ActionEngineSupport myListener = new ActionEngineSupport();
-			driver.register(myListener);
+			driver = /*new EventFiringWebDriver*/(webDriver);
+			/*ActionEngineSupport myListener = new ActionEngineSupport();
+			driver.register(myListener);*/
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.MINUTES);
 			driver.get(url);
@@ -448,6 +449,7 @@ public class TestEngine extends HtmlReportSupport {
 		PassNum = 0;
 		FailNum = 0;
 		testName = method.getName();
+		logger.info("Current Test : "+testName);
 
 	}
 	
