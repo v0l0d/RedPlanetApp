@@ -1,179 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="1" failed="1" total="2" passed="0">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="5292" started-at="2015-11-06T11:51:11Z" finished-at="2015-11-06T11:51:16Z">
+  <suite name="Default suite" duration-ms="175287" started-at="2015-11-30T10:42:06Z" finished-at="2015-11-30T10:45:01Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="5292" started-at="2015-11-06T11:51:11Z" finished-at="2015-11-06T11:51:16Z">
-      <class name="com.mobile.scripts.RP_003_ValidateLinksInAboutUs">
-        <test-method status="PASS" signature="setupSuite(org.testng.ITestContext)[pri:0, instance:com.mobile.scripts.RP_003_ValidateLinksInAboutUs@4c15e7fd]" name="setupSuite" is-config="true" duration-ms="135" started-at="2015-11-06T17:21:11Z" finished-at="2015-11-06T17:21:11Z">
+    <test name="Default test" duration-ms="175287" started-at="2015-11-30T10:42:06Z" finished-at="2015-11-30T10:45:01Z">
+      <class name="com.mobile.scripts.RP_010_ConnectWithFacebook">
+        <test-method status="PASS" signature="setupSuite(org.testng.ITestContext)[pri:0, instance:com.mobile.scripts.RP_010_ConnectWithFacebook@75f32542]" name="setupSuite" is-config="true" duration-ms="94" started-at="2015-11-30T16:12:06Z" finished-at="2015-11-30T16:12:06Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@1df8da7a]]>
+                <![CDATA[org.testng.TestRunner@3cce57c7]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupSuite -->
-        <test-method status="PASS" signature="reportHeader(java.lang.reflect.Method)[pri:0, instance:com.mobile.scripts.RP_003_ValidateLinksInAboutUs@4c15e7fd]" name="reportHeader" is-config="true" duration-ms="1156" started-at="2015-11-06T17:21:11Z" finished-at="2015-11-06T17:21:12Z">
+        <test-method status="PASS" signature="reportHeader(java.lang.reflect.Method)[pri:0, instance:com.mobile.scripts.RP_010_ConnectWithFacebook@75f32542]" name="reportHeader" is-config="true" duration-ms="16881" started-at="2015-11-30T16:12:06Z" finished-at="2015-11-30T16:12:23Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.mobile.scripts.RP_003_ValidateLinksInAboutUs.ValidateLinksInAboutUs(java.lang.String) throws java.lang.Throwable]]>
+                <![CDATA[public void com.mobile.scripts.RP_010_ConnectWithFacebook.validateConnectWithFacebook(java.lang.String,java.lang.String,java.lang.String) throws java.lang.Throwable]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- reportHeader -->
-        <test-method status="FAIL" signature="ValidateLinksInAboutUs(java.lang.String)[pri:0, instance:com.mobile.scripts.RP_003_ValidateLinksInAboutUs@4c15e7fd]" name="ValidateLinksInAboutUs" duration-ms="4105" started-at="2015-11-06T17:21:12Z" data-provider="testData" finished-at="2015-11-06T17:21:16Z">
+        <test-method status="PASS" signature="validateConnectWithFacebook(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.mobile.scripts.RP_010_ConnectWithFacebook@75f32542]" name="validateConnectWithFacebook" duration-ms="156644" started-at="2015-11-30T16:12:23Z" data-provider="testData" finished-at="2015-11-30T16:15:00Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Validate visible social integrations in AboutUs page]]>
+                <![CDATA[rphtest112@gmail.com]]>
               </value>
             </param>
-          </params>
-          <exception class="java.lang.NullPointerException">
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-	at com.ctaf.accelerators.ActionEngine.screenShot(ActionEngine.java:1633)
-	at com.ctaf.utilities.Reporter.failureReport(Reporter.java:87)
-	at com.mobile.scripts.RP_003_ValidateLinksInAboutUs.ValidateLinksInAboutUs(RP_003_ValidateLinksInAboutUs.java:95)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:696)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:882)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1189)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:254)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ValidateLinksInAboutUs -->
-        <test-method status="FAIL" signature="tearDownMethod()[pri:0, instance:com.mobile.scripts.RP_003_ValidateLinksInAboutUs@4c15e7fd]" name="tearDownMethod" is-config="true" duration-ms="0" started-at="2015-11-06T17:21:16Z" finished-at="2015-11-06T17:21:16Z">
-          <exception class="java.lang.NullPointerException">
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-	at com.ctaf.accelerators.TestEngine.tearDownMethod(TestEngine.java:479)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:769)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:882)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1189)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:254)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDownMethod -->
-        <test-method status="SKIP" signature="reportHeader(java.lang.reflect.Method)[pri:0, instance:com.mobile.scripts.RP_003_ValidateLinksInAboutUs@4c15e7fd]" name="reportHeader" is-config="true" duration-ms="0" started-at="2015-11-06T17:21:16Z" finished-at="2015-11-06T17:21:16Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reportHeader -->
-        <test-method status="SKIP" signature="ValidateLinksInAboutUs(java.lang.String)[pri:0, instance:com.mobile.scripts.RP_003_ValidateLinksInAboutUs@4c15e7fd]" name="ValidateLinksInAboutUs" duration-ms="1" started-at="2015-11-06T17:21:16Z" data-provider="testData" finished-at="2015-11-06T17:21:16Z">
-          <params>
-            <param index="0">
+            <param index="1">
               <value>
-                <![CDATA[Validate footer links in AboutUs page]]>
+                <![CDATA[rphtest112]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Connect with Facebook login]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ValidateLinksInAboutUs -->
-        <test-method status="FAIL" signature="tearDownMethod()[pri:0, instance:com.mobile.scripts.RP_003_ValidateLinksInAboutUs@4c15e7fd]" name="tearDownMethod" is-config="true" duration-ms="0" started-at="2015-11-06T17:21:16Z" finished-at="2015-11-06T17:21:16Z">
-          <exception class="java.lang.NullPointerException">
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-	at com.ctaf.accelerators.TestEngine.tearDownMethod(TestEngine.java:479)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:552)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:769)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:882)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1189)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:254)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+        </test-method> <!-- validateConnectWithFacebook -->
+        <test-method status="PASS" signature="tearDownMethod()[pri:0, instance:com.mobile.scripts.RP_010_ConnectWithFacebook@75f32542]" name="tearDownMethod" is-config="true" duration-ms="1745" started-at="2015-11-30T16:15:00Z" finished-at="2015-11-30T16:15:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownMethod -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestContext)[pri:0, instance:com.mobile.scripts.RP_003_ValidateLinksInAboutUs@4c15e7fd]" name="tearDown" is-config="true" duration-ms="21" started-at="2015-11-06T17:21:16Z" finished-at="2015-11-06T17:21:16Z">
+        <test-method status="PASS" signature="tearDown(org.testng.ITestContext)[pri:0, instance:com.mobile.scripts.RP_010_ConnectWithFacebook@75f32542]" name="tearDown" is-config="true" duration-ms="3" started-at="2015-11-30T16:15:01Z" finished-at="2015-11-30T16:15:01Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@1df8da7a]]>
+                <![CDATA[org.testng.TestRunner@3cce57c7]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.mobile.scripts.RP_003_ValidateLinksInAboutUs -->
+      </class> <!-- com.mobile.scripts.RP_010_ConnectWithFacebook -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

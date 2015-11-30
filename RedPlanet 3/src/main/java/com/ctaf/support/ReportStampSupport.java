@@ -39,6 +39,12 @@ public class ReportStampSupport {
 		int randomNumber = rand.nextInt(100000) + 1;
 		return Integer.toString(randomNumber);
 	}
+	
+	public static int biRandomValue(){
+		Random rand = new Random();
+		int randomNumber = rand.nextInt(10) + 1;
+		return (randomNumber);
+	}
 	//return time and date
 	public static String timeStamp(){
 		java.util.Date today = new java.util.Date();

@@ -12,6 +12,7 @@ public class LoginPageLocators extends ActionEngine {
 			.xpath("//UIASecureTextField[@value='Password']");
 	public static By signInButton = By
 			.xpath("//*[@name ='Forgot Your Password?']");
+	public static By forgotPasswrod = By.xpath("//UIAElement[@name='Forgot Your Password?']");
 	public static By cancelButton = By
 			.xpath("//UIAButton[@name='Cancel']");
 	public static By resetButton = By
@@ -24,4 +25,7 @@ public class LoginPageLocators extends ActionEngine {
 			.xpath("//UIAStaticText[@name='NAME']");
 	public static By editButton = By
 			.xpath("//UIAButton[@name='Edit']");
+	public static By ORText = By.xpath("//UIAButton[@name='OR']");
+	public static By signInWindow = By.xpath("//UIAWindow[1]");
+	public static By connectWithFacebookButton = By.xpath("//UIAButton[@name='CONNECT WITH FACEBOOK']");
 }

@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -23,6 +24,7 @@ import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -38,6 +40,7 @@ import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.support.ReportStampSupport;
 import com.ctaf.utilities.Reporter;
+//import com.redplanet.utils.RedPlanetUtils;
 
 public class TestEngine extends HtmlReportSupport {
 	public static Logger logger = Logger.getLogger(TestEngine.class.getName());
@@ -77,7 +80,7 @@ public class TestEngine extends HtmlReportSupport {
 
 	/*
 	 * public static Screen s; public static String url =
-	 * "jdbc:mysql://172.16.6.121/"; public static String dbName = "test";
+	 * "jdbc:mysql://172.16.6.121/"; public static String dbName = "Anjanikumar";
 	 * public static String userName = "root"; public static Connection conn =
 	 * null; public static Statement stmt = null; public static
 	 * PreparedStatement pstmt = null; public static ResultSet rs = null;
@@ -117,6 +120,11 @@ public class TestEngine extends HtmlReportSupport {
 				logger.info("Android");
 				browser = "Android";
 			}
+			else if (ctx.getCurrentXmlTest().getIncludedGroups().toString()
+					.contains("Mobile")) {
+				logger.info("iPhone");
+				browser = "iPhone";
+			}
 			else {
 				logger.info("Starting browser : "
 						+ configProps.getProperty("browserType"));
@@ -126,10 +134,7 @@ public class TestEngine extends HtmlReportSupport {
 			e1.printStackTrace();
 			System.out.println(e1);
 		}
-
-		// browser = configProps.getProperty("browserType");
 		try {
-				//url = (configProps.getProperty("URL"));
 			if (ctx.getCurrentXmlTest().getIncludedGroups().toString()
 					.contains("afiliate")) {
 				System.out.println("afiliate URL : "
@@ -155,7 +160,6 @@ public class TestEngine extends HtmlReportSupport {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
 	}
 
 	
@@ -168,11 +172,15 @@ public class TestEngine extends HtmlReportSupport {
 		HtmlReportSupport.createHtmlSummaryReport(browser, url);
 		closeSummaryReport();
 		//driver.quit();
-		//RedPlanetUtils.stopAppium();
 		}catch(Exception e){
 			e.printStackTrace();
-
-		}
+		} /*finally {
+			if (browser.contains("Android")) {
+				RedPlanetUtils.stopAppium();
+			} else if (browser.contains("iPhone")) {
+				RedPlanetUtils.stopAppiumForIos();
+			}
+		}*/
 		
 		
 		
@@ -181,10 +189,6 @@ public class TestEngine extends HtmlReportSupport {
 
 	/**
 	 * Write results to Browser specific path
-	 * 
-	 * @Date 19/02/2013
-	 * @Revision History
-	 * 
 	 */
 	// @Parameters({"browserType"})
 	public static String filePath() {
@@ -227,9 +231,6 @@ public class TestEngine extends HtmlReportSupport {
 
 	/**
 	 * Browser type prefix for Run ID
-	 * 
-	 * @Date 19/02/2013
-	 * @Revision History
 	 * 
 	 */
 	public static String result_browser() {
@@ -321,109 +322,88 @@ public class TestEngine extends HtmlReportSupport {
 			}else if(browser.equalsIgnoreCase("iphone")){
 				try {
 					// ---------------------------------------------------
-					System.out.println("Starting Appium Server....");
-					String logFile = "/Log/RPMob_" + timeStamp + ".log";
-					/*while (!(new File(logFile).exists())) {
-						RedPlanetUtils.startAppium(logFile);
+					//System.out.println(System.getProperty("user.home")+"/Log/RPMob_" + timeStamp + ".log");
+					String logFile = System.getProperty("user.dir")+"/Logs/RPMob_"+System.currentTimeMillis()+".log";
+				/*while (true) {
+					if (RedPlanetUtils.startAppiumForiOS(logFile)) {
+						break;
 					}
-					if ((new File(logFile).exists())) {
-						Reporter.SuccessReport("StartAppiumServer",
-								"Successfully started Appium Server");
-					}*/
-					//RedPlanetUtils.startAppiumForiOS(logFile);
-					//RedPlanetUtils.testStartIos();
+				}
+				if ((new File(logFile).exists())) {
+					System.out.println("Log File Created by Appium at path : " + System.getProperty("user.dir")
+							+ "/Log/RPMob_" + timeStamp + ".log");
+				}
+				Thread.sleep(10000);*/
 					// -----------------------------------------------------
 					DeviceName = configProps.getProperty("iOSDeviceName");
 					String device = configProps.getProperty("Device");
 					String appPath = configProps.getProperty("appPath");
+					String ipaPath = configProps.getProperty("ipaPath");
+
+					String platformVer = configProps.getProperty("platformVersion");
 					String udid = configProps.getProperty("UDID");
 					String bundleID = configProps.getProperty("BundleID");
 					DesiredCapabilities capabilitiesForAppium = new DesiredCapabilities();
 					System.out.println("DeviceName is : " + DeviceName);
 					capabilitiesForAppium.setCapability("deviceName",device);
-					capabilitiesForAppium.setCapability("platformVersion","8.1");
 					capabilitiesForAppium.setCapability("platformName","iOS");
-					capabilitiesForAppium.setCapability("app",appPath);
-					//capabilitiesForAppium.setCapability("autoWebview", true);
-					capabilitiesForAppium.setCapability("takesScreenshot", true);
-					capabilitiesForAppium.setCapability("udid", udid);
+					capabilitiesForAppium.setCapability("platformVersion",platformVer);
+					capabilitiesForAppium.setCapability("deviceName",device);
 					capabilitiesForAppium.setCapability("bundleId", bundleID);
-					/*capabilitiesForAppium.setCapability(
-							CapabilityType.BROWSER_NAME, browser);*/
-					capabilitiesForAppium.setCapability("newCommandTimeout","1200");
-					//capabilitiesForAppium.setCapability("autoWebview", "true");
-					capabilitiesForAppium.setCapability("autoWebviewTimeout","12000");
-					capabilitiesForAppium.setCapability("autoLaunch",true);
-					//capabilitiesForAppium.setCapability("fullReset", true);
-					//capabilitiesForAppium.setCapability("noReset", "false");
+					capabilitiesForAppium.setCapability("newCommandTimeout","6000");
+					capabilitiesForAppium.setCapability("takesScreenshot", true);
+					capabilitiesForAppium.setCapability("autoWebviewTimeout","6000");
+					//capabilitiesForAppium.setCapability("fullReset", "true");
+					//capabilitiesForAppium.setCapability("app",ipaPath);
+					if((DeviceName.contains("Simulator"))||((udid.length()==0))){
+						System.out.println("using simulator");
+						//capabilitiesForAppium.setCapability("app",appPath);
+					}else{
+						System.out.println("using real device");
+						capabilitiesForAppium.setCapability("udid", udid);
+						//capabilitiesForAppium.setCapability("app",ipaPath);
+					}
 					Iosdriver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),
 							capabilitiesForAppium);
-					Iosdriver.resetApp();
+					//Iosdriver.closeApp();
+					//Iosdriver.resetApp();
 					driver = Iosdriver;
-					driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+					driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 				} catch (Exception e) {
 					e.printStackTrace();
-					// Reporter.onFailure("ConfigurationFailure From setupSuite",
-					// "Failed due to ServerConfirguration error");
 				}
 
 			}else if (browser.equalsIgnoreCase("Android")) {
 				try {
 					String AppPackage = configProps.getProperty("appPackage");
 					String AppActivity = configProps.getProperty("appActivity");
+					String OSVersion =  configProps.getProperty("OSVersion");
 					// ---------------------------------------------------
-					System.out.println("Starting Appium Server....");
-					String logFile = "C:/Log/RPMob_" + timeStamp + ".log";
-					/*while (!(new File(logFile).exists())) {
-						RedPlanetUtils.startAppium(logFile);
-					}*/
-					if ((new File(logFile).exists())) {
-						/*Reporter.SuccessReport("StartAppiumServer",
-								"Successfully started Appium Server");*/
-					}
+					//System.out.println("Starting Appium Server....");
 					// -----------------------------------------------------
 					DesiredCapabilities capabilitiesForAppium = new DesiredCapabilities();
-					// capabilitiesForAppium.setCapability(CapabilityType.PLATFORM,
-					// "Android");
+				
 					System.out.println("DeviceName is : " + DeviceName);
 					capabilitiesForAppium.setCapability("deviceName",
 							DeviceName);
-					capabilitiesForAppium.setCapability("platformVersion",
-							"4.4.2");
-					capabilitiesForAppium.setCapability("platformName",
-							"Android");
-					//capabilitiesForAppium.setCapability("autoWebview", true);
-					//capabilitiesForAppium
-					//		.setCapability("takesScreenshot", false);
-					/*capabilitiesForAppium.setCapability(
-							CapabilityType.BROWSER_NAME, browser);*/
-					capabilitiesForAppium.setCapability("newCommandTimeout",
-							"120000");
-					capabilitiesForAppium.setCapability("autoWebview", "true");
-					capabilitiesForAppium.setCapability("autoWebviewTimeout",
-							"10000");
+					capabilitiesForAppium.setCapability("platformVersion",OSVersion);
+					capabilitiesForAppium.setCapability("platformName","Android");
+					/*capabilitiesForAppium.setCapability("newCommandTimeout",
+							"12000");*/
+					//capabilitiesForAppium.setCapability("autoWebview", "true");
+					capabilitiesForAppium.setCapability("autoWebviewTimeout","1000");
 					//capabilitiesForAppium.setCapability("noReset", false);
 					capabilitiesForAppium.setCapability("appPackage", AppPackage);
 					capabilitiesForAppium.setCapability("appActivity", AppActivity);
-					AndroidDriver2 = new AndroidDriver(new URL(
-							"http://127.0.0.1:4723/wd/hub"),
+					AndroidDriver2 = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
 							capabilitiesForAppium);
-					// driver// new EventFiringWebDriver(AndroidDriver2);
-
-					driver = /*new EventFiringWebDriver*/(AndroidDriver2);
-
+					driver = (AndroidDriver2);
 
 				} catch (Exception e) {
 					e.printStackTrace();
-				
 				}
-
 			}
 
-	
-		
-		
-		
 		flag = false;
 
 		
@@ -475,7 +455,12 @@ public class TestEngine extends HtmlReportSupport {
 			e.printStackTrace();
 			//Reporter.onFailure("ConfigurationFailure From tearDownMethod", "Failed due to ServerConfirguration error");
 
-		}
+		} /*finally {
+			if (browser.contains("iPhone")) {
+				//Iosdriver.closeApp();
+				RedPlanetUtils.stopAppiumForIos();
+			}
+		}*/
 		driver.quit();
 
 	}

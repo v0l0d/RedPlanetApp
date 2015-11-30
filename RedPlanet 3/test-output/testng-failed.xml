@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.mobile.scripts.RP_003_ValidateLinksInAboutUs">
+      <class name="com.mobile.scripts.RP_010_ConnectWithFacebook">
         <methods>
           <include name="reportHeader"/>
-          <include name="ValidateLinksInAboutUs" invocation-numbers="0"/>
           <include name="tearDownMethod"/>
           <include name="setupSuite"/>
           <include name="tearDown"/>
+          <include name="validateConnectWithFacebook" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.mobile.scripts.RP_003_ValidateLinksInAboutUs -->
+      </class> <!-- com.mobile.scripts.RP_010_ConnectWithFacebook -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

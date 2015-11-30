@@ -2258,20 +2258,32 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try {
-			for (int i = 0; i < 200; i++) {
-				if (driver.findElement(loc).isDisplayed()) {
-					flag = true;
-					break;
-				} else {
-					Thread.sleep(50);
-				}
-			}
+			 WebDriverWait newWait = new WebDriverWait(driver,40);
+				WebElement element = null;
+				element  = newWait.until(ExpectedConditions.presenceOfElementLocated(loc));
+					flag = element.isDisplayed();
 		} catch (Exception e) {
 			return false;
 		}
 		return flag;
 	}
 
+	public static boolean isElementDisplayedTemp(By loc)
+			throws Throwable {
+		boolean flag = false;
+		try {
+			 //WebDriverWait newWait1 = new WebDriverWait(Iosdriver,1);
+			driver.manage().timeouts().implicitlyWait(50, TimeUnit.MILLISECONDS);
+			 flag  = driver.findElement((loc)).isDisplayed();
+			 if(flag){
+				 System.out.println("found the element "+loc);
+			 }
+		} catch (Exception e) {
+			return false;
+		}
+		return flag;
+	}
+	
 	public static boolean isElementPresent(By loc)
 			throws Throwable {
 		boolean flag = false;

@@ -17,8 +17,21 @@ public class HomePageLocators extends ActionEngine {
 	public static String checkOutDate = ("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAButton[1]");
 	public static By searchButton = By.xpath("//UIAButton[@name='SEARCH']"); 
 	//Main Menu locators
-	public static By mainMenuIcon =  By.xpath("//*[@name='sidebar button']");
-	public static By chatButton = By.xpath("//*[@name='CHAT WITH FRONT DESK']");
-	public static By inHousePhoneButton = By.xpath("//*[@name='IN-HOUSE PHONE']");
-	public static By localAttractionButton = By.xpath("//*[@name='LOCAL ATTRACTIONS']");
+	public static By mainMenuIcon =  By.xpath("//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[1]");
+	public static By chatWithFrontDeskButton = By.xpath("//UIAButton[@name='CHAT WITH FRONT DESK']");
+	public static By inHousePhoneButton = By.xpath("//UIAButton[@name='IN-HOUSE PHONE']");
+	public static By localAttractionButton = By.xpath("//UIAButton[@name='LOCAL ATTRACTIONS']");
+	//Side Menu locators
+	public static By bookNowMenuItem = By.xpath("//UIAStaticText[@name='BOOK NOW'][1]");
+	public static By myAccountMenuItem = By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]");
+	////UIAStaticText[@name='MY ACCOUNT'][1]
+	public static By retrieveBookingMenuItem = By.xpath("//UIAStaticText[@name='RETRIEVE BOOKING'][1]");
+	public static By aboutUsMenuItem = By.xpath("//UIAStaticText[@name='ABOUT US'][1]");
+	public static By helpAndInfoMenuItem = By.xpath("//UIAStaticText[@name='HELP & INFO'][1]");
+	public static By homeMenuItem = By.xpath("//UIAStaticText[@name='MY ACCOUNT'][1]");
+	public static String sideMenuUITable = "target.frontMostApp().mainWindow().tableViews()[1].visibleCells()";
+	//in-house
+	public static By closeButtonOnDashboardDialog = By.xpath("//UIAButton[@name='X']");
+	
+	
 }

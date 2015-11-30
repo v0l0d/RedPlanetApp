@@ -28,6 +28,7 @@
             refid="classpath_jars"/>
 	</target>
 
+	<echo>m2 Repo directory path is == "${ws.jars}"</echo>
 	<target name="init" depends="setClassPath">
 		<tstamp>
 			<format property="start.time" pattern="MM/dd/yyyy hh:mm aa" />
@@ -63,7 +64,7 @@
             debug="true" 
             destdir="${test.dest}" 
             srcdir="${test.src}" 
-            target="1.7" 
+            target="1.8" 
             classpath="${test.classpath}"
         	 includeantruntime="false"
         >

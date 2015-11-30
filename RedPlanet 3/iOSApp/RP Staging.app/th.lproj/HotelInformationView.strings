@@ -1,0 +1,12 @@
+/* Class = "UIButton"; normalTitle = "Gallery"; ObjectID = "5mB-Fc-czK"; */
+"5mB-Fc-czK.normalTitle" = "แกลเลอรี";
+
+/* Class = "UIButton"; normalTitle = "Nearby"; ObjectID = "eDa-zu-kBa"; */
+"eDa-zu-kBa.normalTitle" = "สถานที่ใกล้เคียง";
+
+/* Class = "UIButton"; normalTitle = "Map"; ObjectID = "mOn-ZN-pJJ"; */
+"mOn-ZN-pJJ.normalTitle" = "แผนที่";
+
+/* Class = "UIButton"; normalTitle = "Info"; ObjectID = "tST-1y-Fqz"; */
+"tST-1y-Fqz.normalTitle" = "ข้อมูล";
+
