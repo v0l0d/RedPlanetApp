@@ -24,3 +24,5 @@
 2015-11-30 17:36:43-main--INFO -com.ctaf.accelerators.TestEngine:Current Test : testBookingAsMember
 2015-11-30 17:44:51-main--INFO -com.ctaf.accelerators.TestEngine: Able to get TscreenShot
 2015-11-30 17:45:19-main--INFO -com.ctaf.accelerators.TestEngine:Current Test : testRetriveBookingAsGuest
+2015-11-30 17:52:14-main--INFO -com.ctaf.accelerators.TestEngine:bookingCode T-PTY000219
+2015-11-30 17:53:55-main--INFO -com.ctaf.accelerators.TestEngine:Current Test : retriveBookingAsMember
