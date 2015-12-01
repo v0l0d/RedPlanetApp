@@ -80,7 +80,7 @@ public class TestEngine extends HtmlReportSupport {
 
 	/*
 	 * public static Screen s; public static String url =
-	 * "jdbc:mysql://172.16.6.121/"; public static String dbName = "Anjanikumar";
+	 * "jdbc:mysql://172.16.6.121/"; public static String dbName = "root";
 	 * public static String userName = "root"; public static Connection conn =
 	 * null; public static Statement stmt = null; public static
 	 * PreparedStatement pstmt = null; public static ResultSet rs = null;
@@ -354,7 +354,6 @@ public class TestEngine extends HtmlReportSupport {
 					capabilitiesForAppium.setCapability("takesScreenshot", true);
 					capabilitiesForAppium.setCapability("autoWebviewTimeout","6000");
 					//capabilitiesForAppium.setCapability("fullReset", "true");
-					//capabilitiesForAppium.setCapability("app",ipaPath);
 					if((DeviceName.contains("Simulator"))||((udid.length()==0))){
 						System.out.println("using simulator");
 						//capabilitiesForAppium.setCapability("app",appPath);
