@@ -30,6 +30,9 @@ public class RP_004_GuestBookingFromHome extends LoginHelper{
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 				description);	
+		 handelSplashScreen();
+		 //handleSplashDialog();
+		 Thread.sleep(3000);
 		 navigateToMyAccount();
 		 validateUserLogin();
 		 navigateToBookNow();
@@ -78,24 +81,23 @@ public class RP_004_GuestBookingFromHome extends LoginHelper{
 
   	@DataProvider(name="testData")
 	public Object[][] createdata1() {
-  		return (Object[][]) new Object[][] { 
+  		return (Object[][]) new Object[][] {
+  			{xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
+		  	xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
+		  	xlsBook.getCellValue("email", "Value"),"","",xlsBook.getCellValue("expirationmonth", "Value"),
+		  	xlsBook.getCellValue("expirationyear", "Value"), xlsBook.getCellValue("cvv", "Value"),
+		  	false, "Validate Hotel Booking as a Guest with blank payment details"}, 
+			{xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
+	  			xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
+	  			xlsBook.getCellValue("email", "Value"),xlsBook.getCellValue("invalidCardHolder", "Value"),
+	  			xlsBook.getCellValue("invalidCardNum", "Value"),xlsBook.getCellValue("expirationmonth", "Value"),
+	  			xlsBook.getCellValue("expirationyear", "Value"),xlsBook.getCellValue("cvv", "Value"),
+	  			false, "Validate Hotel Booking as a Guest with invalid payment details"},
   			{xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
   				xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
   				xlsBook.getCellValue("email", "Value"),xlsBook.getCellValue("cardHolder", "Value"),
   				xlsBook.getCellValue("cardNum", "Value"),xlsBook.getCellValue("expirationmonth", "Value"),
   				xlsBook.getCellValue("expirationyear", "Value"), xlsBook.getCellValue("cvv", "Value"), true,
-  				"Validate Hotel Booking as a Guest with valid payment details"},
-  				{xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
-		  			xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
-		  			xlsBook.getCellValue("email", "Value"),xlsBook.getCellValue("invalidCardHolder", "Value"),
-		  			xlsBook.getCellValue("invalidCardNum", "Value"),xlsBook.getCellValue("expirationmonth", "Value"),
-		  			xlsBook.getCellValue("expirationyear", "Value"),xlsBook.getCellValue("cvv", "Value"),
-		  			false, "Validate Hotel Booking as a Guest with invalid payment details"},
-				 {xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
-				  	xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
-				  	xlsBook.getCellValue("email", "Value"),"",
-				  	"",xlsBook.getCellValue("expirationmonth", "Value"),
-				  	xlsBook.getCellValue("expirationyear", "Value"), xlsBook.getCellValue("", "Value"),
-				  	false, "Validate Hotel Booking as a Guest with blank payment details"}};
+  				"Validate Hotel Booking as a Guest with valid payment details"}};
 	}
 }

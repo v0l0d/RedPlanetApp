@@ -17,7 +17,7 @@ public class HomePageLocators extends ActionEngine {
 	public static String checkOutDate = ("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAButton[1]");
 	public static By searchButton = By.xpath("//UIAButton[@name='SEARCH']"); 
 	//Main Menu locators
-	public static By mainMenuIcon =  By.xpath("//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[1]");
+	public static By mainMenuIcon =  By.xpath("//*[@label='sidebar button' and @name='sidebar button']");
 	public static By chatWithFrontDeskButton = By.xpath("//UIAButton[@name='CHAT WITH FRONT DESK']");
 	public static By inHousePhoneButton = By.xpath("//UIAButton[@name='IN-HOUSE PHONE']");
 	public static By localAttractionButton = By.xpath("//UIAButton[@name='LOCAL ATTRACTIONS']");
@@ -32,6 +32,7 @@ public class HomePageLocators extends ActionEngine {
 	public static String sideMenuUITable = "target.frontMostApp().mainWindow().tableViews()[1].visibleCells()";
 	//in-house
 	public static By closeButtonOnDashboardDialog = By.xpath("//UIAButton[@name='X']");
+	public static By addImage = By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAImage[1]");
 	
 	
 }

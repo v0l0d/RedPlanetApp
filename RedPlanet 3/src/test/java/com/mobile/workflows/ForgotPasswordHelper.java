@@ -94,13 +94,11 @@ public class ForgotPasswordHelper extends GmailLocators {
 			browser.findElement(locator).click();
 			flag = true;
 		} catch (Exception e) {
-			Assert.assertTrue(flag,"Unable to click on "+ locatorName);
 			e.printStackTrace();
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Click", "Unable to click on "
 						+ locatorName);
-				Assert.assertTrue(flag,"Unable to click on "+ locatorName);
 				return flag;
 			} else if (b && flag) {
 				Reporter.SuccessReport("Click", "Successfully click on "
@@ -123,16 +121,12 @@ public class ForgotPasswordHelper extends GmailLocators {
 			flag = true;
 
 		} catch (Exception e) {
-			Assert.assertEquals(false, true," type : Data typing action is not perform on  "+locatorName);
-
 			e.printStackTrace();
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Type ",
 						"Data typing action is not perform on " + locatorName
 								+ " with data is " + testdata);
-				Assert.assertTrue(flag,
-						"Unable to perform type action on the element "+ locatorName);
 				return true;
 			} else if (b && flag) {
 
@@ -159,11 +153,7 @@ public class ForgotPasswordHelper extends GmailLocators {
 				    	browser.wait(50);
 					}
 		} catch (Exception e) {
-			
-			Assert.assertTrue(flag,"waitForElementPresent : Falied to locate element "+locator);
-
-			e.printStackTrace();
-			
+				e.printStackTrace();
 			return false;
 		} finally {
 			if (!flag) {

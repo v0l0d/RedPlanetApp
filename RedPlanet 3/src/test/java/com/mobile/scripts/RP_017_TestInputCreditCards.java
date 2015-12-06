@@ -22,9 +22,13 @@ public class RP_017_TestInputCreditCards extends LoginHelper{
 		 String cardHolder,String cardNum,String expMonth, String expYear, String cvv
 		 ,String description) throws Throwable{
 	  	 System.out.println(country +" "+city);
-	  	String bookingCode = null;	  
+	  	String bookingCode = null;	 
+	  	System.out.println("test "+description);
+	  	System.out.println("cardNum "+cardNum);
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name,description);	
+		 handelSplashScreen();
+		 //handleSplashDialog();
 		 navigateToMyAccount();
 		 validateUserLogin();
 		 navigateToBookNow();

@@ -64,7 +64,7 @@
             debug="true" 
             destdir="${test.dest}" 
             srcdir="${test.src}" 
-            target="1.8" 
+            target="1.7" 
             classpath="${test.classpath}"
         	 includeantruntime="false"
         >
@@ -130,6 +130,14 @@
 			<testng classpath="${test.classpath}:${test.dest}"
 							suitename="RedPlanet" haltOnfailure="no" >
 				<xmlfileset dir="${ws.home}" includes="testNG.xml" />
+			</testng>
+		</target>
+		
+<!-- Android -->
+		<target name="Android" depends="compile" description="Android">
+			<testng classpath="${test.classpath}:${test.dest}"
+							suitename="RedPlanetAndroid" haltOnfailure="no" >
+				<xmlfileset dir="${ws.home}" includes="testNG2.xml" />
 			</testng>
 		</target>
 

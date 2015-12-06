@@ -17,8 +17,8 @@ public class GmailLocators extends ActionEngine{
 	public static By resetLink = By
 			.xpath("//body/descendant::div[contains(text(),'Please click on the link')]/a");
 	public static By resetPassworddInputField = By
-			.xpath("//*[@id='reset-password']/div[1]/form/input");
-	public static By submitButton = By.xpath("//*[@id='reset-password']/div[1]/form/button");
-	public static By successText = By.xpath("//*[@id='reset-password']/div[2]/h4");
+			.xpath("//input[@id='password']");
+	public static By submitButton = By.xpath("//button[text()='Submit']");
+	public static By successText = By.xpath("//h4[contains(text(),'Your password has been changed')]");
 
 }

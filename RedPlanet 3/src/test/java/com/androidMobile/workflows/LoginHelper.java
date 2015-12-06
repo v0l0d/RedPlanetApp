@@ -23,6 +23,8 @@ public class LoginHelper extends HomePageHelper {
 					"signInButton");
 			click(LoginPageLocators.signInButton, "signInButton");
 			Thread.sleep(3000);
+			handleRateAppPopUp();
+			handleSplashDialog();
 			if(waitForElementPresent(LoginPageLocators.nameInputField,"nameInputField")){				
 				/*res = waitForElementPresent(AccountPageLocators.accountScreenTitle,
 						"accountScreenTitle");*/

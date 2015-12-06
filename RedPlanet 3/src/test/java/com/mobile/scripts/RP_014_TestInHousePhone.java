@@ -25,8 +25,11 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
 	  try{
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);			  
 		  char[] phNo = dialNumber.toCharArray(); 
+		  handelSplashScreen();
 		  navigateToMyAccount();
 		  //verify user already loggedIn, if yes sign out
+		  handelSplashScreen();
+		  //handleSplashDialog();
 		  validateUserLogin();		  
 		  click(AccountPageLocators.logInButton, "logInButton");
 		  login(email, password);
@@ -44,13 +47,13 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
 						  "noButtonToDial"+digi);
 				 }
 			  click(InHousePhoneLocators.callIcon, "callIcon");
-			  if(isElementDisplayed(InHousePhoneLocators.rigingLabel)){
+			  if((isElementDisplayed(InHousePhoneLocators.rigingLabel))){
 				  Reporter.SuccessReport(description, " Successful");			  
 			  }else{
 				  if(description.contains("invalid")){
 					  System.out.println("In Invalid room no block");
 					 click(InHousePhoneLocators.callIcon, "callIcon");
-				  if(!(isElementDisplayed(InHousePhoneLocators.callingRoomLabel))){
+				  if(!(isElementDisplayed(InHousePhoneLocators.rigingLabel))){
 					  Reporter.SuccessReport(description, " Successful");
 					  System.out.println("successfully failed to call Invalid room");
 				  }
@@ -76,9 +79,9 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
   @DataProvider(name="testData")
 	public Object[][] createdata1() {
 	    return (Object[][]) new Object[][] { 
-	    		/*{xlsInHouse.getCellValue("ValidRoomNo", "Value"),
+	    		{xlsInHouse.getCellValue("ValidRoomNo", "Value"),
 	    			xlsInHouse.getCellValue("ValidCredentials", "Value"),
-	    			xlsInHouse.getCellValue("ValidCredentials", "password"),true,"Validate InHousePhone to valid room number"},*/
+	    			xlsInHouse.getCellValue("ValidCredentials", "password"),true,"Validate InHousePhone to valid room number"},
 	    		{xlsInHouse.getCellValue("InvalidRoomNo", "Value"),
 	    				xlsInHouse.getCellValue("ValidCredentials", "Value"),xlsInHouse.getCellValue("ValidCredentials", "password"),
 		    			true,"Validate InHousePhone to invalid room number"},

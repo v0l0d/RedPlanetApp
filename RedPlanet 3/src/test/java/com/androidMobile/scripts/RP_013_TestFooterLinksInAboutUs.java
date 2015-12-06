@@ -19,32 +19,58 @@ public class RP_013_TestFooterLinksInAboutUs extends LoginHelper{
 	 try{		  
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 				  "Validate footer links in AboutUs page");
-		  HomePageHelper.handleSplashDialog();
+		  handleRateAppPopUp();
+		  handleSplashDialog();
 		  navigateToAboutUs();		  
 		  Thread.sleep(2000);	  
-		  scrollToText("Connect with us");
+		  //scrollToText("Privacy Policy");
+		  handleRateAppPopUp();
+		  handleSplashDialog();
 		  waitForElementPresent(AboutUsLocators.termsNcondLink,"termsNcondLink");
 			  click(AboutUsLocators.termsNcondLink,"Terms and Conditions Link");
+			  handleRateAppPopUp();
+			  handleSplashDialog();
 			  if(isElementDisplayed(AboutUsLocators.termsNCondScreen)){
 				  Reporter.SuccessReport("Validate Terms&Conditions Screen in AboutUs page", "Successful");
 			  }else{
 				  Reporter.failureReport("Validate Terms&Conditions Screen in AboutUs page", "Failed");
 			  }
-			  navigateToAboutUs();
-			  scrollToText("Connect with us");
+			  AndroidDriver2.closeApp();
+			  Thread.sleep(3000);
+			  
+			  AndroidDriver2.launchApp();
 			  handleRateAppPopUp();
+			  handleSplashDialog();
+			  Thread.sleep(5000);
+			  navigateToAboutUs();
+			  //scrollToText("Privacy Policy");
+			  handleRateAppPopUp();
+			  handleSplashDialog();
 			  waitForElementPresent(AboutUsLocators.privacypolicyLink,"privacypolicyLink");
 			  click(AboutUsLocators.privacypolicyLink,"privacypolicyLink"); 
+
+			  handleRateAppPopUp();
+			  handleSplashDialog();
 			  if(isElementDisplayed(AboutUsLocators.privacyPolocyScreen)){
 				  Reporter.SuccessReport("Validate Privacy policy Screen in AboutUs page", "Successful");
 			  }else{
 				  Reporter.failureReport("Validate Privacy policy Screen in AboutUs page", "Failed");
 			  }
-			  navigateToAboutUs();
-			  scrollToText("Connect with us");
+
+			  AndroidDriver2.closeApp();
+			  Thread.sleep(3000);
+			  AndroidDriver2.launchApp();
 			  handleRateAppPopUp();
+			  handleSplashDialog();
+			  Thread.sleep(5000);
+			  navigateToAboutUs();
+			  handleRateAppPopUp();
+			  handleSplashDialog();
+			  //scrollToText("Privacy Policy");
 			  waitForElementPresent(AboutUsLocators.termsOfUseLink,"termsOfUseLink");
 				click(AboutUsLocators.termsOfUseLink,"termsOfUseLink");
+				  handleRateAppPopUp();
+				  handleSplashDialog();
 			  if(isElementDisplayed(AboutUsLocators.termsOfUseScreen)) { 
 				  Reporter.SuccessReport("Validate TermsofUse Screen in AboutUs page", "Successful");
 			  }else{

@@ -22,7 +22,7 @@ public class RP_003_TestSearchHotels extends LoginHelper{
 		  throws Throwable{
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name,description);
-		
+		 handelSplashScreen();
 		 //handleSplashDialog();
 		 navigateToBookNow();
 		selectDestination(country, city);

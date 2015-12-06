@@ -23,7 +23,9 @@ public class RP_009_TestSignUp extends LoginHelper{
 	 
 	try{
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-				description);		
+				description);
+		  handelSplashScreen();
+		  //handleSplashDialog();
 	      navigateToMyAccount();
 	      validateUserLogin();
 	      click(AccountPageLocators.signUpButton, "signUpButton");

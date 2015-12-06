@@ -12,18 +12,26 @@ public class BookingPageHelper extends HomePageHelper {
 		String temp = "abcdefghijklmnopqrstABCDEFGHIJKLMNOP";
 		int randomval = ReportStampSupport.biRandomValue();
 		try {
-			waitForElementPresent(BookPageLocators.guestDetailsFrame,
-					"guestDetailsFrame");
+			/*waitForElementPresent(BookPageLocators.guestDetailsFrame,
+					"guestDetailsFrame");*/
 			scrollToText("Email");
-			Thread.sleep(2000);
+			Thread.sleep(5000);
+			if(fName.length()>0){
 			waitForElementPresent(BookPageLocators.firstNameInput,"firstNameInput");
-			type(BookPageLocators.firstNameInput, fName+temp.charAt(randomval), "firstNameInput");						
+			type(BookPageLocators.firstNameInput, fName+temp.charAt(randomval), "firstNameInput");	
+			}
+			scrollToText("Email");
+			if(lName.length()>0){
 			Thread.sleep(2000);
 			waitForElementPresent(BookPageLocators.lastNameInput,"lastNameInput");
 			type(BookPageLocators.lastNameInput, lName+temp.charAt(randomval),"lastNameInput");
+			}
+			scrollToText("Email");
+			if(email.length()>0){
 			Thread.sleep(2000);
 			waitForElementPresent(BookPageLocators.EmailInput,"EmailInput");
-			type(BookPageLocators.EmailInput, email, "EmailInput");									
+			type(BookPageLocators.EmailInput, email, "EmailInput");		
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 			click(LoginPageLocators.okayButtonOnErrorpop, "okayButtonOnErrorpop");			
@@ -65,18 +73,27 @@ public class BookingPageHelper extends HomePageHelper {
 			String expMonth,String cvv) throws Throwable{		
 		try {
 			scrollToText("Cardholder's Name");	
+			
 			waitForElementPresent(BookPageLocators.cardHolderInput,"cardHolder");
-			Thread.sleep(2000);
+			if(cardHolder.length()>0){
+			Thread.sleep(6000);
 			type(BookPageLocators.cardHolderInput, cardHolder, "cardHolder");	
 			waitForElementPresent(BookPageLocators.cardNumInput,"cardNum");
-			Thread.sleep(2000);
+			}
+			if(cardNum.length()>0){
+			Thread.sleep(6000);
 			type(BookPageLocators.cardNumInput, cardNum,"cardNum");
+			}
+			if(expMonth.length()>0){
 			waitForElementPresent(BookPageLocators.expMonthInput,"expMonthInput");
-			Thread.sleep(2000);
+			Thread.sleep(6000);
 			type(BookPageLocators.expMonthInput, expMonth, "expMonth");	
 			waitForElementPresent(BookPageLocators.cvvNumInput,"cvvNumInput");
-			Thread.sleep(2000);
+			}
+			if(cvv.length()>0){
+			Thread.sleep(6000);
 			type(BookPageLocators.cvvNumInput, cvv, "cvvNumInput");
+			}
 			scrollToText("Book");
 			click(BookPageLocators.conditionsCheck, "conditionsCheck");
 			click(BookPageLocators.bookButton, "bookButton");
@@ -84,7 +101,6 @@ public class BookingPageHelper extends HomePageHelper {
 			e.printStackTrace();
 			click(LoginPageLocators.okayButtonOnErrorpop, "okayButtonOnErrorpop");			
 		}		
-		
 	}
 	
 	

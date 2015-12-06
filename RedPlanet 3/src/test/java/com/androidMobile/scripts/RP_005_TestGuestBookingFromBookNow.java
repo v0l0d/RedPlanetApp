@@ -23,7 +23,8 @@ public class RP_005_TestGuestBookingFromBookNow extends LoginHelper{
 	  String bookingCode = null;
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-				description);	
+				description);
+		 handleRateAppPopUp();
 		 navigateToBookNow();
 		 selectDestination(country, city);
 		 HomePageHelper.handleRateAppPopUp();
@@ -79,23 +80,25 @@ public class RP_005_TestGuestBookingFromBookNow extends LoginHelper{
   		
   		return (Object[][]) new Object[][] { 
 			 
-			{xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
+  				{xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
+					  xlsSearch.getCellValue("fName", "Value"),xlsSearch.getCellValue("lName", "Value"),
+					  xlsSearch.getCellValue("email", "Value"),"",
+					  "",xlsSearch.getCellValue("expirationmonth", "Value"),
+					  xlsSearch.getCellValue("cvv", "Value"),
+					  "Validate booking of a Hotel as Guest from Booking screen with blank details"},
+				{xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
+							xlsSearch.getCellValue("fName", "Value"),xlsSearch.getCellValue("lName", "Value"),
+							xlsSearch.getCellValue("email", "Value"),xlsSearch.getCellValue("InValidcardHolder", "Value"),
+							xlsSearch.getCellValue("InValidCardNum", "Value"),xlsSearch.getCellValue("InExpirationmonth", "Value"),
+							xlsSearch.getCellValue("InValidcvv", "Value"),
+							 "Validate booking of a Hotel as Guest from Booking screen with Invalid details"},
+				{xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
 				xlsSearch.getCellValue("fName", "Value"),xlsSearch.getCellValue("lName", "Value"),
 				 xlsSearch.getCellValue("email", "Value"),xlsSearch.getCellValue("cardHolder", "Value"),
 				 xlsSearch.getCellValue("cardNum", "Value"),xlsSearch.getCellValue("expirationmonth", "Value"),
 				 xlsSearch.getCellValue("cvv", "Value"),
-				  "Validate booking of a Hotel as Guest from Booking screen with valid details"},
-			{xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
-				xlsSearch.getCellValue("fName", "Value"),xlsSearch.getCellValue("lName", "Value"),
-				xlsSearch.getCellValue("email", "Value"),xlsSearch.getCellValue("InValidcardHolder", "Value"),
-				xlsSearch.getCellValue("InValidCardNum", "Value"),xlsSearch.getCellValue("InExpirationmonth", "Value"),
-				xlsSearch.getCellValue("InValidcvv", "Value"),
-				 "Validate booking of a Hotel as Guest from Booking screen with Invalid details"},
-			 {xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
-						  xlsSearch.getCellValue("fName", "Value"),xlsSearch.getCellValue("lName", "Value"),
-						  xlsSearch.getCellValue("email", "Value"),"",
-						  "",xlsSearch.getCellValue("expirationmonth", "Value"),
-						  xlsSearch.getCellValue("cvv", "Value"),
-						  "Validate booking of a Hotel as Guest from Booking screen with blank details"}};
+				  "Validate booking of a Hotel as Guest from Booking screen with valid details"}
+			
+			 };
 	}
 }

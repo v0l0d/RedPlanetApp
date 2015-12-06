@@ -1,5 +1,6 @@
 package com.androidMobile.scripts;
 
+import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -21,6 +22,17 @@ public class RP_003_TestSearchHotels extends LoginHelper{
 				description);
 		 handleSplashDialog();
 		 selectDestination(country, city);
+		 if(description.contains("Select Destination")){
+			 if((isElementPresent(By.xpath(HomePageLocators.locationCityName.replace("#", city.trim())),
+					 "locationCityName"))&
+					 (isElementPresent(By.xpath(HomePageLocators.locationCountryName.replace("#", country.trim())),
+							 "locationCityName"))){
+				 Reporter.SuccessReport(description, "Successful");
+			 }else{
+				 Reporter.failureReport(description, "Failed");
+			 }
+		 }
+		 if(description.contains("Search Hotel")){
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		 click(HomePageLocators.searchButton, "searchButton");
 		 handleRateAppPopUp();
@@ -29,6 +41,7 @@ public class RP_003_TestSearchHotels extends LoginHelper{
 				 Reporter.SuccessReport(description, "Successful");
 			 }else
 				 Reporter.failureReport(description, "Failed");
+		 }
 	}catch(Exception e) {
 		e.printStackTrace();
 		Reporter.failureReport(description, "Failed with exception");
@@ -37,7 +50,9 @@ public class RP_003_TestSearchHotels extends LoginHelper{
   	@DataProvider(name="testData")
 	public Object[][] createdata1() {
   		return (Object[][]) new Object[][] { 
+  				 {xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
+ 				"Verify Select Destination"},
 			  {xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
-				"Verify Search Hotel and Select Destination"}};
+				"Verify Search Hotels"}};
 	}
 }

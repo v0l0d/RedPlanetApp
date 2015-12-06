@@ -30,6 +30,8 @@ public class RP_015_TestChatWithFrontDesk  extends LoginHelper{
 			boolean res = false;
 	  try{
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
+		  handelSplashScreen();
+		  //handleSplashDialog();
 		  String testMessage = "Test message "+cal.getTime();
 		  System.out.println("Test message "+testMessage);
 		  navigateToMyAccount();

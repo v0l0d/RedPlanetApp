@@ -25,6 +25,7 @@ public class RP_017_TestInputCreditCards extends LoginHelper{
 	  	String bookingCode = null;	  
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name,description);	
+		 handleRateAppPopUp();
 		 navigateToMyAccount();
 		 navigateToBookNow();
 	     selectDestination(country, city);
@@ -34,8 +35,9 @@ public class RP_017_TestInputCreditCards extends LoginHelper{
 		 Thread.sleep(10000);		 
 		 if(isElementDisplayed(PickRoomPageLocators.pickRoomPage)){
 			 Reporter.SuccessReport("Search for Hotels", "Successful");
-		 }else
+		 }else{
 			 Reporter.failureReport("Search for Hotels", "Failed");
+		 }
 		 click(PickRoomPageLocators.bookNowButton, "bookNowButton");
 		 Thread.sleep(5000);
 		 waitForElementPresent(BookPageLocators.contiuneButton,"contiuneButton");	 

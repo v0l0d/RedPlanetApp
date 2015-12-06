@@ -3,6 +3,7 @@ package com.androidMobile.scripts;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.androidMobile.scripts.testObjects.AccountPageLocators;
 import com.androidMobile.scripts.testObjects.BookPageLocators;
 import com.androidMobile.scripts.testObjects.HomePageLocators;
 import com.androidMobile.scripts.testObjects.PickRoomPageLocators;
@@ -20,12 +21,17 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
 	ExcelReader xlsRetrive = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_ANDR_008");
   @Test(dataProvider = "testData")
-  public void retriveBookingAsMember(String country, String city,String fName,String lName,String email,String cardHolder,
+  public void retriveBookingAsMember(String userId, String password,String country, 
+		  String city,String fName,String lName,String email,String cardHolder,
 		  String cardNum,String expMonthYear,String cvv, String description) throws Throwable{
 	  	String bookingCode = null;
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 				description);
+		 handleRateAppPopUp();
+		 navigateToMyAccount();
+		 click(AccountPageLocators.logInButton, "logInButton");
+		 login(userId, password);
 		 navigateToBookNow();
 		 selectDestination(country, city);
 		 HomePageHelper.handleRateAppPopUp();
@@ -40,7 +46,7 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
 		 waitForElementPresent(PickRoomPageLocators.bookNowButton, "bookNowButton");
 		 click(PickRoomPageLocators.bookNowButton, "bookNowButton");
 		 HomePageHelper.handleRateAppPopUp();
-		 waitForElementPresent(BookPageLocators.contiuneButton, "contiuneButton");	
+		if(isElementDisplayed(BookPageLocators.contiuneButton))
 		 click(BookPageLocators.contiuneButton, "contiuneButton");
 		 HomePageHelper.handleRateAppPopUp();
 			 BookingPageHelper.populateGuestDetails("", fName, lName, email, "");
@@ -48,7 +54,7 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
 		 waitForElementPresent(BookPageLocators.doneButton, "doneButton");
 		 if(isElementDisplayed(BookPageLocators.bookingCode)){
 			  String temp = getText(BookPageLocators.bookingCode,"bookingCode");
-			  bookingCode = temp.split(":")[1].trim();
+			  bookingCode = temp.trim();
 			  logger.info("bookingCode "+bookingCode);
 			 Reporter.SuccessReport(description, "Successful"+" Booking code is: "+bookingCode);
 		 }else if(isElementDisplayed(BookPageLocators.errorPayment)){
@@ -59,6 +65,9 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
 			 Reporter.failureReport(description, "Failed");
 		 }
 		 click(BookPageLocators.doneButton, "doneButton");
+		 if(isElementDisplayed(BookPageLocators.doneButton)){
+			 click(BookPageLocators.doneButton, "doneButton");
+		 }
 		 navigateToReirieveBookings();
 		 RetrieveBookingPageHelper.RetrieveBooking(email,bookingCode);
 		 if(isElementDisplayed(RetrieveBookingLocators.bookingDetailView)){
@@ -73,7 +82,8 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
   	@DataProvider(name="testData")
 	public Object[][] createdata1() {
   		return (Object[][]) new Object[][] { 
-			  {xlsRetrive.getCellValue("country", "Value"),xlsRetrive.getCellValue("city", "Value"),
+			  {xlsRetrive.getCellValue("ValidUser", "Value"),xlsRetrive.getCellValue("ValidUser", "password"),
+				  xlsRetrive.getCellValue("country", "Value"),xlsRetrive.getCellValue("city", "Value"),
 				  xlsRetrive.getCellValue("fName", "Value"),xlsRetrive.getCellValue("lName", "Value"),
 				  xlsRetrive.getCellValue("email", "Value"),xlsRetrive.getCellValue("cardHolder", "Value"),
 				  xlsRetrive.getCellValue("cardNum", "Value"),xlsRetrive.getCellValue("expirationMonth", "Value"),

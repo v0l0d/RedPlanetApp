@@ -23,12 +23,14 @@ import io.appium.java_client.ios.IOSDriver;
 
 public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
 	@Test
-  public void ValidateLinksInAboutUs() throws Throwable{
+  public void ValidateSocialNetworkLinksInAboutUs() throws Throwable{
 	  
 	 try{		  
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 					"Validate visible social integrations in AboutUs page");
 		  //verify user already loggedIn, if yes signout
+		  handelSplashScreen();
+		  //handleSplashDialog();
 		  navigateToMyAccount();
 		  validateUserLogin();
 		  navigateToAboutUs();		  
@@ -49,6 +51,7 @@ public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
 				  Iosdriver.closeApp();
 				  Thread.sleep(10000);
 				  Iosdriver.launchApp();
+				  handelSplashScreen();
 				  navigateToAboutUs();
 				  Reporter.SuccessReport("Validate Facebook link in AboutUs page", "Successful");
 			  }else{
@@ -61,6 +64,7 @@ public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
 				  Iosdriver.closeApp();
 				  Thread.sleep(10000);
 				  Iosdriver.launchApp();
+				  handelSplashScreen();
 				  navigateToAboutUs();
 				  Reporter.SuccessReport("Validate twitter link in AboutUs page", "Successful");
 			  }else{
@@ -72,6 +76,7 @@ public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
 				  Iosdriver.closeApp();
 				  Thread.sleep(10000);
 				  Iosdriver.launchApp();
+				  handelSplashScreen();
 				  navigateToAboutUs();
 				  Reporter.SuccessReport("Validate GooglePlus link in AboutUs page", "Successful");
 			  }else{
@@ -83,6 +88,7 @@ public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
 				  Iosdriver.closeApp();
 				  Thread.sleep(10000);
 				  Iosdriver.launchApp();
+				  handelSplashScreen();
 				  navigateToAboutUs();
 				  Reporter.SuccessReport("Validate Instagram link in AboutUs page", "Successful");
 			  }else{
@@ -94,6 +100,7 @@ public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
 				  Iosdriver.closeApp();
 				  Thread.sleep(10000);
 				  Iosdriver.launchApp();
+				  handelSplashScreen();
 				  navigateToAboutUs();
 				  Reporter.SuccessReport("Validate Pintrest link in AboutUs page", "Successful");
 			  }else{
@@ -105,6 +112,7 @@ public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
 				  Iosdriver.closeApp();
 				  Thread.sleep(10000);
 				  Iosdriver.launchApp();
+				  handelSplashScreen();
 				  navigateToAboutUs();
 				  Reporter.SuccessReport("Validate Flipboard link in AboutUs page", "Successful");
 			  }else{
@@ -116,6 +124,7 @@ public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
 				  Iosdriver.closeApp();
 				  Thread.sleep(10000);
 				  Iosdriver.launchApp();
+				  handelSplashScreen();
 				  navigateToAboutUs();
 				  Reporter.SuccessReport("Validate Vine link in AboutUs page", "Successful");
 			  }else{

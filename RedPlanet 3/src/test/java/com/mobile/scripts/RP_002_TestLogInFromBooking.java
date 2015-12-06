@@ -24,20 +24,18 @@ public class RP_002_TestLogInFromBooking  extends LoginHelper{
 	  try{
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);			  
 		  //verify user already loggedIn, if yes sign out
+		  handelSplashScreen();
 		  navigateToMyAccount();
 		  validateUserLogin();		  
 		  navigateToBookNow();
 		  selectDestination(country, city);
 		  waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		  click(HomePageLocators.searchButton, "searchButton");
-		  Thread.sleep(2000);
 		  waitForElementPresent(PickRoomPageLocators.pickRoomPage, "pickRoomPage");
 		  click(PickRoomPageLocators.bookNowButton, "bookNowButton");
-		  Thread.sleep(2000);
 		  waitForElementPresent(BookPageLocators.contiuneButton,  "contiuneButton");
 		  click(BookPageLocators.logInButton, "logInButton");
 		  userlogin(email, password);
-		  Thread.sleep(2000);
 		  waitForElementPresent(BookPageLocators.contiuneButton,"contiuneButton");
 		  click(BookPageLocators.contiuneButton, 
 				  "contiuneButton");

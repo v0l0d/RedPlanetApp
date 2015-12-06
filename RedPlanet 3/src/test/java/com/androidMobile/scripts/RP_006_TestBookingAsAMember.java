@@ -31,13 +31,14 @@ public class RP_006_TestBookingAsAMember extends LoginHelper{
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 				description);	
+		 handleRateAppPopUp();
 		 navigateToMyAccount();
 		 click(AccountPageLocators.logInButton, "logInButton");
 		 login(userId, password);
 		 navigateToBookNow();
 		 handleRateAppPopUp();
 		 selectDestination(country, city);
-		 HomePageHelper.handleRateAppPopUp();
+		 handleRateAppPopUp();
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		 click(HomePageLocators.searchButton, "searchButton");
 		 HomePageHelper.handleRateAppPopUp();
@@ -77,6 +78,7 @@ public class RP_006_TestBookingAsAMember extends LoginHelper{
 				 click(BookPageLocators.doneButton, "doneButton");
 			 }
 			 navigateToMyAccount();
+			 Thread.sleep(6000);
 			 //scrollToText("Upcoming");
 			 //waitForElementPresent(AccountPageLocators.upcomingBookings, "upcomingBookings");
 			 String newCity[] = bookedCity.split(" ");
@@ -84,7 +86,8 @@ public class RP_006_TestBookingAsAMember extends LoginHelper{
 			 System.out.println("City "+newCity);
 			 String newCost = totalBookingCost.replace(",", "").trim();
 			 System.out.println("Cost "+newCost);
-			 if((isTextPresent(totalBookingCost.replaceAll(",", "")))){
+			 Thread.sleep(6000);
+			 if((scrollToText(newCost))){
 			 Reporter.SuccessReport("Validate Booking details under My Account Screen ",
 					 " Successfully validated Booking details City : "+bookedCity+" Hotel "
 					 		+bookedHotel+" To Date "+bookingToDate+ " From Date "+bookingFromDate + " and Total Cost "
@@ -97,9 +100,9 @@ public class RP_006_TestBookingAsAMember extends LoginHelper{
 			 Reporter.failureReport(description, "Failed to process payment, error message is: "
 					 + driver.findElement(BookPageLocators.errorPayment).getText());
 			 click(BookPageLocators.okButton, "okButton");
-		 }else			 
+		 }/*else if(isElementDisplayed(BookPageLocators.doneButton))		 
 			 Reporter.failureReport(description, "Failed");
-			 click(BookPageLocators.doneButton, "doneButton");		
+			 click(BookPageLocators.doneButton, "doneButton");	*/	
 		 }
 		 }else{
 
@@ -121,24 +124,25 @@ public class RP_006_TestBookingAsAMember extends LoginHelper{
   		
   		return (Object[][]) new Object[][] { 
 			 
-			  {xlsBook.getCellValue("ValidUser", "Value"),xlsBook.getCellValue("ValidUser", "password"),
+  			{xlsBook.getCellValue("ValidUser", "Value"),xlsBook.getCellValue("ValidUser", "password"),
+					xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
+					xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
+					 xlsBook.getCellValue("email", "Value"),"",
+					"",xlsBook.getCellValue("expirationmonth", "Value"),  xlsBook.getCellValue("cvv", "Value"),
+				false,"Validate booking of a Hotel as Member from Booking screen with blank details"},	
+			{xlsBook.getCellValue("ValidUser", "Value"),xlsBook.getCellValue("ValidUser", "password"),
 				  xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
 				  xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
 				  xlsBook.getCellValue("email", "Value"),xlsBook.getCellValue("cardHolder", "Value"),
 				  xlsBook.getCellValue("cardNum", "Value"),xlsBook.getCellValue("expirationmonth", "Value"),
-				  xlsBook.getCellValue("cvv", "Value"),true,"Validate booking of a Hotel as Member from home screen"}/*,
-				{xlsBook.getCellValue("ValidUser", "Value"),xlsBook.getCellValue("ValidUser", "password"),
+				  xlsBook.getCellValue("cvv", "Value"),true,"Validate booking of a Hotel as Member from home screen"},
+			{xlsBook.getCellValue("ValidUser", "Value"),xlsBook.getCellValue("ValidUser", "password"),
 					xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
 					xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
 					xlsBook.getCellValue("email", "Value"),xlsBook.getCellValue("InValidcardHolder", "Value"),
 					xlsBook.getCellValue("InValidCardNum", "Value"),xlsBook.getCellValue("InExpirationmonth", "Value"),
 					xlsBook.getCellValue("InValidcvv", "Value"),
 						false,"Validate booking of a Hotel as Member from Booking screen with Invalid details"},
-				 {xlsBook.getCellValue("ValidUser", "Value"),xlsBook.getCellValue("ValidUser", "password"),
-						xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
-						xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
-						 xlsBook.getCellValue("email", "Value"),"",
-						"",xlsBook.getCellValue("expirationmonth", "Value"),  xlsBook.getCellValue("cvv", "Value"),
-					false,"Validate booking of a Hotel as Member from Booking screen with blank details"}*/};
+			};
 	}
 }

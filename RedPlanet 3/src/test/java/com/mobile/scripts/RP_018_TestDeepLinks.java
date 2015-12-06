@@ -11,6 +11,8 @@ import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.support.ReportStampSupport;
 import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AccountPageLocators;
+import com.mobile.scripts.testObjects.FacebookLoginLocators;
+import com.mobile.scripts.testObjects.ForgotPasswordLocators;
 import com.mobile.scripts.testObjects.HomePageLocators;
 import com.mobile.scripts.testObjects.InHousePhoneLocators;
 import com.mobile.scripts.testObjects.LoginPageLocators;
@@ -30,18 +32,22 @@ public class RP_018_TestDeepLinks extends LoginHelper{
 	try{
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 				description);
+		  handelSplashScreen();
+		  //handleSplashDialog();
 		  Set<String> contexts = null;
 		  	navigateToMyAccount();
 		  	validateUserLogin();
 			click(LoginPageLocators.connectWithFacebookButton, "connectWithFacebookButton");							
 			Thread.sleep(10000);
-			GeneralHelper.deepLinkHelper("redplanet://hotel/1/start_date=2015-11-29&end_date=2015-11-30&guest=1");
+			GeneralHelper.deepLinkHelper("redplanet://hotel/"+xlsDeepLinks.getCellValue("HotelNo", "Value"));
 			contexts = ((IOSDriver) driver).getContextHandles();
 			for(String currContext : contexts){
 				System.out.println("current context is :"+currContext);
 				if(currContext.contains("NATIVE")){
 					((IOSDriver) driver).context(currContext);
-					waitForElementPresent(PickRoomPageLocators.checkInButtonOnPickRoom, "checkInButtonOnPickRoom");
+					if(Iosdriver.getPageSource().contains(xlsDeepLinks.getCellValue("HotelName", "Value"))){
+						  Reporter.SuccessReport("Verify Search Hotel with Hotel No", "Successful");
+					}
 					break;
 				}
 			}
@@ -49,52 +55,50 @@ public class RP_018_TestDeepLinks extends LoginHelper{
 			click(PickRoomPageLocators.backButton, "backButton");
 			navigateToMyAccount();
 		  	validateUserLogin();
-
 			click(LoginPageLocators.connectWithFacebookButton, "connectWithFacebookButton");							
 			Thread.sleep(10000);
-			GeneralHelper.deepLinkHelper("redplanet://in_stay_mode/7");
+			GeneralHelper.deepLinkHelper("redplanet://in_stay_mode");
 			contexts = ((IOSDriver) driver).getContextHandles();
 			for(String currContext : contexts){
 				System.out.println("current context is :"+currContext);
 				if(currContext.contains("NATIVE")){
 					((IOSDriver) driver).context(currContext);
+					waitForElementPresent(FacebookLoginLocators.redPlanetApplication, "redPlanetApplication");
+					navigateToMyAccount();
+					click(AccountPageLocators.logInButton, "logInButton");
+					login(emailId, password);
+					Iosdriver.closeApp();
+					Iosdriver.launchApp();
 					waitForElementPresent(HomePageLocators.inHousePhoneButton, "inHousePhoneButton");
 					break;
 				}
 			}
+			Iosdriver.closeApp();
+			Iosdriver.launchApp();
+			handelSplashScreen();
 			navigateToMyAccount();
 		  	validateUserLogin();
-
 			click(LoginPageLocators.connectWithFacebookButton, "connectWithFacebookButton");							
 			Thread.sleep(10000);
-			GeneralHelper.deepLinkHelper("redplanet://phone/9003");
+			GeneralHelper.deepLinkHelper("redplanet://phone");
 			contexts = ((IOSDriver) driver).getContextHandles();
 			for(String currContext : contexts){
 				System.out.println("current context is :"+currContext);
 				if(currContext.contains("NATIVE")){
 					((IOSDriver) driver).context(currContext);
+					waitForElementPresent(FacebookLoginLocators.redPlanetApplication, "redPlanetApplication");
+					navigateToMyAccount();
+					click(AccountPageLocators.logInButton, "logInButton");
+					login(emailId, password);
 					waitForElementPresent(InHousePhoneLocators.callIcon, "callIcon");
 					break;
 				}
 			}
+			Iosdriver.closeApp();
+			Iosdriver.launchApp();
+			handelSplashScreen();
 			navigateToMyAccount();
 		  	validateUserLogin();
-
-			click(LoginPageLocators.connectWithFacebookButton, "connectWithFacebookButton");							
-			Thread.sleep(10000);
-			GeneralHelper.deepLinkHelper("redplanet://phone/9003");
-			contexts = ((IOSDriver) driver).getContextHandles();
-			for(String currContext : contexts){
-				System.out.println("current context is :"+currContext);
-				if(currContext.contains("NATIVE")){
-					((IOSDriver) driver).context(currContext);
-					waitForElementPresent(InHousePhoneLocators.callIcon, "callIcon");
-					break;
-				}
-			}
-			navigateToMyAccount();
-		  	validateUserLogin();
-
 			click(LoginPageLocators.connectWithFacebookButton, "connectWithFacebookButton");							
 			Thread.sleep(10000);
 			GeneralHelper.deepLinkHelper("redplanet://account");
@@ -103,11 +107,17 @@ public class RP_018_TestDeepLinks extends LoginHelper{
 				System.out.println("current context is :"+currContext);
 				if(currContext.contains("NATIVE")){
 					((IOSDriver) driver).context(currContext);
-					waitForElementPresent(AccountPageLocators.upcomingBookings, "upcomingBookings");
+					waitForElementPresent(FacebookLoginLocators.redPlanetApplication, "redPlanetApplication");
+					navigateToMyAccount();
+					click(AccountPageLocators.logInButton, "logInButton");
+					login(emailId, password);
+					Iosdriver.closeApp();
+					Iosdriver.launchApp();
+					handelSplashScreen();
+					waitForElementPresent(HomePageLocators.inHousePhoneButton, "inHousePhoneButton");
 					break;
 				}
 			}
-			
 			  /*if(waitForElementPresent(AccountPageLocators.errorMsgForSignUpExistingEmailID, 
 					  "errorMsgForSignUpExistingEmailID")){
 				  Reporter.SuccessReport(description, "Successful");
@@ -123,10 +133,9 @@ public class RP_018_TestDeepLinks extends LoginHelper{
 
   	@DataProvider(name="testData")
 	public Object[][] createdata1() {
-  		String newEmail = "test"+ReportStampSupport.randomValue().concat("@gmail.com");
-  		//String updatedName = xlsSearch.getCellValue("ModifiedFName", "Value")+" "+xlsSearch.getCellValue("ModifiedLName", "Value");
   		return (Object[][]) new Object[][] { 
 			  {xlsDeepLinks.getCellValue("fName", "Value"),xlsDeepLinks.getCellValue("lName", "Value"),
-				  newEmail,xlsDeepLinks.getCellValue("ValidCredentials","password"),true,"SignUp as new user"}};
+				  xlsDeepLinks.getCellValue("ValidCredentials","Value"),
+				  xlsDeepLinks.getCellValue("ValidCredentials","password"),true,"SignUp as new user"}};
 	}
 }

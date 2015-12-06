@@ -20,8 +20,9 @@ public class GeneralHelper extends GmailHelper{
 	public static boolean locateExpandButton() throws Throwable{
 		boolean res = false;
 		try {
-			waitForElementPresent(PickRoomPageLocators.pickRoomPage,"pickRoomPage");
+			waitForElementPresent(PickRoomPageLocators.expandButtonOnPickRoom,"expandButtonOnPickRoom");
 			click(PickRoomPageLocators.expandButtonOnPickRoom,"expandButtonOnPickRoom");
+			res = true;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -31,12 +32,8 @@ public class GeneralHelper extends GmailHelper{
 	public static boolean locateNearByTab() throws Throwable{
 		boolean res = false;
 		try {
-			Dimension dim2 = AndroidDriver2.findElement(PickRoomPageLocators.tableWinodow).getSize();
-			Point pt2 = AndroidDriver2.findElement(PickRoomPageLocators.tableWinodow).getLocation();
-			int newHt = (pt2.y+dim2.getHeight())/2;
-			int newWdt = (dim2.width+pt2.getX());
-			System.out.println((pt2.y+dim2.getHeight())/2);
-			AndroidDriver2.tap(1, (newWdt), (newHt), (int) 0.6);
+			waitForElementPresent(PickRoomPageLocators.nearByTab,"nearByTab");
+			click(PickRoomPageLocators.nearByTab,"nearByTab");
 			Thread.sleep(6000);
 			if(!isElementDisplayed(PickRoomPageLocators.checkIn)){
 				res = true;

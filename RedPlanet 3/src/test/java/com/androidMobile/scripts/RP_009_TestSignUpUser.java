@@ -24,7 +24,8 @@ public class RP_009_TestSignUpUser extends LoginHelper{
 	 
 	try{
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-				description);		  	
+				description);		
+		  handleRateAppPopUp();
 		  //verify user already loggedIn, if yes signout
 		  if(isElementDisplayed(HomePageLocators.closeWatchPopUp)){
 				 click(HomePageLocators.closeWatchPopUp,"closeWatchPopUp");
@@ -67,8 +68,8 @@ public class RP_009_TestSignUpUser extends LoginHelper{
 			 
 			  {xlsSearch.getCellValue("fName", "Value"),xlsSearch.getCellValue("lName", "Value"),
 				  	newEmail,xlsSearch.getCellValue("password", "Value"),"Validate SignUp new user"},
-				  	{xlsSearch.getCellValue("fName", "Value"),xlsSearch.getCellValue("lName", "Value"),
+			  {xlsSearch.getCellValue("fName", "Value"),xlsSearch.getCellValue("lName", "Value"),
 				  		xlsSearch.getCellValue("existingUser", "Value"),xlsSearch.getCellValue("password", "Value"),
-				  		"Validate error on SignUp with exising user"}};
+				  	"Validate error on SignUp with exising user"}};
 	}
 }

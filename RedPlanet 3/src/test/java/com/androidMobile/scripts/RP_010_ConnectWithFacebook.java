@@ -31,6 +31,7 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 			try{
 			TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 					description);
+			handleRateAppPopUp();
 			navigateToMyAccount();
 			//click(LoginPageLocators.connectWithFacebookButton, "connectWithFacebookButton");							
 			Thread.sleep(10000);

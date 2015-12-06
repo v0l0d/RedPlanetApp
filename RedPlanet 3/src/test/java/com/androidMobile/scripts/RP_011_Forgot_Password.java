@@ -27,6 +27,7 @@ public class RP_011_Forgot_Password extends LoginHelper{
 		 if(isElementDisplayed(HomePageLocators.closeWatchPopUp)){
 			 click(HomePageLocators.closeWatchPopUp,"closeWatchPopUp");
 		 }
+		 handleRateAppPopUp();
 		 navigateToMyAccount();
 		 HomePageHelper.handleRateAppPopUp();
 		  //verify user already loggedIn, if yes signout		  	 
@@ -52,21 +53,27 @@ public class RP_011_Forgot_Password extends LoginHelper{
 			 }else
 				 Reporter.failureReport(description, "Failed");
 		 }
-		 if(description == "Reset password with valid email"){
+		 if((description.contains("InValid email"))|(description.contains("blank email"))){
 			 waitForElementPresent(LoginPageLocators.forgotPasswordLink, 
 					  "forgotPasswordLink");
 			 clickAndWaitForElementPresent(LoginPageLocators.forgotPasswordLink,
 					  LoginPageLocators.forgotPasswordframe, "forgotPasswordframe");
 			 HomePageHelper.handleRateAppPopUp();
+			 Thread.sleep(3000);
+			 waitForElementPresent(LoginPageLocators.emailFieldForForgotPswd, 
+					  "emailFieldForForgotPswd");
 			 type(LoginPageLocators.emailFieldForForgotPswd, email, "emailFieldForForgotPswd");
 			 click(LoginPageLocators.resetButton, "resetButton");
 			 Thread.sleep(3000);
-			 if(isElementPresent(LoginPageLocators.signInButton, "signInButton")){
-				 Reporter.SuccessReport(description, "Successfull");
+			 if(isElementPresent(LoginPageLocators.errorPop, "errorPop")){
+				 String errMsg = getText(LoginPageLocators.errorPop, "errorPop");
+				 System.out.println(" errMsg "+errMsg);
+				 click(LoginPageLocators.okayButtonOnErrorpop, "okayButtonOnErrorpop");
+				 Reporter.SuccessReport(description, "Successfull with error message "+errMsg);
 			 }else
 				 Reporter.failureReport(description, "Failed");
 		 }
-		 if(description == "Reset password and Validate"){			
+		 if(description.contains("Reset password and Validate")){			
 			 GmailHelper.ResetPasswordViaGmail(gmailUrl, email, password, resetPwd);
 			 waitForElementPresent(LoginPageLocators.signInButton, "signInButton");
 			 boolean result = login(email, resetPwd);
@@ -86,9 +93,10 @@ public class RP_011_Forgot_Password extends LoginHelper{
 	public Object[][] createdata1() {  		
   		return (Object[][]) new Object[][] { 
 			 
-			  //{"","","","Validate Forgot password frame and click on Cancel"},
-			  {xlsPsw.getCellValue("email", "Value"),"","","Reset password with valid email"},
-			  {xlsPsw.getCellValue("email", "Value"),xlsPsw.getCellValue("password", "Value"),
+			  {"","","","Validate Forgot password frame and click on Cancel"},
+			 {xlsPsw.getCellValue("InvalidEmail", "Value"),"","","Validate error for Reset password with InValid email"},
+			 {"","","","Validate error for Reset password with blank email"},
+			 {xlsPsw.getCellValue("email", "Value"),xlsPsw.getCellValue("password", "Value"),
 				  xlsPsw.getCellValue("resetPwd", "Value"),"Reset password and Validate"}};
 	}
 }

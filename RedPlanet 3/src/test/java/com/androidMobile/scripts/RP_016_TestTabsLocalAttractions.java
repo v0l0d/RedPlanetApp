@@ -16,7 +16,7 @@ import com.ctaf.utilities.Reporter;
 
 public class RP_016_TestTabsLocalAttractions extends LoginHelper{
 	ExcelReader xlsTabs = new ExcelReader(configProps.getProperty("TestData"),
-			"RP_016");
+			"RP_ANDR_016");
   @Test(dataProvider = "testData")
   public void testLocalAttractions(String country, String city, 
 		  String email, String password,String description) 
@@ -24,16 +24,20 @@ public class RP_016_TestTabsLocalAttractions extends LoginHelper{
 	  int count = 0; 
 	  try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name,description);
+	  		System.out.println(xlsTabs.getCellValue("country", "Value")+" "+xlsTabs.getCellValue("city", "Value"));
 		//handleSplashDialog();
+		 handleRateAppPopUp();
 		navigateToBookNow();
+		handleRateAppPopUp();
 		if(description.contains("pickroom")){
 		selectDestination(country, city);
-		waitForElementPresent(By.xpath(HomePageLocators.locationCountryName.replace("#", country.trim().toUpperCase())),
+		waitForElementPresent(By.xpath(HomePageLocators.locationCountryName.replace("#", country.trim())),
 				"locationCountryName");
-		waitForElementPresent(By.xpath(HomePageLocators.locationCountryName.replace("#", city.trim().toUpperCase())),
+		waitForElementPresent(By.xpath(HomePageLocators.locationCountryName.replace("#", city.trim())),
 					"locationCountryName");
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		 click(HomePageLocators.searchButton, "searchButton");
+		 handleRateAppPopUp();
 		 waitForElementPresent(PickRoomPageLocators.pickRoomPage,"pickRoomPage");
 		 if(GeneralHelper.locateExpandButton()){
 			 Reporter.SuccessReport("Verify located expand button ","Successful ");
@@ -46,12 +50,15 @@ public class RP_016_TestTabsLocalAttractions extends LoginHelper{
 		 }else{
 			 Reporter.failureReport("Verify locate expand button ","Failed ");
 		 }
-		}
-		if(description.contains("Local Attractions")){
-			
+		}else if(description.contains("Local Attractions")){
+			navigateToMyAccount();
+			handleRateAppPopUp();
+			handleSplashDialog();
 			click(AccountPageLocators.logInButton, "logInButton");	
 			login(email, password);
 			navigateToHome();
+			handleRateAppPopUp();
+			handleSplashDialog();
 			waitForElementPresent(HomePageLocators.localAttractionButton, "localAttractionButton");
 			click(HomePageLocators.localAttractionButton, "localAttractionButton");
 		}
@@ -88,7 +95,6 @@ public class RP_016_TestTabsLocalAttractions extends LoginHelper{
   }
   	@DataProvider(name="testData")
 	public Object[][] createdata1() {
-  		System.out.println(xlsTabs.getCellValue("country", "Value")+" "+xlsTabs.getCellValue("city", "Value"));
   		return (Object[][]) new Object[][] { 
 			  {xlsTabs.getCellValue("country", "Value"),xlsTabs.getCellValue("city", "Value"),
 				  xlsTabs.getCellValue("ValidCredentials", "Value"),xlsTabs.getCellValue("ValidCredentials", "password"),

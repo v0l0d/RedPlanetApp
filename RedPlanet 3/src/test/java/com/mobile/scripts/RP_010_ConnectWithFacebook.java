@@ -42,6 +42,9 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 			try{
 			TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 					description);
+			
+			handelSplashScreen();
+			//handleSplashDialog();
 			navigateToMyAccount();
 			validateUserLogin();
 			navigateToMyAccount();

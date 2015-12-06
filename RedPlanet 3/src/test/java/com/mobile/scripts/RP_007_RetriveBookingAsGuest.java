@@ -25,6 +25,8 @@ public class RP_007_RetriveBookingAsGuest extends LoginHelper{
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 				description);
+		 handelSplashScreen();
+		 //handleSplashDialog();
 		 navigateToMyAccount();
 		 validateUserLogin();
 		 navigateToBookNow();

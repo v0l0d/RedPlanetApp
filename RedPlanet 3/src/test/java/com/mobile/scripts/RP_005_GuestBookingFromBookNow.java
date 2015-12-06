@@ -29,22 +29,24 @@ public class RP_005_GuestBookingFromBookNow extends LoginHelper{
 	  	String bookingCode = null;	  
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-				description);	
+				description);
+		 handelSplashScreen();
+		 //handleSplashDialog();
 		 navigateToMyAccount();
 		 validateUserLogin();
 		 navigateToBookNow();
 	     selectDestination(country, city);
-		 Thread.sleep(3000);
+		 //Thread.sleep(3000);
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		 click(HomePageLocators.searchButton, "searchButton");
-		 Thread.sleep(10000);		 
+		 //Thread.sleep(10000);		 
 		 if(isElementDisplayed(PickRoomPageLocators.pickRoomPage)){
 			 Reporter.SuccessReport("Search for Hotels", "Successful");
 		 }else{
 			 Reporter.failureReport("Search for Hotels", "Failed");
 		 }
 		 click(PickRoomPageLocators.bookNowButton, "bookNowButton");
-		 Thread.sleep(5000);
+		 //Thread.sleep(5000);
 		 isElementDisplayed(BookPageLocators.contiuneButton);	 
 			 click(BookPageLocators.contiuneButton, "contiuneButton");
 			 Thread.sleep(2000);
@@ -81,22 +83,23 @@ public class RP_005_GuestBookingFromBookNow extends LoginHelper{
 	public Object[][] createdata1() {
   		return (Object[][]) new Object[][] { 
   			{xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
-  				xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
-  				xlsBook.getCellValue("email", "Value"),xlsBook.getCellValue("cardHolder", "Value"),
-  				xlsBook.getCellValue("cardNum", "Value"),xlsBook.getCellValue("expirationmonth", "Value"),
-  				xlsBook.getCellValue("expirationyear", "Value"), xlsBook.getCellValue("cvv", "Value"), 
-  				true,"Validate Hotel Booking as a Guest with valid payment details"},
+		  	xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
+		  	xlsBook.getCellValue("email", "Value"),"","",xlsBook.getCellValue("expirationmonth", "Value"),
+		  	xlsBook.getCellValue("expirationyear", "Value"), xlsBook.getCellValue("cvv", "Value"),
+		  	false, "Validate Hotel Booking as a Guest with blank payment details"},
   			{xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
 		  		xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
 		  		xlsBook.getCellValue("email", "Value"),xlsBook.getCellValue("invalidCardHolder", "Value"),
 		  		xlsBook.getCellValue("invalidCardNum", "Value"),xlsBook.getCellValue("expirationmonth", "Value"),
 		  		xlsBook.getCellValue("expirationyear", "Value"),xlsBook.getCellValue("cvv", "Value"),
 		  		false, "Validate Hotel Booking as a Guest with invalid payment details"},
-			{xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
-				 xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
-				 xlsBook.getCellValue("email", "Value"),"","",xlsBook.getCellValue("expirationmonth", "Value"),
-				 xlsBook.getCellValue("expirationyear", "Value"), xlsBook.getCellValue("", "Value"),
-				 false, "Validate Hotel Booking as a Guest with blank payment details"}
+  			{xlsBook.getCellValue("country", "Value"),xlsBook.getCellValue("city", "Value"),
+  				xlsBook.getCellValue("fName", "Value"),xlsBook.getCellValue("lName", "Value"),
+  				xlsBook.getCellValue("email", "Value"),xlsBook.getCellValue("cardHolder", "Value"),
+  				xlsBook.getCellValue("cardNum", "Value"),xlsBook.getCellValue("expirationmonth", "Value"),
+  				xlsBook.getCellValue("expirationyear", "Value"), xlsBook.getCellValue("cvv", "Value"), 
+  				true,"Validate Hotel Booking as a Guest with valid payment details"}
+  			
 		  	};
 	}
 }

@@ -37,7 +37,7 @@ public class BookPageLocators extends ActionEngine{
 			.xpath("//*[contains(@name,'BOOK')]");
 	public static By errorPayment = By
 			.xpath("//*[contains(@name,'Error')]");
-	public static By inValidError = By.xpath("//*[contains(@name,'Invalid')]");
+	public static By inValidError = By.xpath("//UIAAlert[1]/UIAScrollView[1]/UIAStaticText[2]");
 	public static By okButton = By
 			.xpath("//*[contains(@name,'Okay')]");
 	
@@ -53,7 +53,7 @@ public class BookPageLocators extends ActionEngine{
 	public static By bookingFromToDate = By.
 			xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[3]");
 	public static By totalCost = By.
-			xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[7]");
+			xpath("//UIAStaticText[contains(@name,'(')][2]");
 	
 	//Retrieve booking
 	public static By emailInputOnRetrieveBooking = By

@@ -16,14 +16,15 @@ import com.mobile.workflows.LoginHelper;
 
 public class RP_013_ValidateFooterLinksInAboutUs extends LoginHelper{
 		@Test
-  public void ValidateLinksInAboutUs() throws Throwable{
+  public void ValidateFooterLinksInAboutUs() throws Throwable{
 	  
 	 try{		  
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 					"Validate Footer links in AboutUs page");
 		  //verify user already loggedIn, if yes signout
+		  handelSplashScreen();
+		  //handleSplashDialog();
 		  navigateToMyAccount();
-		  validateUserLogin();
 		  navigateToAboutUs();		  
 		  Thread.sleep(2000);		  //Privacy Policy
 		  scrollToText("Terms of Use");
@@ -34,6 +35,15 @@ public class RP_013_ValidateFooterLinksInAboutUs extends LoginHelper{
 				  }else{
 					  Reporter.failureReport("Validate Privacy policy link in AboutUs page", "Failed");
 				  }
+				  handelSplashScreen();
+				  //handleSplashDialog();
+				  Iosdriver.closeApp();
+				  Iosdriver.launchApp();
+				  handelSplashScreen();
+				  //handleSplashDialog();
+				  navigateToAboutUs();		  
+				  Thread.sleep(2000);		  //Privacy Policy
+				  scrollToText("Terms of Use");
 				  waitForElementPresent(AboutUsLocators.termsNcondiLink,"termsNcondiLink");
 				  click(AboutUsLocators.termsNcondiLink,"termsNcondiLink");
 				  if(waitForElementPresent(AboutUsLocators.termsAndCondTitle,"termsAndCondTitle")){
@@ -41,6 +51,13 @@ public class RP_013_ValidateFooterLinksInAboutUs extends LoginHelper{
 				  }else{
 					  Reporter.failureReport("Validate Terms&Conditions link in AboutUs page", "Failed");
 				  }
+				  handelSplashScreen();
+				  //handleSplashDialog();
+				  Iosdriver.closeApp();
+				  Iosdriver.launchApp();
+				  handelSplashScreen();
+				  //handleSplashDialog();
+				  navigateToAboutUs();
 				  waitForElementPresent(AboutUsLocators.termsuseLink,"termsuseLink");
 				  click(AboutUsLocators.termsuseLink,"termsuseLink");
 				  if(waitForElementPresent(AboutUsLocators.termsOfUseTitle,"termsOfUseTitle")){

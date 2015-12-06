@@ -81,20 +81,18 @@ public class ActionEngine extends TestEngine {
 		boolean flag = false;
 		try {
 			driver.findElement(locator).click();
+			Thread.sleep(1000);
 			flag = true;
 		} catch (Exception e) {
-			Assert.assertTrue(flag,"Unable to click on "+ locatorName);
 			e.printStackTrace();
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Click", "Unable to click on "
 						+ locatorName);
-				Assert.assertTrue(flag,"Unable to click on "+ locatorName);
 				return flag;
 			} else if (b && flag) {
 				Reporter.SuccessReport("Click", "Successfully click on "
 						+ locatorName);
-
 			}
 		}
 		return flag;
@@ -141,11 +139,15 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try {
+			if(browser.contains("iPhone")){
 			Iosdriver.scrollTo(text);
+			}else if(browser.contains("Android")){
+				AndroidDriver2.scrollTo(text);
+			}
 			flag = true;
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		} /*finally {
 			if (!flag) {
@@ -284,32 +286,25 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try { 
-			driver.findElement(locator).clear();
+			WebElement we = driver.findElement(locator);
+			we.clear();
 			//driver.findElement(locator).click(); //temp
 			/*Actions act = new Actions(driver);
 			act.sendKeys(driver.findElement(locator), testdata).build().perform();*/
-			driver.findElement(locator).sendKeys(testdata);
+			we.sendKeys(testdata);
 			flag = true;
 
 		} catch (Exception e) {
 			e.printStackTrace();   
-			Assert.assertEquals(false, true," type: Data typing action is not perform on  "+ locatorName);
-                     
-			e.printStackTrace();
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Type ",
 						"Data typing action is not perform on " + locatorName
 								+ " with data is " + testdata);
-				Assert.assertTrue(flag,
-						"Unable to perform type action on the element "+ locatorName);
-				return true;
 			} else if (b && flag) {
-
 				Reporter.SuccessReport("Type ",
 						"Data typing action is performed on " + locatorName
 								+ " with data is " + testdata);
-
 			}
 		}
 		return flag;
@@ -2272,7 +2267,6 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try {
-			 //WebDriverWait newWait1 = new WebDriverWait(Iosdriver,1);
 			driver.manage().timeouts().implicitlyWait(50, TimeUnit.MILLISECONDS);
 			 flag  = driver.findElement((loc)).isDisplayed();
 			 if(flag){

@@ -16,6 +16,7 @@ public class ForgotPasswordLocators {
 	public static By signInGmailButton = By.xpath("//input[@id='signIn']");
 	public static By invalidEmailError = By.xpath("//UIAStaticText[@name='The selected email is invalid.']");
 	public static By okButtonOnErrorPopUp = By.xpath("//UIAButton[@name='Okay']");
+	public static By passwordErrorPopUp = By.xpath("//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIAScrollView[1]/UIAStaticText[2]");
 	
 	
 }

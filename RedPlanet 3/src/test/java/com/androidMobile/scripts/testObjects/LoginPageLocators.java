@@ -34,4 +34,5 @@ public class LoginPageLocators extends ActionEngine {
 	public static By editButton = By
 			.xpath("//*[@text='EDIT']");
 	public static By instayPopupClose = By.xpath("//*[contains(@resource-id,'instay_popup_iv_close')]");
+	public static By addPopupClose = By.xpath("//*[contains(@resource-id,'iv_dynamic_splash_close')]");
 }

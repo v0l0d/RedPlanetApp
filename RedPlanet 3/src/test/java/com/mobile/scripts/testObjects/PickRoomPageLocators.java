@@ -17,6 +17,7 @@ public class PickRoomPageLocators extends ActionEngine{
 	public static By attractionsTab = By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableGroup[1]/UIAButton[2]");
 	public static By eventsTab = By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableGroup[1]/UIAButton[3]");
 	public static By backButton = By.xpath("//UIAButton[@name='Back'][1]");
+	public static By oKOnConfirmation = By.xpath("//*[@name='Open']");
 	
 
 }

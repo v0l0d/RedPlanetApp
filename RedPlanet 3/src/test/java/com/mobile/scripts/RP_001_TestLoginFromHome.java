@@ -1,9 +1,11 @@
 package com.mobile.scripts;
 
 
+
 import org.testng.annotations.Test;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
@@ -34,10 +36,12 @@ public class RP_001_TestLoginFromHome extends LoginHelper{
 			logger.info("password "+password);
 			try{
 			TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
+			handelSplashScreen();
 			navigateToMyAccount();
 			validateUserLogin();
 			click(AccountPageLocators.logInButton, "logInButton");							
 			Thread.sleep(5000);
+			
 			if(res){
 				boolean result = login(email, password);
 				if(result==res){
@@ -61,10 +65,10 @@ public class RP_001_TestLoginFromHome extends LoginHelper{
 		@DataProvider(name="testData")
 		public Object[][] createdata1() {
 		    return (Object[][]) new Object[][] { 
-		    		/*{xlsLogin.getCellValue("InvalidCredentials", "email"),xlsLogin.getCellValue("InvalidCredentials", "password"),"Invalid credentials",false},		    		
+		    		{xlsLogin.getCellValue("InvalidCredentials", "email"),xlsLogin.getCellValue("InvalidCredentials", "password"),"Invalid credentials",false},		    		
 		    		{xlsLogin.getCellValue("InvalidPassword", "email"),xlsLogin.getCellValue("InvalidPassword", "password")," Invalid password and valid email",false},
 		    		{xlsLogin.getCellValue("invalidEmail", "email"),xlsLogin.getCellValue("InvalidEmail", "password")," invalid Email Error message should be displayed",false},
-		    		{"",""," Email and password field left blank",false},*/
+		    		{"",""," Email and password field left blank",false},
 		    		{xlsLogin.getCellValue("ValidCredentials", "email"),xlsLogin.getCellValue("ValidCredentials", "password"),"Valid email and password",true}};
 		}
 }

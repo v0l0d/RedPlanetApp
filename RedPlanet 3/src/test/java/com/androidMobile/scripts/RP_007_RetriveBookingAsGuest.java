@@ -27,6 +27,7 @@ public class RP_007_RetriveBookingAsGuest extends LoginHelper{
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 				description);
+		 handleRateAppPopUp();
 		 navigateToBookNow();
 		 HomePageHelper.handleRateAppPopUp();
 		 selectDestination(country, city);

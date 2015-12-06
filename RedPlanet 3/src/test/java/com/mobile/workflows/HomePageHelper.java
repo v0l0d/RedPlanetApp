@@ -156,7 +156,7 @@ public class HomePageHelper extends HomePageLocators {
 	}
 	
 	public void handleSplashDialog() throws Throwable{
-		if(isElementDisplayed(HomePageLocators.closeWatchPopUp)){
+		if(isElementDisplayedTemp(HomePageLocators.closeWatchPopUp)){
 			 click(HomePageLocators.closeWatchPopUp,"closeWatchPopUp");
 		 }	
 		/*if(isElementDisplayed(HomePageLocators.instayPop)){
@@ -193,4 +193,17 @@ public class HomePageHelper extends HomePageLocators {
 		return res;
 	}
 	
+	public boolean handelSplashScreen() throws Throwable{
+		boolean res = false;
+		try {
+			if(isElementDisplayedTemp(HomePageLocators.addImage)){
+				click(HomePageLocators.addImage, "addImage");
+				res = true;
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return res;
+	}
 }

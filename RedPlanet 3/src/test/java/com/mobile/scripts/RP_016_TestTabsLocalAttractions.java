@@ -30,7 +30,8 @@ public class RP_016_TestTabsLocalAttractions extends LoginHelper{
 	  int count = 0; 
 	  try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name,description);
-		//handleSplashDialog();
+		 handelSplashScreen();
+		 //handleSplashDialog();
 		navigateToBookNow();
 		if(description.contains("pickroom")){
 		selectDestination(country, city);
@@ -97,9 +98,9 @@ public class RP_016_TestTabsLocalAttractions extends LoginHelper{
 	public Object[][] createdata1() {
   		System.out.println(xlsTabs.getCellValue("country", "Value")+" "+xlsTabs.getCellValue("city", "Value"));
   		return (Object[][]) new Object[][] { 
-			  {xlsTabs.getCellValue("country", "Value"),xlsTabs.getCellValue("city", "Value"),
+			  /*{xlsTabs.getCellValue("country", "Value"),xlsTabs.getCellValue("city", "Value"),
 				  xlsTabs.getCellValue("ValidCredentials", "Value"),xlsTabs.getCellValue("ValidCredentials", "password"),
-			  "Verify tabs under pickroom screen"},
+			  "Verify tabs under pickroom screen"},*/
 			  {xlsTabs.getCellValue("country", "Value"),xlsTabs.getCellValue("city", "Value"),
 				  xlsTabs.getCellValue("ValidCredentials", "Value"),xlsTabs.getCellValue("ValidCredentials", "password"),
 			  "Verify tabs under Local Attractions screen"}};

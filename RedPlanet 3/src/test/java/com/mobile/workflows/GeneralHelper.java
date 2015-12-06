@@ -69,9 +69,10 @@ public static String FrontDeskChat(String url,String userId,String password,Stri
 		boolean result = false;
 		String newMessage = message+"_From Admin";
 		String returnMessage = null; 
-		WebDriver  browser = new FirefoxDriver();	
+		
 		try {
-			 	browser.manage().window().maximize();			 	
+			WebDriver  browser = new FirefoxDriver();	 	
+			browser.manage().window().maximize();			 	
 			 	browser.get(url);
 			 	browser.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 			 	waitForElementPresent(browser,FrontDeskWebLocators.userId, "userId");
@@ -103,12 +104,12 @@ public static String FrontDeskChat(String url,String userId,String password,Stri
 			    	Reporter.failureReport("Validate Replay chat", "Failed");
 			    }
 			    
-			 	
+			   browser.close();			    
+			 	browser.quit();
 		}catch(Exception e){
 			e.printStackTrace();						
 		}finally{
-			browser.close();			    
-		 	browser.quit();
+			
 		}
 		return returnMessage;
 	}
@@ -116,7 +117,7 @@ public static String FrontDeskChat(String url,String userId,String password,Stri
 	public static void deepLinkHelper(String link) throws Throwable{
 		//HomePageHelper.navigateToMyAccount();
 		//click(LoginPageLocators.connectWithFacebookButton, "connectWithFacebookButton");							
-		Thread.sleep(10000);
+		Thread.sleep(20000);
 		Set<String> contexts = ((IOSDriver) driver).getContextHandles();
 		for(String currContext : contexts){
 			System.out.println("current context is :"+currContext);
@@ -125,7 +126,7 @@ public static String FrontDeskChat(String url,String userId,String password,Stri
 						" Successfull switched to web context"+currContext);
 				((IOSDriver) driver).context(currContext);
 				Iosdriver.navigate().to(link);
-				Thread.sleep(10000);
+				Thread.sleep(1000);
 				break;
 			}
 		}

@@ -1,9 +1,5 @@
 package com.ctaf.accelerators;       
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
-
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -14,7 +10,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -22,25 +17,25 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import com.ctaf.support.ActionEngineSupport;
 import com.ctaf.support.ConfiguratorSupport;
 import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.support.ReportStampSupport;
 import com.ctaf.utilities.Reporter;
 //import com.redplanet.utils.RedPlanetUtils;
+import com.redplanet.utils.RedPlanetUtils;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 
 public class TestEngine extends HtmlReportSupport {
 	public static Logger logger = Logger.getLogger(TestEngine.class.getName());
@@ -54,7 +49,7 @@ public class TestEngine extends HtmlReportSupport {
 			.replace(" ", "_").replace(":", "_").replace(".", "_");
 	public static boolean flag = false;
 	
-	public static WebDriver driver=null;
+	public static RemoteWebDriver driver=null;
 	public static int stepNum = 0;
 	public static int PassNum =0;
 	public static int FailNum =0;
@@ -62,7 +57,7 @@ public class TestEngine extends HtmlReportSupport {
 	public static int failCounter =0;
 	public static String testName = "";
 	public static String testCaseExecutionTime = "";
-	public static WebDriver webDriver = null;
+	public static RemoteWebDriver webDriver = null;
 	public static StringBuffer x=new StringBuffer();
 	public static String finalTime = "";
 	public static boolean isSuiteRunning=false;
@@ -353,14 +348,14 @@ public class TestEngine extends HtmlReportSupport {
 					capabilitiesForAppium.setCapability("newCommandTimeout","6000");
 					capabilitiesForAppium.setCapability("takesScreenshot", true);
 					capabilitiesForAppium.setCapability("autoWebviewTimeout","6000");
-					//capabilitiesForAppium.setCapability("fullReset", "true");
+					//capabilitiesForAppium.setCapability("fullReset", true);
 					if((DeviceName.contains("Simulator"))||((udid.length()==0))){
 						System.out.println("using simulator");
-						//capabilitiesForAppium.setCapability("app",appPath);
+						capabilitiesForAppium.setCapability("app",appPath);
 					}else{
 						System.out.println("using real device");
 						capabilitiesForAppium.setCapability("udid", udid);
-						//capabilitiesForAppium.setCapability("app",ipaPath);
+						capabilitiesForAppium.setCapability("app",ipaPath);
 					}
 					Iosdriver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),
 							capabilitiesForAppium);
@@ -378,29 +373,42 @@ public class TestEngine extends HtmlReportSupport {
 					String AppActivity = configProps.getProperty("appActivity");
 					String OSVersion =  configProps.getProperty("OSVersion");
 					// ---------------------------------------------------
-					//System.out.println("Starting Appium Server....");
+					System.out.println("Starting Appium Server....");
+					String logFile = "C:/Log/RPMob_" + timeStamp + ".log";
+					if(configProps.getProperty("AutoStart").equals("true")){
+						while (!(new File(logFile).exists())) {
+							RedPlanetUtils.startAppium(logFile);
+						}
+						if ((new File(logFile).exists())) {
+							Reporter.SuccessReport("StartAppiumServer",
+								"Successfully started Appium Server");
+						}
+					}
 					// -----------------------------------------------------
 					DesiredCapabilities capabilitiesForAppium = new DesiredCapabilities();
-				
 					System.out.println("DeviceName is : " + DeviceName);
 					capabilitiesForAppium.setCapability("deviceName",
 							DeviceName);
 					capabilitiesForAppium.setCapability("platformVersion",OSVersion);
 					capabilitiesForAppium.setCapability("platformName","Android");
-					/*capabilitiesForAppium.setCapability("newCommandTimeout",
-							"12000");*/
+					//capabilitiesForAppium.setCapability("newCommandTimeout","120000");
 					//capabilitiesForAppium.setCapability("autoWebview", "true");
 					capabilitiesForAppium.setCapability("autoWebviewTimeout","1000");
 					//capabilitiesForAppium.setCapability("noReset", false);
 					capabilitiesForAppium.setCapability("appPackage", AppPackage);
 					capabilitiesForAppium.setCapability("appActivity", AppActivity);
+					
 					AndroidDriver2 = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
 							capabilitiesForAppium);
+					AndroidDriver2.resetApp();
 					driver = (AndroidDriver2);
-
+					//driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
+				
 				}
+
 			}
 
 		flag = false;

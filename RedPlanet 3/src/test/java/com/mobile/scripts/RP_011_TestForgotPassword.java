@@ -32,7 +32,8 @@ public class RP_011_TestForgotPassword  extends LoginHelper{
 		try{
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);			  
 		  //verify user already loggedIn, if yes sign out
-		
+		  handelSplashScreen();
+		  //handleSplashDialog();
 		  navigateToMyAccount();
 		  validateUserLogin();
 		  waitForElementPresent(AccountPageLocators.logInButton,"logInButton");
@@ -45,6 +46,16 @@ public class RP_011_TestForgotPassword  extends LoginHelper{
 		  Thread.sleep(2000);
 		  ForgotPasswordHelper.navigateToForgotPasswordScreen();
 		  waitForElementPresent(ForgotPasswordLocators.emailInputField,  "emailInputField");
+		  if(description.contains("cancel")){
+				 waitForElementPresent(ForgotPasswordLocators.signInBackButton, "signInBackButton");
+				 click(ForgotPasswordLocators.signInBackButton, "signInBackButton");
+				 if(isElementDisplayed(LoginPageLocators.emailFieldForLogin)){
+					 Reporter.SuccessReport("Validate cancel ResetPassword", "Successful ");
+				 }else{
+					 Reporter.failureReport("Validate cancel ResetPassword", "Failed ");
+				 }
+
+		  }
 		  if(status){
 			  type(ForgotPasswordLocators.emailInputField, email, "emailInputField");
 			  click(ForgotPasswordLocators.resetPasswordButton, "resetPasswordButton");
@@ -54,6 +65,7 @@ public class RP_011_TestForgotPassword  extends LoginHelper{
 			  ForgotPasswordHelper.ResetPasswordViaGmail(gmailUrl, email, password, resetPwd);
 			  Iosdriver.closeApp();
 			  Iosdriver.launchApp();
+			  handelSplashScreen();
 			  navigateToMyAccount();
 			  validateUserLogin();
 			  login(email, resetPwd);
@@ -61,16 +73,16 @@ public class RP_011_TestForgotPassword  extends LoginHelper{
 			  Reporter.SuccessReport(description, "Successful ");
 			 }else{
 				 boolean res = false;
-				 res = waitForElementPresent(ForgotPasswordLocators.invalidEmailError, "invalidEmailError");
-				 waitForElementPresent(ForgotPasswordLocators.okButtonOnErrorPopUp, "okButtonOnErrorPopUp");
+				 res = waitForElementPresent(ForgotPasswordLocators.passwordErrorPopUp, "passwordErrorPopUp");
+				 waitForElementPresent(ForgotPasswordLocators.passwordErrorPopUp, "passwordErrorPopUp");
 				 click(ForgotPasswordLocators.okButtonOnErrorPopUp, "okButtonOnErrorPopUp");
 				 if(res){
-					 Reporter.SuccessReport("Validate error on invalid email ID for ResetPassword", "Successful ");
+					 Reporter.SuccessReport(description, "Successful ");
 				 }else{
-					 Reporter.failureReport("Validate error on invalid email ID for ResetPassword", "Failed ");
+					 Reporter.failureReport(description, "Failed ");
 				 }
 			 }
-		  }else{
+		  }/*else{
 			  waitForElementPresent(ForgotPasswordLocators.signInBackButton, "signInBackButton");
 			  click(ForgotPasswordLocators.signInBackButton, "signInBackButton");
 			  if(waitForElementPresent(LoginPageLocators.signInButton, "signInButton")){
@@ -78,7 +90,7 @@ public class RP_011_TestForgotPassword  extends LoginHelper{
 				 }else{
 					 Reporter.failureReport("Validate cancel ResetPassword", "Failed ");
 				 }
-		  }
+		  }*/
 		  /*webDriver = new FirefoxDriver();
 		  //webDriver.manage().deleteAllCookies();
 		  webDriver.get("https://gmail.com");
@@ -109,11 +121,15 @@ public class RP_011_TestForgotPassword  extends LoginHelper{
 	public Object[][] createdata1() {
 	    return (Object[][]) new Object[][] { 
 	    		{xlsReset.getCellValue("validEmail", "Value"),xlsReset.getCellValue("gmailPass", "Value"),
-	    			xlsReset.getCellValue("resetPass", "Value"),true,"Validate Forgot Password on valid email ID"}/*,
+	    			xlsReset.getCellValue("resetPass", "Value"),false,"Validate cancel Forgot Password"},
 	    		{xlsReset.getCellValue("InvalidEmail", "Value"),xlsReset.getCellValue("gmailPass", "Value"),
-	    			xlsReset.getCellValue("resetPass", "Value"),true,"Validate Forgot Password on valid email ID"},
-	    			{"",xlsReset.getCellValue("gmailPass", "Value"),
-		    			xlsReset.getCellValue("resetPass", "Value"),true,"Validate Forgot Password on valid email ID"}*/
+	    			xlsReset.getCellValue("resetPass", "Value"),true,"Validate error message for "
+	    					+ "Forgot Password on InValid email ID"},
+	    		{"",xlsReset.getCellValue("gmailPass", "Value"),
+	    		    			xlsReset.getCellValue("resetPass", "Value"),true,"Validate error message for "
+	    		    					+ "Forgot Password on blank email ID"},
+	    			{xlsReset.getCellValue("validEmail", "Value"),xlsReset.getCellValue("gmailPass", "Value"),
+		    			xlsReset.getCellValue("resetPass", "Value"),true,"Validate Forgot Password on valid email ID"}
 	    			};
 	}
 }

@@ -16,21 +16,19 @@ public class LoginHelper extends HomePageHelper {
 			type(LoginPageLocators.emailFieldForLogin, email, "emailField");
 			waitForElementPresent(LoginPageLocators.passwordFieldForLogin,
 					"passwordFieldForLogin");
-			driver.findElement(LoginPageLocators.passwordFieldForLogin).clear();
-			type(LoginPageLocators.passwordFieldForLogin, password,
-					"passwordFieldForLogin");
+			waitForElementPresent(LoginPageLocators.passwordFieldForLogin,"passwordFieldForLogin");
+			type(LoginPageLocators.passwordFieldForLogin, password,"passwordFieldForLogin");
 			waitForElementPresent(LoginPageLocators.signInButton,
 					"signInButton");
 			click(LoginPageLocators.signInButton, "signInButton");
 			Thread.sleep(3000);
-			if(waitForElementPresent(LoginPageLocators.nameFieldLable,"nameInputField")){				
+			//if(waitForElementPresent(LoginPageLocators.nameFieldLable,"nameInputField")){				
 				/*res = waitForElementPresent(AccountPageLocators.accountScreenTitle,
 						"accountScreenTitle");*/
 				res = true;
-			}
+			//}
 		}catch(Exception e){
-			//e.printStackTrace();
-			click(LoginPageLocators.okayButtonOnErrorpop, "okayButtonOnErrorpop");
+			e.printStackTrace();
 			return false;
 		}
 		System.out.println(res);
@@ -74,7 +72,7 @@ public class LoginHelper extends HomePageHelper {
 				type(LoginPageLocators.emailFieldForLogin, email, "emailField");
 				waitForElementPresent(LoginPageLocators.passwordFieldForLogin,
 						"passwordFieldForLogin");
-				driver.findElement(LoginPageLocators.passwordFieldForLogin).clear();
+				waitForElementPresent(LoginPageLocators.passwordFieldForLogin,"passwordFieldForLogin");
 				type(LoginPageLocators.passwordFieldForLogin, password,
 						"passwordFieldForLogin");
 				waitForElementPresent(LoginPageLocators.signInButton,

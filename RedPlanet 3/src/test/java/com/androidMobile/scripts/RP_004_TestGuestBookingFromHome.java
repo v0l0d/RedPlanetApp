@@ -24,6 +24,7 @@ public class RP_004_TestGuestBookingFromHome extends LoginHelper{
 	try{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 				description);	
+		 handleRateAppPopUp();
 		 selectDestination(country, city);
 		 HomePageHelper.handleRateAppPopUp();
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
@@ -79,23 +80,23 @@ public class RP_004_TestGuestBookingFromHome extends LoginHelper{
   		
   		return (Object[][]) new Object[][] { 
 			 
+  			{xlsGuestBook.getCellValue("country", "Value"),xlsGuestBook.getCellValue("city", "Value"),
+					 xlsGuestBook.getCellValue("fName", "Value"),xlsGuestBook.getCellValue("lName", "Value"),
+					 xlsGuestBook.getCellValue("email", "Value"),"",
+					 "",xlsGuestBook.getCellValue("expirationmonth", "Value"),
+					 xlsGuestBook.getCellValue("cvv", "Value"),
+				"Validate booking of a Hotel as Guest from Home screen with blank details"},
+				{xlsGuestBook.getCellValue("country", "Value"),xlsGuestBook.getCellValue("city", "Value"),
+					  xlsGuestBook.getCellValue("fName", "Value"),xlsGuestBook.getCellValue("lName", "Value"),
+					  xlsGuestBook.getCellValue("email", "Value"),xlsGuestBook.getCellValue("InValidcardHolder", "Value"),
+					  xlsGuestBook.getCellValue("InValidCardNum", "Value"),xlsGuestBook.getCellValue("InExpirationmonth", "Value"),
+					  xlsGuestBook.getCellValue("InValidcvv", "Value"),
+					"Validate booking of a Hotel as Guest from Home screen with Invalid details"},
 			{xlsGuestBook.getCellValue("country", "Value"),xlsGuestBook.getCellValue("city", "Value"),
 				  xlsGuestBook.getCellValue("fName", "Value"),xlsGuestBook.getCellValue("lName", "Value"),
 				  xlsGuestBook.getCellValue("email", "Value"),xlsGuestBook.getCellValue("cardHolder", "Value"),
 				  xlsGuestBook.getCellValue("cardNum", "Value"),xlsGuestBook.getCellValue("expirationmonth", "Value"),
 				  xlsGuestBook.getCellValue("cvv", "Value"),
-				  "Validate booking of a Hotel as Guest from Home screen with valid details"},
-				  {xlsGuestBook.getCellValue("country", "Value"),xlsGuestBook.getCellValue("city", "Value"),
-					  xlsGuestBook.getCellValue("fName", "Value"),xlsGuestBook.getCellValue("lName", "Value"),
-					  xlsGuestBook.getCellValue("email", "Value"),xlsGuestBook.getCellValue("InValidcardHolder", "Value"),
-					  xlsGuestBook.getCellValue("InValidCardNum", "Value"),xlsGuestBook.getCellValue("InExpirationmonth", "Value"),
-					  xlsGuestBook.getCellValue("InValidcvv", "Value"),
-					  "Validate booking of a Hotel as Guest from Home screen with Invalid details"},
-					  {xlsGuestBook.getCellValue("country", "Value"),xlsGuestBook.getCellValue("city", "Value"),
-						  xlsGuestBook.getCellValue("fName", "Value"),xlsGuestBook.getCellValue("lName", "Value"),
-						  xlsGuestBook.getCellValue("email", "Value"),"",
-						  "",xlsGuestBook.getCellValue("expirationmonth", "Value"),
-						  xlsGuestBook.getCellValue("cvv", "Value"),
-						  "Validate booking of a Hotel as Guest from Home screen with blank details"}};
+				  "Validate booking of a Hotel as Guest from Home screen with valid details"}};
 	}
 }

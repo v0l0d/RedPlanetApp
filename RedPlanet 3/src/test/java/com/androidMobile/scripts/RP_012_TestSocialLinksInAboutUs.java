@@ -33,10 +33,14 @@ public class RP_012_TestSocialLinksInAboutUs extends LoginHelper{
 				 click(HomePageLocators.closeWatchPopUp,"closeWatchPopUp");
 			 }
 		  //verify user already loggedIn, if yes signout
-		  navigateToAboutUs();		  
+		  handleRateAppPopUp();
+		  navigateToAboutUs();	
+		  handleRateAppPopUp();
 		  Thread.sleep(2000);		  
 			  if(isElementDisplayed(AboutUsLocators.facebookImage)){
 				  click(AboutUsLocators.facebookImage,"facebookImage");
+				  handleRateAppPopUp();
+				  handleSplashDialog();
 				  Thread.sleep(6000);	
 				  //waitForElementPresent(By.xpath("com.redplanethotels.staging:id/social_iv_facebook"),"browser");
 				  //click(By.xpath("com.redplanethotels.staging:id/social_iv_facebook"),"browser");
@@ -52,42 +56,56 @@ public class RP_012_TestSocialLinksInAboutUs extends LoginHelper{
 				  Reporter.SuccessReport("Validate Facebook link in AboutUs page", "Successful");
 				  AndroidDriver2.closeApp();
 				  AndroidDriver2.launchApp();
+				  handleRateAppPopUp();
 				  Thread.sleep(6000);
 				  navigateToAboutUs();
+				  handleRateAppPopUp();
 			  }else{
 				  Reporter.failureReport("Validate Facebook link in AboutUs page", "Failed");
 			  }
 			  
 			  if(isElementDisplayed(AboutUsLocators.twitterImage)){
 				  click(AboutUsLocators.twitterImage,"twitterImage");
+				  handleRateAppPopUp();
+				  handleSplashDialog();
 				  Thread.sleep(6000);	
 				  Reporter.SuccessReport("Validate twitter link in AboutUs page", "Successful");
 				  AndroidDriver2.closeApp();
 				  AndroidDriver2.launchApp();
+				  handleRateAppPopUp();
 				  Thread.sleep(6000);
 				  navigateToAboutUs();
+				  handleRateAppPopUp();
 			  }else{
 				  Reporter.failureReport("Validate twitter link in AboutUs page", "Failed");
 			  }
 			  if(isElementDisplayed(AboutUsLocators.googleImage)){
 				  click(AboutUsLocators.googleImage,"googleImage");
+				  handleRateAppPopUp();
+				  handleSplashDialog();
 				  Thread.sleep(6000);	
 				  Reporter.SuccessReport("Validate GooglePlus link in AboutUs page", "Successful");
 				  AndroidDriver2.closeApp();
 				  AndroidDriver2.launchApp();
+				  handleRateAppPopUp();
 				  Thread.sleep(6000);
 				  navigateToAboutUs();
+				  handleRateAppPopUp();
 			  }else{
 				  Reporter.failureReport("Validate GooglePlus link in AboutUs page", "Failed");
 			  }
 			  if(isElementDisplayed(AboutUsLocators.instagramImage)){
 				  click(AboutUsLocators.instagramImage,"instagramImage");
+				  handleRateAppPopUp();
+				  handleSplashDialog();
 				  Thread.sleep(6000);
 				  Reporter.SuccessReport("Validate Instagram link in AboutUs page", "Successful");
 				  AndroidDriver2.closeApp();
 				  AndroidDriver2.launchApp();
+				  handleRateAppPopUp();
 				  Thread.sleep(6000);
 				  navigateToAboutUs();
+				  handleRateAppPopUp();
 			  }else{
 				  Reporter.failureReport("Validate Instagram link in AboutUs page", "Failed");
 			  }
@@ -97,25 +115,33 @@ public class RP_012_TestSocialLinksInAboutUs extends LoginHelper{
 				  Reporter.SuccessReport("Validate Pintrest link in AboutUs page", "Successful");
 				  AndroidDriver2.closeApp();
 				  AndroidDriver2.launchApp();
+				  handleRateAppPopUp();
 				  Thread.sleep(6000);
 				  navigateToAboutUs();
+				  handleRateAppPopUp();
 			  }else{
 				  Reporter.failureReport("Validate Pintrest link in AboutUs page", "Failed");
 			  }
 			  if(isElementDisplayed(AboutUsLocators.flipboardImage)){
 				  click(AboutUsLocators.flipboardImage,"flipboardImage");
+				  handleRateAppPopUp();
+				  handleSplashDialog();
 				  Thread.sleep(6000);
 				  Reporter.SuccessReport("Validate Flipboard link in AboutUs page", "Successful");
 				  AndroidDriver2.closeApp();
 				  AndroidDriver2.launchApp();
+				  handleRateAppPopUp();
 				  Thread.sleep(6000);
 				  navigateToAboutUs();
+				  handleRateAppPopUp();
 			  }else{
 				  Reporter.failureReport("Validate Flipboard link in AboutUs page", "Failed");
 			  }
 			  
 			  if(isElementDisplayed(AboutUsLocators.vineImage)){
 				  click(AboutUsLocators.vineImage,"vineImage");
+				  handleRateAppPopUp();
+				  handleSplashDialog();
 				  Thread.sleep(6000);
 				  Reporter.SuccessReport("Validate Vine link in AboutUs page", "Successful");
 			  }else{
@@ -131,7 +157,7 @@ public class RP_012_TestSocialLinksInAboutUs extends LoginHelper{
 	@DataProvider(name="testData")
 	public Object[][] createdata1() {
 	    return (Object[][]) new Object[][] { 
-	    		{"Validate visible social integrations in AboutUs page"},
-	    		{"Validate footer links in AboutUs page"}};
+	    		{"Validate visible social integrations in AboutUs page"}
+	    		};
 	}
 }
