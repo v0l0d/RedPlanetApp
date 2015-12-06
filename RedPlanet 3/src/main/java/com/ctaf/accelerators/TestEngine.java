@@ -355,7 +355,7 @@ public class TestEngine extends HtmlReportSupport {
 					}else{
 						System.out.println("using real device");
 						capabilitiesForAppium.setCapability("udid", udid);
-						capabilitiesForAppium.setCapability("app",ipaPath);
+						capabilitiesForAppium.setCapability("app",System.getProperty("user.dir")+ipaPath);
 					}
 					Iosdriver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),
 							capabilitiesForAppium);
