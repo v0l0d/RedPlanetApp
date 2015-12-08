@@ -1,13 +1,8 @@
 package com.mobile.scripts;
 
 
-import org.testng.annotations.Test;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Set;
 
-import org.eclipse.jetty.util.annotation.ManagedAttribute;
-import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -17,12 +12,9 @@ import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AccountPageLocators;
 import com.mobile.scripts.testObjects.FacebookLoginLocators;
-import com.mobile.scripts.testObjects.HomePageLocators;
 import com.mobile.scripts.testObjects.LoginPageLocators;
-import com.mobile.workflows.HomePageHelper;
 import com.mobile.workflows.LoginHelper;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.ios.IOSDriver;
 
 
@@ -40,8 +32,7 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 			logger.info("password "+FBpassword);
 			boolean result = false;
 			try{
-			TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-					description);
+			TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
 			
 			handelSplashScreen();
 			//handleSplashDialog();
@@ -66,8 +57,6 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 						Thread.sleep(10000);
 						break;
 					}
-					//((IOSDriver) driver).manage().deleteAllCookies();
-					//((IOSDriver) driver).navigate().refresh();
 					waitForElementPresent(FacebookLoginLocators.emailForFacebookLogin, "emailForFacebookLogin");
 					type(FacebookLoginLocators.emailForFacebookLogin, FBemail, "emailForFacebookLogin");
 					type(FacebookLoginLocators.passwordForFacebookLogin, FBpassword, "passwordForFacebookLogin");
@@ -79,8 +68,6 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 					break;
 				}
 			}
-			//Iosdriver.closeApp();
-			//Iosdriver.launchApp();
 			Set<String> contexts2 = ((IOSDriver) driver).getContextHandles();
 			for(String currCont : contexts2){
 				System.out.println("current context is :"+currCont);
@@ -95,8 +82,7 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 								" Successfull varified user login with facebook "+!loginStat);
 						result = true;
 						scrollToText("SIGN OUT");
-						waitForElementPresent(AccountPageLocators.signOutButton, 
-								  "signOutButton");
+						waitForElementPresent(AccountPageLocators.signOutButton, "signOutButton");
 						 click(AccountPageLocators.signOutButton, "signOutButton");
 						 Thread.sleep(2000);						 
 					  }
@@ -107,7 +93,6 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 				}else{
 					Reporter.failureReport("validate "+description, " Failed");
 				}
-			
 			}catch (Exception e) {
 				e.printStackTrace();
 				Reporter.failureReport("Connect with Facebook login", "Failed");

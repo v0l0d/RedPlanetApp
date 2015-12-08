@@ -1,17 +1,11 @@
 package com.mobile.scripts;
 
-import java.util.HashMap;
-
-import org.openqa.selenium.JavascriptExecutor;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.ctaf.accelerators.TestEngine;
-import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AboutUsLocators;
-import com.mobile.scripts.testObjects.HomePageLocators;
 import com.mobile.workflows.LoginHelper;
 
 public class RP_013_ValidateFooterLinksInAboutUs extends LoginHelper{

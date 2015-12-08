@@ -1,7 +1,5 @@
 package com.mobile.scripts;
 
-import java.util.Calendar;
-
 import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -25,6 +23,7 @@ public class RP_003_TestSearchHotels extends LoginHelper{
 		 handelSplashScreen();
 		 //handleSplashDialog();
 		 navigateToBookNow();
+		 //select destination
 		selectDestination(country, city);
 		if(waitForElementPresent(By.xpath(HomePageLocators.locationCountryName.replace("#", country.trim().toUpperCase())),
 				"locationCountryName")){
@@ -40,7 +39,7 @@ public class RP_003_TestSearchHotels extends LoginHelper{
 		if(!(description.contains("select Destination"))){
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		 click(HomePageLocators.searchButton, "searchButton");
-		 Thread.sleep(10000);
+		 //verify search results
 			 if(waitForElementPresent(PickRoomPageLocators.pickRoomPage,"pickRoomPage")){
 				 Reporter.SuccessReport("Verify Search functionality", "Successful found PickRoom screen after Search");
 			 }else

@@ -2,7 +2,6 @@ package com.mobile.workflows;
 
 import com.ctaf.support.ReportStampSupport;
 import com.mobile.scripts.testObjects.BookPageLocators;
-import com.mobile.scripts.testObjects.LoginPageLocators;
 
 public class BookingPageHelper extends HomePageHelper {	
 	

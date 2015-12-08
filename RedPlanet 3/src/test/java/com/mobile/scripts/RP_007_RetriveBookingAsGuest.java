@@ -23,8 +23,7 @@ public class RP_007_RetriveBookingAsGuest extends LoginHelper{
 		  String cardNum,String expMonth,String expYear,String cvv, String description) throws Throwable{
 	  	String bookingCode = null;
 	try{
-		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-				description);
+		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
 		 handelSplashScreen();
 		 //handleSplashDialog();
 		 navigateToMyAccount();
@@ -42,7 +41,6 @@ public class RP_007_RetriveBookingAsGuest extends LoginHelper{
 		 click(PickRoomPageLocators.bookNowButton, "bookNowButton");
 		 waitForElementPresent(BookPageLocators.contiuneButton, "contiuneButton");	 
 		 click(BookPageLocators.contiuneButton, "contiuneButton");
-			 Thread.sleep(2000);
 			 BookingPageHelper.populateGuestDetails("", fName, lName, email, "");
 			 BookingPageHelper.populatePaymentDetails(cardHolder, cardNum, expMonth, expYear, cvv);
 		 waitForElementPresent(BookPageLocators.doneButton, "doneButton");

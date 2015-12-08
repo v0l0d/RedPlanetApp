@@ -4,17 +4,14 @@ import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.ctaf.support.ExcelReader;
-import com.ctaf.utilities.Reporter;
 import com.ctaf.accelerators.TestEngine;
+import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
+import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AccountPageLocators;
-import com.mobile.scripts.testObjects.BookPageLocators;
-import com.mobile.scripts.testObjects.LoginPageLocators;
-import com.mobile.scripts.testObjects.PickRoomPageLocators;
-import com.mobile.workflows.LoginHelper;
 import com.mobile.scripts.testObjects.HomePageLocators;
 import com.mobile.scripts.testObjects.InHousePhoneLocators;
+import com.mobile.workflows.LoginHelper;
 
 public class RP_014_TestInHousePhone  extends LoginHelper{
 	ExcelReader xlsInHouse = new ExcelReader(configProps.getProperty("TestData"),
@@ -39,6 +36,7 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
 		  click(HomePageLocators.inHousePhoneButton, "inHousePhoneButton");
 		  Thread.sleep(2000);
 		  if(status){
+			 if(phNo.length>0){
 			  System.out.println("Dial Number "+phNo+" no of digits "+phNo.length);
 				 for(char digi : phNo){
 				  waitForElementPresent(By.xpath(InHousePhoneLocators.noButtonToDial.replace("#", Character.toString(digi))),
@@ -46,24 +44,29 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
 				  click(By.xpath(InHousePhoneLocators.noButtonToDial.replace("#", Character.toString(digi))),
 						  "noButtonToDial"+digi);
 				 }
-			  click(InHousePhoneLocators.callIcon, "callIcon");
-			  if((isElementDisplayed(InHousePhoneLocators.rigingLabel))){
-				  Reporter.SuccessReport(description, " Successful");			  
-			  }else{
-				  if(description.contains("invalid")){
+				 click(InHousePhoneLocators.callIcon, "callIcon");
+				 if((isElementDisplayed(InHousePhoneLocators.callingRoomLabel))){
+					  Reporter.SuccessReport(description, " Successful");			  
+				  }else{
+					  Reporter.failureReport(description, " Failed");
+				  }
+			 }else{
+				 click(InHousePhoneLocators.callIcon, "callIcon");
+				 if(description.contains("invalid")){
 					  System.out.println("In Invalid room no block");
 					 click(InHousePhoneLocators.callIcon, "callIcon");
-				  if(!(isElementDisplayed(InHousePhoneLocators.rigingLabel))){
+				  if(!(isElementDisplayed(InHousePhoneLocators.callingRoomLabel))){
 					  Reporter.SuccessReport(description, " Successful");
 					  System.out.println("successfully failed to call Invalid room");
+				  }else{
+					  Reporter.failureReport(description, " Failed");
 				  }
-			  }
-				  Reporter.failureReport(description, " Failed");
+			 }
 		  }
 		}else if(description.contains("FrontDesk")){
 				  System.out.println("In call Front Desk block");
 				  click(InHousePhoneLocators.frontDeskButtonToCall, "frontDeskButtonToCall");
-				  if((isElementDisplayed(InHousePhoneLocators.rigingLabel))){
+				  if((isElementDisplayed(InHousePhoneLocators.callingRoomLabel))){
 					  Reporter.SuccessReport(description, " Successful");
 					  System.out.println("successfully calling Front Desk ");
 				  }else{
@@ -79,14 +82,11 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
   @DataProvider(name="testData")
 	public Object[][] createdata1() {
 	    return (Object[][]) new Object[][] { 
-	    		{xlsInHouse.getCellValue("ValidRoomNo", "Value"),
-	    			xlsInHouse.getCellValue("ValidCredentials", "Value"),
+	    		{xlsInHouse.getCellValue("ValidRoomNo", "Value"),xlsInHouse.getCellValue("ValidCredentials", "Value"),
 	    			xlsInHouse.getCellValue("ValidCredentials", "password"),true,"Validate InHousePhone to valid room number"},
-	    		{xlsInHouse.getCellValue("InvalidRoomNo", "Value"),
-	    				xlsInHouse.getCellValue("ValidCredentials", "Value"),xlsInHouse.getCellValue("ValidCredentials", "password"),
-		    			true,"Validate InHousePhone to invalid room number"},
-	    		{xlsInHouse.getCellValue("InvalidRoomNo", "Value"),
-		    				xlsInHouse.getCellValue("ValidCredentials", "Value"),xlsInHouse.getCellValue("ValidCredentials", "password"),
-			    			false,"Validate InHousePhone to FrontDesk"}};
+	    		{"",xlsInHouse.getCellValue("ValidCredentials", "Value"),
+	    				xlsInHouse.getCellValue("ValidCredentials", "password"),true,"Validate InHousePhone to invalid room number"},
+	    		{"",xlsInHouse.getCellValue("ValidCredentials", "Value"),
+	    			xlsInHouse.getCellValue("ValidCredentials", "password"),false,"Validate InHousePhone to FrontDesk"}};
 	}
 }

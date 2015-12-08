@@ -8,17 +8,14 @@ import org.testng.annotations.Test;
 import com.ctaf.accelerators.TestEngine;
 import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
-import com.ctaf.support.ReportStampSupport;
 import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AccountPageLocators;
 import com.mobile.scripts.testObjects.FacebookLoginLocators;
-import com.mobile.scripts.testObjects.ForgotPasswordLocators;
 import com.mobile.scripts.testObjects.HomePageLocators;
 import com.mobile.scripts.testObjects.InHousePhoneLocators;
 import com.mobile.scripts.testObjects.LoginPageLocators;
 import com.mobile.scripts.testObjects.PickRoomPageLocators;
 import com.mobile.workflows.GeneralHelper;
-import com.mobile.workflows.HomePageHelper;
 import com.mobile.workflows.LoginHelper;
 
 import io.appium.java_client.ios.IOSDriver;
@@ -30,8 +27,7 @@ public class RP_018_TestDeepLinks extends LoginHelper{
   public void testDeepLinks(String firstName, String lastName, String emailId,
 		  String password,boolean status, String description) throws Throwable{  
 	try{
-		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-				description);
+		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
 		  handelSplashScreen();
 		  //handleSplashDialog();
 		  Set<String> contexts = null;

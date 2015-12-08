@@ -139,9 +139,9 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try {
-			if(browser.contains("iPhone")){
-			Iosdriver.scrollTo(text);
-			}else if(browser.contains("Android")){
+			if(browser.toLowerCase().contains("iphone")){
+				Iosdriver.scrollTo(text);
+			}else if(browser.toLowerCase().contains("android")){
 				AndroidDriver2.scrollTo(text);
 			}
 			flag = true;

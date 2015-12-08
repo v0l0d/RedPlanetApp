@@ -33,7 +33,6 @@ public class RP_017_TestInputCreditCards extends LoginHelper{
 		 validateUserLogin();
 		 navigateToBookNow();
 	     selectDestination(country, city);
-		 Thread.sleep(3000);
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		 click(HomePageLocators.searchButton, "searchButton");
 		 Thread.sleep(10000);		 
@@ -42,20 +41,17 @@ public class RP_017_TestInputCreditCards extends LoginHelper{
 		 }else
 			 Reporter.failureReport("Search for Hotels", "Failed");
 		 click(PickRoomPageLocators.bookNowButton, "bookNowButton");
-		 Thread.sleep(5000);
 		 waitForElementPresent(BookPageLocators.contiuneButton,"contiuneButton");	 
 		 click(BookPageLocators.contiuneButton, "contiuneButton");
-		Thread.sleep(2000);
 		BookingPageHelper.populateGuestDetails("", fName, lName, email, "");
 		BookingPageHelper.populatePaymentDetails(cardHolder, cardNum, expMonth, expYear, cvv);
-		Thread.sleep(6000);
 		waitForElementPresent(BookPageLocators.doneButton, "doneButton");
 		if(isElementDisplayed(BookPageLocators.bookingCode)){
-			 bookingCode = driver.findElement(BookPageLocators.bookingCode).getText().trim();
+			 bookingCode = driver.findElement(BookPageLocators.bookingCode).getAttribute("value").trim();
 			 Reporter.SuccessReport(description, "Successful"+" Booking code is: "+bookingCode);
 		 }else if(isElementDisplayed(BookPageLocators.errorPayment)){
 			 Reporter.failureReport(description, "Failed to process payment, error message is: "
-						+ driver.findElement(BookPageLocators.errorPayment).getText());
+						+ driver.findElement(BookPageLocators.errorPayment).getAttribute("value").trim());
 				click(BookPageLocators.okButton, "okButton");
 		 }else{			 
 			Reporter.failureReport(description, "Failed");

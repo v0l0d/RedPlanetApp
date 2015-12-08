@@ -1,9 +1,5 @@
 package com.mobile.scripts;
 
-import java.text.DateFormatSymbols;
-import java.util.Calendar;
-
-import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -14,7 +10,6 @@ import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AccountPageLocators;
 import com.mobile.scripts.testObjects.BookPageLocators;
 import com.mobile.scripts.testObjects.HomePageLocators;
-import com.mobile.scripts.testObjects.LoginPageLocators;
 import com.mobile.scripts.testObjects.PickRoomPageLocators;
 import com.mobile.workflows.BookingPageHelper;
 import com.mobile.workflows.LoginHelper;
@@ -33,10 +28,8 @@ public class RP_006_BookingAsAMember extends LoginHelper{
 	  	String bookingFromToDate = "";
 	  	String bookedHotel = "";
 	  	String totalBookingCost = "";
-
 	try{
-		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-				description);
+		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
 		 handelSplashScreen();
 		 //handleSplashDialog();
 		 System.out.println("userId "+emailId+" password "+password);
@@ -46,7 +39,6 @@ public class RP_006_BookingAsAMember extends LoginHelper{
 		 login(emailId,password);
 		 navigateToBookNow();
 	     selectDestination(country, city);
-		 Thread.sleep(3000);
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		 click(HomePageLocators.searchButton, "searchButton");
 		 Thread.sleep(10000);		 
@@ -58,13 +50,12 @@ public class RP_006_BookingAsAMember extends LoginHelper{
 		 Thread.sleep(5000);
 		 isElementDisplayed(BookPageLocators.contiuneButton);	 
 			 click(BookPageLocators.contiuneButton, "contiuneButton");
-			 Thread.sleep(2000);
 			 BookingPageHelper.populateGuestDetails("", fName, lName, email, "");
 			 BookingPageHelper.populatePaymentDetails(cardHolder, cardNum, expMonth, expYear, cvv);
 		 Thread.sleep(15000);
 		 if(!status){
 			if(isElementDisplayed(BookPageLocators.errorPayment)){
-				String err = driver.findElement(BookPageLocators.inValidError).getText();
+				String err = driver.findElement(BookPageLocators.inValidError).getAttribute("value").trim();
 				System.out.println("+++++++++++++++++++"+err+"+++++++++++");
 				 Reporter.SuccessReport("Verify error with invalid payment details ",
 						 "Successfully verified error for invalid payment details : "+err);
@@ -72,7 +63,7 @@ public class RP_006_BookingAsAMember extends LoginHelper{
 		 }else{
 			 waitForElementPresent(BookPageLocators.doneButton, "doneButton");
 			 if(isElementDisplayed(BookPageLocators.bookingCode)){
-				  bookingCode = driver.findElement(BookPageLocators.bookingCode).getText().trim();
+				  bookingCode = driver.findElement(BookPageLocators.bookingCode).getAttribute("value").trim();
 				 Reporter.SuccessReport("Validate Successful Booking "," Booking code is: "+bookingCode);
 				 bookedCity = driver.findElement(BookPageLocators.bookedCity).getText().trim();
 				 bookingFromToDate = driver.findElement(BookPageLocators.bookingFromToDate).getText().trim();
@@ -98,10 +89,7 @@ public class RP_006_BookingAsAMember extends LoginHelper{
 				 Reporter.failureReport(description, "Failed to process payment, error message is: "
 						 + driver.findElement(BookPageLocators.errorPayment).getText());
 				 click(BookPageLocators.okButton, "okButton");
-			 }/*else			 
-				 Reporter.failureReport(description, "Failed");
-			 click(BookPageLocators.doneButton, "doneButton");		
-		 	}*/
+			 }
 		 }
 	}catch(Exception e) {
 		e.printStackTrace();

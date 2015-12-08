@@ -1,10 +1,6 @@
 package com.mobile.scripts;
 
-import java.util.Calendar;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -13,9 +9,7 @@ import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AccountPageLocators;
-import com.mobile.scripts.testObjects.ForgotPasswordLocators;
 import com.mobile.scripts.testObjects.HomePageLocators;
-import com.mobile.scripts.testObjects.InHousePhoneLocators;
 import com.mobile.scripts.testObjects.PickRoomPageLocators;
 import com.mobile.workflows.GeneralHelper;
 import com.mobile.workflows.LoginHelper;

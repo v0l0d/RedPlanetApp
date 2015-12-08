@@ -11,11 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
-import com.ctaf.support.ExcelReader;
 import com.ctaf.utilities.Reporter;
-import com.mobile.scripts.testObjects.AccountPageLocators;
 import com.mobile.scripts.testObjects.ForgotPasswordLocators;
 import com.mobile.scripts.testObjects.GmailLocators;
 import com.mobile.scripts.testObjects.LoginPageLocators;
@@ -48,9 +45,9 @@ public class ForgotPasswordHelper extends GmailLocators {
 	}
 	
 	public static void ResetPasswordViaGmail(String gmailUrl,String userId,String password,String resetPwd) throws Throwable{
-		
+		WebDriver  browser = null;
 		try {
-			 	WebDriver  browser = new FirefoxDriver();			 	
+			 	  browser = new FirefoxDriver();			 	
 			 	browser.manage().window().maximize();			 	
 			 	browser.get(gmailUrl);
 			 	browser.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
@@ -71,6 +68,7 @@ public class ForgotPasswordHelper extends GmailLocators {
 			 	ArrayList<String> newTab = new ArrayList<String>(browser.getWindowHandles());
 			    newTab.remove(oldTab);
 			    browser.switchTo().window(newTab.get(0));
+			    waitForElementPresent(browser,GmailLocators.resetPassworddInputField, "resetPassworddInputField");
 			    type(browser, GmailLocators.resetPassworddInputField, resetPwd, "resetPwdInput");
 			    click(browser, GmailLocators.submitButton, "submitButton");
 			    Thread.sleep(5000);
@@ -78,13 +76,13 @@ public class ForgotPasswordHelper extends GmailLocators {
 			    	Reporter.SuccessReport("Reset password", "Successful");
 			    }else
 			    	Reporter.failureReport("Reset password", "Failed");
-			    browser.close();			    
-			    browser.switchTo().window(oldTab);
-			 	browser.quit();
+			    
 			 	
 		}catch(Exception e){
 			e.printStackTrace();						
-		}		
+		}finally{
+		 	browser.quit();
+		}
 	}
 	
 	public static boolean click(WebDriver browser,By locator, String locatorName)

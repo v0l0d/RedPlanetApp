@@ -23,8 +23,7 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
 		  String cardNum,String expMonth,String expYear,String cvv, String description) throws Throwable{
 	  	String bookingCode = null;
 	try{
-		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-				description);
+		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
 		 handelSplashScreen();
 		 //handleSplashDialog();
 		 navigateToMyAccount();
@@ -55,7 +54,7 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
 			 Reporter.failureReport(description, "Failed to process payment, error message is: "
 					 + driver.findElement(BookPageLocators.errorPayment).getText());
 			 click(BookPageLocators.okButton, "okButton");
-		 }else	{		 
+		 }else{		 
 			 Reporter.failureReport(description, "Failed");
 		 }
 		 click(BookPageLocators.doneButton, "doneButton");

@@ -1,6 +1,5 @@
 package com.mobile.workflows;
 
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -12,9 +11,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.FrontDeskWebLocators;
-import com.mobile.scripts.testObjects.GmailLocators;
-import com.mobile.scripts.testObjects.HomePageLocators;
-import com.mobile.scripts.testObjects.LoginPageLocators;
 import com.mobile.scripts.testObjects.PickRoomPageLocators;
 
 import io.appium.java_client.ios.IOSDriver;
@@ -118,7 +114,9 @@ public static String FrontDeskChat(String url,String userId,String password,Stri
 		//HomePageHelper.navigateToMyAccount();
 		//click(LoginPageLocators.connectWithFacebookButton, "connectWithFacebookButton");							
 		Thread.sleep(20000);
+		try{
 		Set<String> contexts = ((IOSDriver) driver).getContextHandles();
+		
 		for(String currContext : contexts){
 			System.out.println("current context is :"+currContext);
 			if(currContext.contains("WEBVIEW")){
@@ -128,7 +126,10 @@ public static String FrontDeskChat(String url,String userId,String password,Stri
 				Iosdriver.navigate().to(link);
 				Thread.sleep(1000);
 				break;
+				}
 			}
+		}catch(Exception e){
+			
 		}
 	}
 	

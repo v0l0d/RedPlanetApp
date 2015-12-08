@@ -1,9 +1,5 @@
 package com.mobile.scripts;
 
-import java.text.DateFormatSymbols;
-import java.util.Calendar;
-
-import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -49,13 +45,14 @@ public class RP_005_GuestBookingFromBookNow extends LoginHelper{
 		 //Thread.sleep(5000);
 		 isElementDisplayed(BookPageLocators.contiuneButton);	 
 			 click(BookPageLocators.contiuneButton, "contiuneButton");
-			 Thread.sleep(2000);
+			 //fill guest details
 			 BookingPageHelper.populateGuestDetails("", fName, lName, email, "");
+			 //fill payment details
 			 BookingPageHelper.populatePaymentDetails(cardHolder, cardNum, expMonth, expYear, cvv);
 		 Thread.sleep(15000);
 		 if(!status){
 			if(isElementDisplayed(BookPageLocators.errorPayment)){
-				String err = driver.findElement(BookPageLocators.inValidError).getText();
+				String err = driver.findElement(BookPageLocators.inValidError).getAttribute("value").trim();
 				System.out.println("+++++++++++++++++++"+err+"+++++++++++");
 				 Reporter.SuccessReport("Verify error with invalid payment details ",
 						 "Successfully verified error for invalid payment details"+err);
@@ -63,7 +60,7 @@ public class RP_005_GuestBookingFromBookNow extends LoginHelper{
 		 }else{
 			 waitForElementPresent(BookPageLocators.doneButton, "doneButton");
 			 if(isElementDisplayed(BookPageLocators.bookingCode)){
-				  bookingCode = driver.findElement(BookPageLocators.bookingCode).getText().trim();
+				  bookingCode = driver.findElement(BookPageLocators.bookingCode).getAttribute("value").trim();
 				 Reporter.SuccessReport(description, "Successful"+" Booking code is: "+bookingCode);
 			 }else if(isElementDisplayed(BookPageLocators.errorPayment)){
 				 Reporter.failureReport(description, "Failed to process payment, error message is: "

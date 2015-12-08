@@ -45,11 +45,14 @@ public class HomePageHelper extends HomePageLocators {
 			click(HomePageLocators.bookNowMenuLink, "bookNowMenuLink");*/
 			Thread.sleep(6000);
 			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable);
+			for(WebElement ww : we){
+				System.out.println("++++++++"+we.indexOf(ww)+"+++++++"+ww.getAttribute("name"));
+			}
 			if(we.size()==0){
 				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(/*sideMenuUITable*/
 						"target.frontMostApp().mainWindow().tableViews()[0].visibleCells()");
 			}
-			System.out.println("++++++++"+we.size());
+			System.out.println("++++++++"+we.size()+"+++++++"+we.get(1).getAttribute("name"));
 			we.get(1).click();
 			res = waitForElementPresent(HomePageLocators.chooseLocation, "chooseLocation");
 		}catch(Exception e){

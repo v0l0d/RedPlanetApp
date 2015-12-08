@@ -2,7 +2,6 @@ package com.mobile.workflows;
 
 import org.testng.annotations.Test;
 
-import com.mobile.scripts.testObjects.AccountPageLocators;
 import com.mobile.scripts.testObjects.SignUpEmailLocators;
 
 public class SignUpHelper extends SignUpEmailLocators{

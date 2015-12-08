@@ -9,8 +9,6 @@ import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.support.ReportStampSupport;
 import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AccountPageLocators;
-import com.mobile.scripts.testObjects.LoginPageLocators;
-import com.mobile.scripts.testObjects.SignUpEmailLocators;
 import com.mobile.workflows.LoginHelper;
 import com.mobile.workflows.SignUpHelper;
 
@@ -22,15 +20,13 @@ public class RP_009_TestSignUp extends LoginHelper{
 		  String password,boolean status, String description) throws Throwable{
 	 
 	try{
-		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-				description);
+		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
 		  handelSplashScreen();
 		  //handleSplashDialog();
 	      navigateToMyAccount();
 	      validateUserLogin();
 	      click(AccountPageLocators.signUpButton, "signUpButton");
 		  Thread.sleep(2000);
-		  //waitForElementPresent(SignUpEmailLocators.firstnameInputField, "firstnameInputField");
 		  SignUpHelper.SignUp(firstName, lastName, emailId, password);
 		  //verify user already loggedIn, if yes sign out
 		  if(status){		 

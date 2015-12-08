@@ -1,25 +1,14 @@
 package com.mobile.scripts;
 
-import java.net.URL;
-import java.util.HashMap;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.ctaf.accelerators.TestEngine;
-import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AboutUsLocators;
-import com.mobile.scripts.testObjects.HomePageLocators;
 import com.mobile.workflows.LoginHelper;
-
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.ios.IOSDriver;
 
 public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
 	@Test
@@ -34,8 +23,6 @@ public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
 		  navigateToMyAccount();
 		  validateUserLogin();
 		  navigateToAboutUs();		  
-		  Thread.sleep(2000);		  //Privacy Policy
-		  
 			  if(waitForElementPresent(AboutUsLocators.facebookImage,"facebookImage")){
 				  click(AboutUsLocators.facebookImage,"facebookImage");
 				  Set<String> currContexts = Iosdriver.getContextHandles();
