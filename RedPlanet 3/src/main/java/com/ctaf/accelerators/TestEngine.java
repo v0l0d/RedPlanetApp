@@ -333,10 +333,11 @@ public class TestEngine extends HtmlReportSupport {
 					DeviceName = configProps.getProperty("iOSDeviceName");
 					String device = configProps.getProperty("Device");
 					String appPath = configProps.getProperty("appPath");
+					
 					String ipaPath = configProps.getProperty("ipaPath");
 					String temp = System.getProperty("user.dir")+ipaPath;
 					System.out.println("ipaPath is : " + temp);
-
+					File ipa = new File(temp);
 					String platformVer = configProps.getProperty("platformVersion");
 					String udid = configProps.getProperty("UDID");
 					String bundleID = configProps.getProperty("BundleID");
@@ -357,7 +358,7 @@ public class TestEngine extends HtmlReportSupport {
 					}else{
 						System.out.println("using real device");
 						capabilitiesForAppium.setCapability("udid", udid);
-						//capabilitiesForAppium.setCapability("app",temp);
+						capabilitiesForAppium.setCapability("app",ipa.getCanonicalPath());
 					}
 					Iosdriver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),
 							capabilitiesForAppium);
