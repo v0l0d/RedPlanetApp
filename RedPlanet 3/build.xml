@@ -2,7 +2,7 @@
 <!DOCTYPE project [
 ]>
 
-<project name="RedPlanet" default="chrome" basedir=".">
+<project name="RedPlanet" default="Mobile" basedir=".">
 
 	<!-- ========== Initialize Properties =================================== -->
 	<property environment="env"/>
@@ -64,7 +64,7 @@
             debug="true" 
             destdir="${test.dest}" 
             srcdir="${test.src}" 
-            target="1.7" 
+            target="1.8" 
             classpath="${test.classpath}"
         	 includeantruntime="false"
         >
