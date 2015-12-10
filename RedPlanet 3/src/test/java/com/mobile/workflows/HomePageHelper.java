@@ -199,6 +199,14 @@ public class HomePageHelper extends HomePageLocators {
 	public boolean handelSplashScreen() throws Throwable{
 		boolean res = false;
 		try {
+			if(isElementDisplayedTemp(HomePageLocators.locationPopUp)){
+				click(HomePageLocators.locationPopUp, "locationPopUp");
+				res = true;
+			}
+			if(isElementDisplayedTemp(HomePageLocators.notificationPopUp)){
+				click(HomePageLocators.notificationPopUp, "notificationPopUp");
+				res = true;
+			}
 			if(isElementDisplayedTemp(HomePageLocators.addImage)){
 				click(HomePageLocators.addImage, "addImage");
 				res = true;

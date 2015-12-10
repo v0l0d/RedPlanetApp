@@ -7,6 +7,8 @@ import com.ctaf.accelerators.ActionEngine;
 public class HomePageLocators extends ActionEngine {
 	
 	//Home page 
+	public static By locationPopUp = By.xpath("//UIAButton[@name='Allow']"); 
+	public static By notificationPopUp = By.xpath("//UIAButton[@name='OK']"); 
 	public static By closeWatchPopUp = By.xpath("//UIAApplication[1]"); 
 	public static By chooseLocation = By.xpath("//UIAStaticText[@name='LOCATION']");
 	public static String locationCountryName = ("//*[@name='#']");
