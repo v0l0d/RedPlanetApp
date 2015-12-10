@@ -336,8 +336,9 @@ public class TestEngine extends HtmlReportSupport {
 					
 					String ipaPath = configProps.getProperty("ipaPath");
 					String temp = System.getProperty("user.dir")+ipaPath;
-					System.out.println("ipaPath is : " + temp);
+					String temp2 = System.getProperty("user.dir")+appPath;
 					File ipa = new File(temp);
+					File app = new File(temp2);
 					String platformVer = configProps.getProperty("platformVersion");
 					String udid = configProps.getProperty("UDID");
 					String bundleID = configProps.getProperty("BundleID");
@@ -351,13 +352,17 @@ public class TestEngine extends HtmlReportSupport {
 					capabilitiesForAppium.setCapability("newCommandTimeout","6000");
 					capabilitiesForAppium.setCapability("takesScreenshot", true);
 					capabilitiesForAppium.setCapability("autoWebviewTimeout","6000");
-					capabilitiesForAppium.setCapability("noReset", true);
+					capabilitiesForAppium.setCapability("fullReset", true);
+					capabilitiesForAppium.setCapability("waitForAppScript", true);
 					if((DeviceName.contains("Simulator"))||((udid.length()==0))){
 						System.out.println("using simulator");
-						capabilitiesForAppium.setCapability("app",appPath);
+						System.out.println("app Path "+app.getCanonicalPath());
+						capabilitiesForAppium.setCapability("app",app.getCanonicalPath());
+						
 					}else{
 						System.out.println("using real device");
 						capabilitiesForAppium.setCapability("udid", udid);
+						System.out.println("ipa Path "+ipa.getCanonicalPath());
 						capabilitiesForAppium.setCapability("app",ipa.getCanonicalPath());
 					}
 					Iosdriver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),
@@ -465,14 +470,16 @@ public class TestEngine extends HtmlReportSupport {
 			e.printStackTrace();
 			//Reporter.onFailure("ConfigurationFailure From tearDownMethod", "Failed due to ServerConfirguration error");
 
-		} /*finally {
-			if (browser.contains("iPhone")) {
-				//Iosdriver.closeApp();
-				RedPlanetUtils.stopAppiumForIos();
+		} finally {
+			if ((browser.toLowerCase().contains("iphone"))|
+					(browser.toLowerCase().contains("android"))) {
+				Iosdriver.closeApp();
+				//RedPlanetUtils.stopAppiumForIos();
+			}else{
+				driver.quit();
 			}
-		}*/
-		//driver.quit();
-		Iosdriver.closeApp();
+		}
+		
 
 	}
 	
