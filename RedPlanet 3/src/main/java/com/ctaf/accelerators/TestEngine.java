@@ -471,7 +471,8 @@ public class TestEngine extends HtmlReportSupport {
 				RedPlanetUtils.stopAppiumForIos();
 			}
 		}*/
-		driver.quit();
+		//driver.quit();
+		Iosdriver.closeApp();
 
 	}
 	
