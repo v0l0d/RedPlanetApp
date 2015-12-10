@@ -351,7 +351,7 @@ public class TestEngine extends HtmlReportSupport {
 					capabilitiesForAppium.setCapability("newCommandTimeout","6000");
 					capabilitiesForAppium.setCapability("takesScreenshot", true);
 					capabilitiesForAppium.setCapability("autoWebviewTimeout","6000");
-					//capabilitiesForAppium.setCapability("fullReset", true);
+					capabilitiesForAppium.setCapability("noReset", true);
 					if((DeviceName.contains("Simulator"))||((udid.length()==0))){
 						System.out.println("using simulator");
 						capabilitiesForAppium.setCapability("app",appPath);
