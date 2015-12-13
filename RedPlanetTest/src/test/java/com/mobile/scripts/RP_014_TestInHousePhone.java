@@ -16,17 +16,18 @@ import com.mobile.workflows.LoginHelper;
 public class RP_014_TestInHousePhone  extends LoginHelper{
 	ExcelReader xlsInHouse = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_014");
-		@Test(dataProvider = "testData")
+		@Test(dataProvider = "testData" , groups = { "Mobile" })
   public void testInHousePhone(String dialNumber,
 		  String email,String password,boolean status, String description) throws Throwable {
 	  try{
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);			  
 		  char[] phNo = dialNumber.toCharArray(); 
 		  handelSplashScreen();
+		  handleSplashDialog();
 		  navigateToMyAccount();
 		  //verify user already loggedIn, if yes sign out
 		  handelSplashScreen();
-		  //handleSplashDialog();
+		  handleSplashDialog();
 		  validateUserLogin();		  
 		  click(AccountPageLocators.logInButton, "logInButton");
 		  login(email, password);

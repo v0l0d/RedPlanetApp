@@ -18,7 +18,7 @@ public class RP_011_TestForgotPassword  extends LoginHelper{
 	
 	ExcelReader xlsReset = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_011");
-		@Test(dataProvider = "testData")
+		@Test(dataProvider = "testData" , groups = { "Mobile" })
   public void testForgotPassword(
 		  String email,String password,String resetPwd, boolean status, String description) throws Throwable {
 		String gmailUrl = "https://www.gmail.com" ;

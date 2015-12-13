@@ -28,7 +28,6 @@
             refid="classpath_jars"/>
 	</target>
 
-	<echo>m2 Repo directory path is == "${ws.jars}"</echo>
 	<target name="init" depends="setClassPath">
 		<tstamp>
 			<format property="start.time" pattern="MM/dd/yyyy hh:mm aa" />
@@ -127,19 +126,18 @@
 	
 <!-- iPhone -->
 		<target name="Mobile" depends="compile" description="iPhone">
-			<testng classpath="${test.classpath}:${test.dest}"
+			<testng classpath="${test.classpath}:${test.dest}" groups="Mobile"
 							suitename="RedPlanet" haltOnfailure="no" >
 				<xmlfileset dir="${ws.home}" includes="testNG.xml" />
 			</testng>
 		</target>
-		
-<!-- Android -->
-		<target name="Android" depends="compile" description="Android">
-			<testng classpath="${test.classpath}:${test.dest}"
-							suitename="RedPlanetAndroid" haltOnfailure="no" >
-				<xmlfileset dir="${ws.home}" includes="testNG2.xml" />
-			</testng>
-		</target>
+	<!-- Android -->
+			<target name="Android" depends="compile" description="Android">
+				<testng classpath="${test.classpath}:${test.dest}" groups="Android"
+								suitename="RedPlanetAndroid" haltOnfailure="no" >
+					<xmlfileset dir="${ws.home}" includes="testNG2.xml" />
+				</testng>
+			</target>
 
 	<!-- Failure -->
 	<!--  Running the check failure target first and then executing if file is present-->

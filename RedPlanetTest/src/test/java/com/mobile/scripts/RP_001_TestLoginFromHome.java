@@ -19,7 +19,7 @@ public class RP_001_TestLoginFromHome extends LoginHelper{
 		 */
 	ExcelReader xlsLogin = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_001");
-		@Test(dataProvider = "testData")
+		@Test(dataProvider = "testData" , groups = { "Mobile" })
 		public  void validateTestLogin(String email, String password, String description, 
 				boolean res) throws Throwable {
 			logger.info("username "+email);

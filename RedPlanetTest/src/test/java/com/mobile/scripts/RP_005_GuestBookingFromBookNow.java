@@ -16,7 +16,7 @@ import com.mobile.workflows.LoginHelper;
 public class RP_005_GuestBookingFromBookNow extends LoginHelper{
 	ExcelReader xlsBook = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_005");
-  @Test(dataProvider = "testData")
+  @Test(dataProvider = "testData" , groups = { "Mobile" })
   public void testBookingAsGuestFromBookNow(String country, String city,
 		 String fName,String lName,String email,
 		 String cardHolder,String cardNum,String expMonth, String expYear, String cvv,

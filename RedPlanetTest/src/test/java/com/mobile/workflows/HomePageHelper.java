@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AccountPageLocators;
 import com.mobile.scripts.testObjects.HomePageLocators;
 
@@ -17,10 +18,8 @@ public class HomePageHelper extends HomePageLocators {
 		boolean res = false;
 		try {
 			System.out.println("Selecting country & city "+country +" "+city);
-			Thread.sleep(1000);
 			waitForElementPresent(HomePageLocators.chooseLocation, "chooseLocation");
 			click(HomePageLocators.chooseLocation, "chooseLocation");
-			Thread.sleep(2000);
 			waitForElementPresent(By.xpath(HomePageLocators.locationCountryName.replace("#", country.trim().toUpperCase())),
 					"locationCountryName");
 			click(By.xpath(HomePageLocators.locationCountryName.replace("#", country.trim().toUpperCase())),
@@ -43,17 +42,21 @@ public class HomePageHelper extends HomePageLocators {
 			click(HomePageLocators.mainMenuIcon,"mainMenuIcon");
 			/*waitForElementPresent(HomePageLocators.bookNowMenuLink, "bookNowMenuLink");
 			click(HomePageLocators.bookNowMenuLink, "bookNowMenuLink");*/
-			Thread.sleep(6000);
-			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable);
-			for(WebElement ww : we){
-				System.out.println("++++++++"+we.indexOf(ww)+"+++++++"+ww.getAttribute("name"));
-			}
+			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable1);
 			if(we.size()==0){
-				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(/*sideMenuUITable*/
-						"target.frontMostApp().mainWindow().tableViews()[0].visibleCells()");
+				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable2);
 			}
-			System.out.println("++++++++"+we.size()+"+++++++"+we.get(1).getAttribute("name"));
-			we.get(1).click();
+			System.out.println("++++++++"+we.size());
+			for(WebElement ww : we){
+				String name = ww.getAttribute("name");
+				if(name.toLowerCase().contains("book")){
+					System.out.println("+++++++"+ww.getAttribute("name"));
+					ww.click();
+					Reporter.SuccessReport("navigateToBookNow", 
+							" Successful clicked on "+ww.getAttribute("name"));
+					break;
+				}
+			}
 			res = waitForElementPresent(HomePageLocators.chooseLocation, "chooseLocation");
 		}catch(Exception e){
 			e.printStackTrace();
@@ -66,28 +69,28 @@ public class HomePageHelper extends HomePageLocators {
 		try {
 			waitForElementPresent(HomePageLocators.mainMenuIcon,"mainMenuIcon");
 			click(HomePageLocators.mainMenuIcon,"mainMenuIcon");
-			//System.out.println("waitForElementPresent "+
-			//waitForElementPresent(HomePageLocators.myAccountMenuItem, "myAccountMenuItem"));
-			//(HomePageLocators.myAccountMenuItem, "myAccountMenuItem");
-			//
-			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(/*sideMenuUITable*/
-					"target.frontMostApp().mainWindow().tableViews()[1].visibleCells()");
+			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable1);
 			if(we.size()==0){
-				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(/*sideMenuUITable*/
-						"target.frontMostApp().mainWindow().tableViews()[0].visibleCells()");
+				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable2);
 			}
 			System.out.println("++++++++"+we.size());
-			
-			we.get(2).click();
-			System.out.println("++++++++"+"clicked on My Account Menu");
-			 
+			for(WebElement ww : we){
+				String name = ww.getAttribute("name");
+				if(name.toLowerCase().contains("account")){
+					System.out.println("+++++++"+ww.getAttribute("name"));
+					ww.click();
+					Reporter.SuccessReport("navigateToMyAccount", 
+							" Successful clicked on "+ww.getAttribute("name"));
+					break;
+				}
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return res;
 	}
 	
-	public boolean navigateToReirieveBookings() throws Throwable{
+	public boolean navigateToReirieveBooking() throws Throwable{
 		boolean res = false;
 		try {
 			waitForElementPresent(HomePageLocators.mainMenuIcon,"mainMenuIcon");
@@ -97,13 +100,21 @@ public class HomePageHelper extends HomePageLocators {
 			click(HomePageLocators.reirieveBookingsMenuLink, "reirieveBookingsMenuLink");
 			*/
 			Thread.sleep(6000);
-			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable);
+			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable1);
 			if(we.size()==0){
-				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(/*sideMenuUITable*/
-						"target.frontMostApp().mainWindow().tableViews()[0].visibleCells()");
+				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable2);
 			}
 			System.out.println("++++++++"+we.size());
-			we.get(3).click();
+			for(WebElement ww : we){
+				String name = ww.getAttribute("name");
+				if(name.toLowerCase().contains("retrieve")){
+					System.out.println("+++++++"+ww.getAttribute("name"));
+					ww.click();
+					Reporter.SuccessReport("navigateToReirieveBookings", 
+							" Successful clicked on "+ww.getAttribute("name"));
+					break;
+				}
+			}
 			/*res = waitForElementPresent(RetrieveBookingsLocators.retrieveBookingsSearchButton,
 					"retrieveBookingsSearchButton");*/
 		}catch(Exception e){
@@ -121,13 +132,21 @@ public class HomePageHelper extends HomePageLocators {
 			/*waitForElementPresent(HomePageLocators.aboutUsMenuLink, "aboutUsMenuLink");
 			click(HomePageLocators.aboutUsMenuLink, "aboutUsMenuLink");*/
 			Thread.sleep(6000);
-			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable);
+			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable1);
 			if(we.size()==0){
-				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(/*sideMenuUITable*/
-						"target.frontMostApp().mainWindow().tableViews()[0].visibleCells()");
+				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable2);
 			}
 			System.out.println("++++++++"+we.size());
-			we.get(4).click();
+			for(WebElement ww : we){
+				String name = ww.getAttribute("name");
+				if(name.toLowerCase().contains("retrieve")){
+					System.out.println("+++++++"+ww.getAttribute("name"));
+					ww.click();
+					Reporter.SuccessReport("navigateToAboutUs", 
+							" Successful clicked on "+ww.getAttribute("name"));
+					break;
+				}
+			}
 			/*res = waitForElementPresent(AboutUsLocators.contactWithUsHeading,
 					"contactWithUsHeading");*/
 			res = true;
@@ -144,13 +163,20 @@ public class HomePageHelper extends HomePageLocators {
 			/*waitForElementPresent(HomePageLocators.bookNowMenuLink, "bookNowMenuLink");
 			click(HomePageLocators.bookNowMenuLink, "bookNowMenuLink");*/
 			Thread.sleep(6000);
-			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable);
+			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable1);
 			if(we.size()==0){
-				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(/*sideMenuUITable*/
-						"target.frontMostApp().mainWindow().tableViews()[0].visibleCells()");
+				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable2);
 			}
 			System.out.println("++++++++"+we.size());
-			we.get(0).click();
+			for(WebElement ww : we){
+				String name = ww.getAttribute("name");
+				if(name.toLowerCase().contains("home")){
+					System.out.println("+++++++"+ww.getAttribute("name"));
+					ww.click();
+					Reporter.SuccessReport("navigateToHome", " Successful clicked on "+ww.getAttribute("name"));
+					break;
+				}
+			}
 			res = true;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -158,13 +184,13 @@ public class HomePageHelper extends HomePageLocators {
 		return res;
 	}
 	
-	public void handleSplashDialog() throws Throwable{
-		if(isElementDisplayedTemp(HomePageLocators.closeWatchPopUp)){
+	public static void handleSplashDialog() throws Throwable{
+		/*if(isElementDisplayedTemp(HomePageLocators.closeWatchPopUp)){
 			 click(HomePageLocators.closeWatchPopUp,"closeWatchPopUp");
-		 }	
-		/*if(isElementDisplayed(HomePageLocators.instayPop)){
-			click(HomePageLocators.instayPop, "instayPop");
-		}*/
+		 }	*/
+		if(isElementDisplayed(HomePageLocators.closeButtonOnDashboardDialog)){
+			click(HomePageLocators.closeButtonOnDashboardDialog, "closeButtonOnDashboardDialog");
+		}
 	}
 	public void validateUserLogin() throws Throwable{
 		
@@ -196,17 +222,19 @@ public class HomePageHelper extends HomePageLocators {
 		return res;
 	}
 	
-	public boolean handelSplashScreen() throws Throwable{
+	public static boolean handelSplashScreen() throws Throwable{
 		boolean res = false;
 		try {
-			if(isElementDisplayedTemp(HomePageLocators.locationPopUp)){
-				click(HomePageLocators.locationPopUp, "locationPopUp");
-				res = true;
-			}
+			
 			if(isElementDisplayedTemp(HomePageLocators.notificationPopUp)){
 				click(HomePageLocators.notificationPopUp, "notificationPopUp");
 				res = true;
 			}
+			if(isElementDisplayedTemp(HomePageLocators.locationPopUp)){
+				click(HomePageLocators.locationPopUp, "locationPopUp");
+				res = true;
+			}
+			
 			if(isElementDisplayedTemp(HomePageLocators.addImage)){
 				click(HomePageLocators.addImage, "addImage");
 				res = true;

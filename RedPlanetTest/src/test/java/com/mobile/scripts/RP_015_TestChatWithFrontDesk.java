@@ -18,7 +18,7 @@ import com.mobile.workflows.LoginHelper;
 public class RP_015_TestChatWithFrontDesk  extends LoginHelper{
 	ExcelReader xlsChatFrontDesk = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_015");
-		@Test(dataProvider = "testData")
+		@Test(dataProvider = "testData" , groups = { "Mobile" })
   public void testChatWithFrontDesk(String email,String password,String chatAdminEmail, 
 		 String chatAdminPassword, String description) throws Throwable {
 			Calendar cal = Calendar.getInstance();
@@ -27,7 +27,7 @@ public class RP_015_TestChatWithFrontDesk  extends LoginHelper{
 	  try{
 		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
 		  handelSplashScreen();
-		  //handleSplashDialog();
+		  handleSplashDialog();
 		  String testMessage = "Test message "+cal.getTime();
 		  System.out.println("Test message "+testMessage);
 		  navigateToMyAccount();
@@ -36,7 +36,7 @@ public class RP_015_TestChatWithFrontDesk  extends LoginHelper{
 		  click(AccountPageLocators.logInButton, "logInButton");
 		  login(email, password);
 		  navigateToHome();
-		  //handelWelcomeDashboardDialog();
+		  handelWelcomeDashboardDialog();
 		  waitForElementPresent(HomePageLocators.chatWithFrontDeskButton, "chatWithFrontDeskButton");
 		  click(HomePageLocators.chatWithFrontDeskButton, "chatWithFrontDeskButton");
 		  Thread.sleep(2000);

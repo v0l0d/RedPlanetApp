@@ -7,6 +7,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -2218,7 +2219,35 @@ public class ActionEngine extends TestEngine {
 		}
 		return ele;
 	}
+	
+	public static List<WebElement> getElementsByIosUIAutomation(String locator,String locatorName) throws Throwable {
+		boolean flag = false;
+		List<WebElement> elements = null;
+		try {
+			
+			elements = ((IOSDriver)driver).findElementsByIosUIAutomation(locator);
 
+		if (elements.size()>0) {
+			flag = true;
+		} else {
+			flag = false;
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.assertTrue(flag,
+					"Failed to fetch any elements with locator \""+locator+"\"");
+		} finally {
+			if (!flag) {
+				Reporter.failureReport("Verify getElements",
+						 "Unable to fetch any elements with locator \""+locator+"\"");
+			} else if (flag) {
+				Reporter.SuccessReport("Verify getElements" ,
+						"successfully found "+elements.size()+" elements with locator \""+locatorName+"\"");
+			}
+		}
+		return elements;
+	}
+	
 	public static boolean assertTextMatching(By by, String text,
 			String locatorName) throws Throwable {
 		boolean flag = false;
