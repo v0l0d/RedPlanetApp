@@ -3,11 +3,11 @@
 <suite name="RedPlanet" allow-return-values="true" verbose="2">
 
 	<test name="Grouping" preserve-order="true">
-			<!-- <groups>
+			<groups>
 				<run>
 					<include name="Mobile"/>
 				</run>
-			</groups> -->
+			</groups>
 		<classes>			
 			<class name="com.mobile.scripts.RP_001_TestLoginFromHome" />
 			<class name="com.mobile.scripts.RP_002_TestLogInFromBooking" />
