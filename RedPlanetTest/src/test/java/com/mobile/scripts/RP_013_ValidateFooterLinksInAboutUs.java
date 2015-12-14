@@ -9,7 +9,7 @@ import com.mobile.scripts.testObjects.AboutUsLocators;
 import com.mobile.workflows.LoginHelper;
 
 public class RP_013_ValidateFooterLinksInAboutUs extends LoginHelper{
-		@Test
+		@Test(groups = { "Mobile" })
   public void ValidateFooterLinksInAboutUs() throws Throwable{
 	  
 	 try{		  

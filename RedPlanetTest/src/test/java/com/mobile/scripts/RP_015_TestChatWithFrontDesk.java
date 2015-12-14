@@ -18,7 +18,7 @@ import com.mobile.workflows.LoginHelper;
 public class RP_015_TestChatWithFrontDesk  extends LoginHelper{
 	ExcelReader xlsChatFrontDesk = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_015");
-		@Test(dataProvider = "testData")
+		@Test(dataProvider = "testData", groups = { "Mobile" })
   public void testChatWithFrontDesk(String email,String password,String chatAdminEmail, 
 		 String chatAdminPassword, String description) throws Throwable {
 			Calendar cal = Calendar.getInstance();

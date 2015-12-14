@@ -17,7 +17,7 @@ import com.mobile.workflows.LoginHelper;
 public class RP_016_TestTabsLocalAttractions extends LoginHelper{
 	ExcelReader xlsTabs = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_016");
-  @Test(dataProvider = "testData")
+  @Test(dataProvider = "testData", groups = { "Mobile" })
   public void testLocalAttractions(String country, String city, 
 		  String email, String password,String description) 
 		  throws Throwable{

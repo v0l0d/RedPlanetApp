@@ -15,7 +15,7 @@ import com.mobile.workflows.SignUpHelper;
 public class RP_009_TestSignUp extends LoginHelper{
 	ExcelReader xlsSearch = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_009");
-  @Test(dataProvider = "testData")
+  @Test(dataProvider = "testData", groups = { "Mobile" })
   public void testSignUpUser(String firstName, String lastName, String emailId,
 		  String password,boolean status, String description) throws Throwable{
 	 

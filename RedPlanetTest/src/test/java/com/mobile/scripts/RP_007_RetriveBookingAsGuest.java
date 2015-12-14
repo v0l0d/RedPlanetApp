@@ -18,7 +18,7 @@ import com.mobile.workflows.RetrieveBookingPageHelper;
 public class RP_007_RetriveBookingAsGuest extends LoginHelper{
 	ExcelReader xlsRetrive = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_007");
-  @Test(dataProvider = "testData")
+  @Test(dataProvider = "testData", groups = { "Mobile" })
   public void testRetriveBookingAsGuest(String country, String city,String fName,String lName,String email,String cardHolder,
 		  String cardNum,String expMonth,String expYear,String cvv, String description) throws Throwable{
 	  	String bookingCode = null;

@@ -15,7 +15,7 @@ import com.mobile.workflows.LoginHelper;
 public class RP_003_TestSearchHotels extends LoginHelper{
 	ExcelReader xlsSearch = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_003");
-  @Test(dataProvider = "testData")
+  @Test(dataProvider = "testData", groups = { "Mobile" })
   public void testSearchHotels(String country, String city, String description) 
 		  throws Throwable{
 	try{

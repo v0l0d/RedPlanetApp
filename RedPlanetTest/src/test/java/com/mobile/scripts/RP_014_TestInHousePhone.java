@@ -17,7 +17,7 @@ import com.mobile.workflows.LoginHelper;
 public class RP_014_TestInHousePhone  extends LoginHelper{
 	ExcelReader xlsInHouse = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_014");
-		@Test(dataProvider = "testData")
+		@Test(dataProvider = "testData", groups = { "Mobile" })
   public void testInHousePhone(String dialNumber,
 		  String email,String password,boolean status, String description) throws Throwable {
 	  try{
@@ -37,7 +37,9 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
 		  waitForElementPresent(HomePageLocators.chatWithFrontDeskButton, "chatWithFrontDeskButton");
 		  click(HomePageLocators.inHousePhoneButton, "inHousePhoneButton");
 		  Thread.sleep(2000);
-		  HomePageHelper.handelSplashScreen();
+		  if(isElementDisplayedTemp(HomePageLocators.microPhonePopUp)){
+				click(HomePageLocators.microPhonePopUp, "microPhonePopUp");
+			}
 		  if(status){
 			 if(phNo.length>0){
 			  System.out.println("Dial Number "+phNo+" no of digits "+phNo.length);
