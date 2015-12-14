@@ -11,7 +11,7 @@ import com.mobile.scripts.testObjects.AboutUsLocators;
 import com.mobile.workflows.LoginHelper;
 
 public class RP_012_ValidateSocialNetworkLinksInAboutUs extends LoginHelper{
-	@Test(groups = { "Mobile" })
+	@Test
   public void ValidateSocialNetworkLinksInAboutUs() throws Throwable{
 	  
 	 try{		  

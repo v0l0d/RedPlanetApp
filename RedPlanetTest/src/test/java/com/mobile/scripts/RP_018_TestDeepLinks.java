@@ -23,7 +23,7 @@ import io.appium.java_client.ios.IOSDriver;
 public class RP_018_TestDeepLinks extends LoginHelper{
 	ExcelReader xlsDeepLinks = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_018");	
-  @Test(dataProvider = "testData" , groups = { "Mobile" })
+  @Test(dataProvider = "testData")
   public void testDeepLinks(String firstName, String lastName, String emailId,
 		  String password,boolean status, String description) throws Throwable{  
 	try{

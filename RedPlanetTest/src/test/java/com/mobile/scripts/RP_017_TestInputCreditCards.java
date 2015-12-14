@@ -16,7 +16,7 @@ import com.mobile.workflows.LoginHelper;
 public class RP_017_TestInputCreditCards extends LoginHelper{
 	ExcelReader xlsCards = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_017");
-  @Test(dataProvider = "testData" , groups = { "Mobile" })
+  @Test(dataProvider = "testData")
   public void testInputCreditCards(String country, String city,
 		 String fName,String lName,String email,
 		 String cardHolder,String cardNum,String expMonth, String expYear, String cvv

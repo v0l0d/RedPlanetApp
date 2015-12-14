@@ -11,12 +11,13 @@ import com.ctaf.utilities.Reporter;
 import com.mobile.scripts.testObjects.AccountPageLocators;
 import com.mobile.scripts.testObjects.HomePageLocators;
 import com.mobile.scripts.testObjects.InHousePhoneLocators;
+import com.mobile.workflows.HomePageHelper;
 import com.mobile.workflows.LoginHelper;
 
 public class RP_014_TestInHousePhone  extends LoginHelper{
 	ExcelReader xlsInHouse = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_014");
-		@Test(dataProvider = "testData" , groups = { "Mobile" })
+		@Test(dataProvider = "testData")
   public void testInHousePhone(String dialNumber,
 		  String email,String password,boolean status, String description) throws Throwable {
 	  try{
@@ -36,6 +37,7 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
 		  waitForElementPresent(HomePageLocators.chatWithFrontDeskButton, "chatWithFrontDeskButton");
 		  click(HomePageLocators.inHousePhoneButton, "inHousePhoneButton");
 		  Thread.sleep(2000);
+		  HomePageHelper.handelSplashScreen();
 		  if(status){
 			 if(phNo.length>0){
 			  System.out.println("Dial Number "+phNo+" no of digits "+phNo.length);

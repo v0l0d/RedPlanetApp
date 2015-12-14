@@ -139,7 +139,7 @@ public class HomePageHelper extends HomePageLocators {
 			System.out.println("++++++++"+we.size());
 			for(WebElement ww : we){
 				String name = ww.getAttribute("name");
-				if(name.toLowerCase().contains("retrieve")){
+				if(name.toLowerCase().contains("about")){
 					System.out.println("+++++++"+ww.getAttribute("name"));
 					ww.click();
 					Reporter.SuccessReport("navigateToAboutUs", 
@@ -245,4 +245,5 @@ public class HomePageHelper extends HomePageLocators {
 		}
 		return res;
 	}
+	
 }

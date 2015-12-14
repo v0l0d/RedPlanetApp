@@ -36,6 +36,7 @@ public class HomePageLocators extends ActionEngine {
 	//in-house
 	public static By closeButtonOnDashboardDialog = By.xpath("//UIAButton[@name='X']");
 	public static By addImage = By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAImage[1]");
+	public static By microPhonePopUp = By.xpath("//*[@name='Okay']");
 	
 	
 }
