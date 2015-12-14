@@ -14,7 +14,7 @@ public class InHousePhoneLocators {
 	public static By newConversationTitle = By.xpath("//UIAStaticText[@name='New Conversation']");
 	public static By textAreaForChat = By.xpath("//UIATextView[1]");
 	public static By textInputField = By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATextView[1]");
-	public static By sendButtonForChat = By.xpath("//UIAButton[@name='Send']");
+	public static By sendButtonForChat = By.xpath("//UIAButton[contains(@name,'send')]");
 	
 	
 	

@@ -43,6 +43,7 @@ public class RP_015_TestChatWithFrontDesk  extends LoginHelper{
 			  waitForElementPresent(InHousePhoneLocators.textAreaForChat, "textAreaForChat");
 			  click(InHousePhoneLocators.textInputField, "textInputField");
 			  type(InHousePhoneLocators.textInputField, testMessage, "textInputField");
+			  waitForElementPresent(InHousePhoneLocators.sendButtonForChat, "sendButtonForChat");
 			  click(InHousePhoneLocators.sendButtonForChat, "sendButtonForChat");
 			  String replyMsg = GeneralHelper.FrontDeskChat(chatUrl, chatAdminEmail, chatAdminPassword, testMessage);
 			  if(replyMsg!= null){
