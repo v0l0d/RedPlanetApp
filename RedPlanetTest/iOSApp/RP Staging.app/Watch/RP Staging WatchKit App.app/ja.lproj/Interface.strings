@@ -11,7 +11,7 @@
 "gdh-Hh-7nC.text" = "失敗しました";
 "Something went wrong" = "失敗しました";
 
-"iPhone is not reachable" = "iPhone is not reachable";
+"iPhone is not reachable" = "Iphoneは使用できません";
 
 /* Class = "WKInterfaceButton"; title = "Reload"; ObjectID = "Gqx-dI-nY3"; */
 "Gqx-dI-nY3.title" = "補充する";

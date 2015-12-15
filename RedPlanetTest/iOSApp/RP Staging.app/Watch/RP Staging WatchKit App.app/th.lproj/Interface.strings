@@ -11,7 +11,7 @@
 "gdh-Hh-7nC.text" = "มีข้อผิดพลาดเกิดขึ้น";
 "Something went wrong" = "มีข้อผิดพลาดเกิดขึ้น";
 
-"iPhone is not reachable" = "iPhone is not reachable";
+"iPhone is not reachable" = "ไม่สามารถเชื่อมต่อ iPhone ได้";
 
 /* Class = "WKInterfaceButton"; title = "Reload"; ObjectID = "Gqx-dI-nY3"; */
 "Gqx-dI-nY3.title" = "โหลดอีกครั้ง";

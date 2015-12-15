@@ -11,7 +11,7 @@
 "gdh-Hh-7nC.text" = "Terjadi sebuah kesalahan";
 "Something went wrong" = "Terjadi sebuah kesalahan";
 
-"iPhone is not reachable" = "iPhone is not reachable";
+"iPhone is not reachable" = "Iphone tidak dalam jangkauan";
 
 /* Class = "WKInterfaceButton"; title = "Reload"; ObjectID = "Gqx-dI-nY3"; */
 "Gqx-dI-nY3.title" = "Memuat kembali ";

@@ -199,7 +199,7 @@ public class TestEngine extends HtmlReportSupport {
 				capabilitiesForAppium.setCapability("autoLaunch", true);
 				capabilitiesForAppium.setCapability("fullReset", false);
 				capabilitiesForAppium.setCapability("waitForAppScript",
-						"target.elements().length > 0;");			
+						"target.elements().length > 0; $.delay(30000); $.acceptAlert();");			
 				if((DeviceName.contains("Simulator"))||((udid.length()==0))){
 					System.out.println("using simulator");
 					System.out.println("app Path "+app.getCanonicalPath());
@@ -215,8 +215,7 @@ public class TestEngine extends HtmlReportSupport {
 						capabilitiesForAppium);
 				driver = Iosdriver;
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-				Iosdriver.lockScreen(2);
-				//driver.switchTo().alert().accept();
+				//Iosdriver.lockScreen(2);
 				if(ActionEngine.isElementDisplayed(By.name("OK"))){
 					driver.findElement(By.name("OK")).click();				
 				}
@@ -261,7 +260,7 @@ public class TestEngine extends HtmlReportSupport {
 						capabilitiesForAppium);
 				AndroidDriver2.resetApp();
 				driver = (AndroidDriver2);
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -278,7 +277,7 @@ public class TestEngine extends HtmlReportSupport {
 		
 		HtmlReportSupport.createHtmlSummaryReport(browser, url);
 		closeSummaryReport();
-		//driver.quit();
+		driver.quit();
 		}catch(Exception e){
 			e.printStackTrace();
 		} /*finally {
