@@ -7,6 +7,7 @@ import com.ctaf.accelerators.TestEngine;
 import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.utilities.Reporter;
+import com.mobile.scripts.testObjects.AccountPageLocators;
 import com.mobile.scripts.testObjects.BookPageLocators;
 import com.mobile.scripts.testObjects.HomePageLocators;
 import com.mobile.scripts.testObjects.PickRoomPageLocators;
@@ -19,7 +20,8 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
 	ExcelReader xlsRetrive = new ExcelReader(configProps.getProperty("TestData"),
 			"RP_008");
   @Test(dataProvider = "testData" , groups = { "Mobile" })
-  public void retriveBookingAsMember(String country, String city,String fName,String lName,String email,String cardHolder,
+  public void retriveBookingAsMember(String emailID,String password, String country, String city,String fName,
+		  String lName,String email,String cardHolder,
 		  String cardNum,String expMonth,String expYear,String cvv, String description) throws Throwable{
 	  	String bookingCode = null;
 	try{
@@ -28,6 +30,8 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
 		 //handleSplashDialog();
 		 navigateToMyAccount();
 		 validateUserLogin();
+		click(AccountPageLocators.logInButton, "logInButton");	
+		 login(emailID, password);
 		 navigateToBookNow();
 		 selectDestination(country, city);
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
@@ -72,7 +76,8 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
   	@DataProvider(name="testData")
 	public Object[][] createdata1() {
   		return (Object[][]) new Object[][] { 
-			  {xlsRetrive.getCellValue("country", "Value"),xlsRetrive.getCellValue("city", "Value"),
+			  {xlsRetrive.getCellValue("ValidCredentials", "Value"),xlsRetrive.getCellValue("ValidCredentials", "password"),
+				  xlsRetrive.getCellValue("country", "Value"),xlsRetrive.getCellValue("city", "Value"),
 				  xlsRetrive.getCellValue("fName", "Value"),xlsRetrive.getCellValue("lName", "Value"),
 				  xlsRetrive.getCellValue("email", "Value"),xlsRetrive.getCellValue("cardHolder", "Value"),
 				  xlsRetrive.getCellValue("cardNum", "Value"),xlsRetrive.getCellValue("expirationMonth", "Value"),

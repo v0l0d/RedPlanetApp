@@ -132,6 +132,6 @@ public class RP_018_TestDeepLinks extends LoginHelper{
   		return (Object[][]) new Object[][] { 
 			  {xlsDeepLinks.getCellValue("fName", "Value"),xlsDeepLinks.getCellValue("lName", "Value"),
 				  xlsDeepLinks.getCellValue("ValidCredentials","Value"),
-				  xlsDeepLinks.getCellValue("ValidCredentials","password"),true,"SignUp as new user"}};
+				  xlsDeepLinks.getCellValue("ValidCredentials","password"),true,"Test DeepLinks"}};
 	}
 }
