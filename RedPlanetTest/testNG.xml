@@ -9,6 +9,13 @@
 				</run>
 			</groups>
 		<classes>			
+		
+			<class name="com.mobile.scripts.RP_014_TestInHousePhone"/>
+			<class name="com.mobile.scripts.RP_015_TestChatWithFrontDesk"/>
+			<class name="com.mobile.scripts.RP_016_TestTabsLocalAttractions"/>
+			<class name="com.mobile.scripts.RP_017_TestInputCreditCards"/>
+			<class name="com.mobile.scripts.RP_018_TestDeepLinks"/>
+			
 			<class name="com.mobile.scripts.RP_001_TestLoginFromHome" />
 			<class name="com.mobile.scripts.RP_002_TestLogInFromBooking" />
 			<class name="com.mobile.scripts.RP_003_TestSearchHotels" />
@@ -24,11 +31,6 @@
 			<class name="com.mobile.scripts.RP_012_ValidateSocialNetworkLinksInAboutUs" />
 			<class name="com.mobile.scripts.RP_013_ValidateFooterLinksInAboutUs"/>
 			
-			<class name="com.mobile.scripts.RP_014_TestInHousePhone"/>
-			<class name="com.mobile.scripts.RP_015_TestChatWithFrontDesk"/>
-			<class name="com.mobile.scripts.RP_016_TestTabsLocalAttractions"/>
-			<class name="com.mobile.scripts.RP_017_TestInputCreditCards"/>
-			<class name="com.mobile.scripts.RP_018_TestDeepLinks"/>
 		</classes>
 	</test>
 
