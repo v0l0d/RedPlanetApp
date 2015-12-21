@@ -43,7 +43,9 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
 		  if(status){
 			 if(phNo.length>0){
 			  System.out.println("Dial Number "+phNo+" no of digits "+phNo.length);
-				 for(char digi : phNo){
+			  int i=0;
+			  while(i<=3){
+			  for(char digi : phNo){
 				  waitForElementPresent(By.xpath(InHousePhoneLocators.noButtonToDial.replace("#", Character.toString(digi))),
 						  "noButtonToDial "+digi);
 				  click(By.xpath(InHousePhoneLocators.noButtonToDial.replace("#", Character.toString(digi))),
@@ -51,10 +53,15 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
 				 }
 				 click(InHousePhoneLocators.callIcon, "callIcon");
 				 if((isElementDisplayed(InHousePhoneLocators.callingRoomLabel))){
-					  Reporter.SuccessReport(description, " Successful");			  
+					  Reporter.SuccessReport(description, " Successful");		
+					  break;
 				  }else{
-					  Reporter.failureReport(description, " Failed");
+					  if(i==3){
+						  Reporter.failureReport(description, " Failed");
+					  }
+					  i++;
 				  }
+			  }
 			 }else{
 				 click(InHousePhoneLocators.callIcon, "callIcon");
 				 if(description.contains("invalid")){
@@ -70,13 +77,20 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
 		  }
 		}else if(description.contains("FrontDesk")){
 				  System.out.println("In call Front Desk block");
+				  int i=0;
+				  while(i<=3){
 				  click(InHousePhoneLocators.frontDeskButtonToCall, "frontDeskButtonToCall");
 				  if((isElementDisplayed(InHousePhoneLocators.callingRoomLabel))){
 					  Reporter.SuccessReport(description, " Successful");
 					  System.out.println("successfully calling Front Desk ");
+					  break;
 				  }else{
-					  Reporter.failureReport(description, " Failed");
+					  if(i==3){
+						  Reporter.failureReport(description, " Failed");
+					  }
+					  i++;
 				  }
+				 }
 			  }
 	  }catch (Exception e) {
 			e.printStackTrace();

@@ -50,7 +50,7 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 					((IOSDriver) driver).context(currContext);
 					String title = Iosdriver.getTitle();
 					System.out.println(Iosdriver.getContext()+" ++++ "+title);
-					if(Iosdriver.getTitle().contains("Confirm")){
+					if(Iosdriver.getPageSource().contains("Confirm")){
 						Reporter.SuccessReport("validate Page Title", " Successfull found page Title "+title);
 						waitForElementPresent(FacebookLoginLocators.oKFacebookButton, "oKFacebookButton");
 						click(FacebookLoginLocators.oKFacebookButton, "oKFacebookButton");
@@ -68,8 +68,8 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 					break;
 				}
 			}
-			Set<String> contexts2 = ((IOSDriver) driver).getContextHandles();
-			for(String currCont : contexts2){
+			//Set<String> contexts2 = ((IOSDriver) driver).getContextHandles();
+			for(String currCont : contexts){
 				System.out.println("current context is :"+currCont);
 				if(currCont.contains("NATIVE")){
 					((IOSDriver) driver).context(currCont);
@@ -84,7 +84,8 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 						scrollToText("SIGN OUT");
 						waitForElementPresent(AccountPageLocators.signOutButton, "signOutButton");
 						 click(AccountPageLocators.signOutButton, "signOutButton");
-						 Thread.sleep(2000);						 
+						 Thread.sleep(2000);	
+						 break;
 					  }
 				}
 			}
