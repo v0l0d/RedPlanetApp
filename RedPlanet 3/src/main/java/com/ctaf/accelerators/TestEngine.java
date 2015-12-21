@@ -345,6 +345,7 @@ public class TestEngine extends HtmlReportSupport {
 					String bundleID = configProps.getProperty("BundleID");
 					DesiredCapabilities capabilitiesForAppium = new DesiredCapabilities();
 					System.out.println("DeviceName is : " + DeviceName);
+					capabilitiesForAppium.setCapability("waitForAppScript", "$.delay(5000); $.acceptAlert();");
 					capabilitiesForAppium.setCapability("deviceName",device);
 					capabilitiesForAppium.setCapability("platformName","iOS");
 					capabilitiesForAppium.setCapability("platformVersion",platformVer);
