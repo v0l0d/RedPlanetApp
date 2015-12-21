@@ -1,0 +1,43 @@
+/* Class = "WKInterfaceLabel"; text = "Room Type"; ObjectID = "aji-rf-zwE"; */
+"aji-rf-zwE.text" = "部屋タイプ";
+
+/* Class = "WKInterfaceLabel"; text = "Upcoming Booking"; ObjectID = "B2o-5X-23d"; */
+"B2o-5X-23d.text" = "次の予約";
+
+/* Class = "WKInterfaceLabel"; text = "Please login on iPhone"; ObjectID = "BWG-DG-W4S"; */
+"BWG-DG-W4S.text" = "Iphoneでログインしてください";
+
+/* Class = "WKInterfaceLabel"; text = "Unkown error Sorry"; ObjectID = "gdh-Hh-7nC"; */
+"gdh-Hh-7nC.text" = "失敗しました";
+"Something went wrong" = "失敗しました";
+
+"iPhone is not reachable" = "Iphoneは使用できません";
+
+/* Class = "WKInterfaceButton"; title = "Reload"; ObjectID = "Gqx-dI-nY3"; */
+"Gqx-dI-nY3.title" = "補充する";
+
+/* Class = "WKInterfaceLabel"; text = "Upcoming Booking"; ObjectID = "grk-Fs-2bE"; */
+"grk-Fs-2bE.text" = "次の予約";
+
+/* Class = "WKInterfaceButton"; title = "Reload"; ObjectID = "GRR-dx-UcX"; */
+"GRR-dx-UcX.title" = "補充する";
+
+/* Class = "WKInterfaceLabel"; text = "Check-out"; ObjectID = "Lyt-Hw-B4k"; */
+"Lyt-Hw-B4k.text" = "チェックアウト";
+
+/* Class = "WKInterfaceLabel"; text = "Loading upcoming booking"; ObjectID = "Mev-Eg-6FZ"; */
+"Mev-Eg-6FZ.text" = "次の予約をローディング中です";
+
+/* Class = "WKInterfaceLabel"; text = "No upcoming bookings - book a stay on your iPhone now!"; ObjectID = "pct-Eo-eXM"; */
+"pct-Eo-eXM.text" = "次の予約はありませんーご旅行がお決まりでしたらIphoneで次もご予約ください";
+
+/* Class = "WKInterfaceLabel"; text = "Map"; ObjectID = "rr5-gm-ao1"; */
+"rr5-gm-ao1.text" = "地図";
+
+/* Class = "WKInterfaceLabel"; text = "Red Planet"; ObjectID = "S9u-ST-CqK"; */
+"S9u-ST-CqK.text" = "レッドプラネット";
+
+/* Class = "WKInterfaceLabel"; text = "Check-in"; ObjectID = "WRh-a4-taZ"; */
+"WRh-a4-taZ.text" = "チェックイン";
+
+

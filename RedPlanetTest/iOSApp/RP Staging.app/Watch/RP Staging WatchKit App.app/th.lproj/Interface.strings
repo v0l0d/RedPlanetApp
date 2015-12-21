@@ -1,0 +1,43 @@
+/* Class = "WKInterfaceLabel"; text = "Room Type"; ObjectID = "aji-rf-zwE"; */
+"aji-rf-zwE.text" = "ประเภทห้อง";
+
+/* Class = "WKInterfaceLabel"; text = "Upcoming Booking"; ObjectID = "B2o-5X-23d"; */
+"B2o-5X-23d.text" = "ข้อมูลการจอง";
+
+/* Class = "WKInterfaceLabel"; text = "Please login on iPhone"; ObjectID = "BWG-DG-W4S"; */
+"BWG-DG-W4S.text" = "กรุณาเข้าสู่ระบบผ่าน iPhone";
+
+/* Class = "WKInterfaceLabel"; text = "Unkown error Sorry"; ObjectID = "gdh-Hh-7nC"; */
+"gdh-Hh-7nC.text" = "มีข้อผิดพลาดเกิดขึ้น";
+"Something went wrong" = "มีข้อผิดพลาดเกิดขึ้น";
+
+"iPhone is not reachable" = "ไม่สามารถเชื่อมต่อ iPhone ได้";
+
+/* Class = "WKInterfaceButton"; title = "Reload"; ObjectID = "Gqx-dI-nY3"; */
+"Gqx-dI-nY3.title" = "โหลดอีกครั้ง";
+
+/* Class = "WKInterfaceLabel"; text = "Upcoming Booking"; ObjectID = "grk-Fs-2bE"; */
+"grk-Fs-2bE.text" = "ข้อมูลการจอง";
+
+/* Class = "WKInterfaceButton"; title = "Reload"; ObjectID = "GRR-dx-UcX"; */
+"GRR-dx-UcX.title" = "โหลดอีกครั้ง";
+
+/* Class = "WKInterfaceLabel"; text = "Check-out"; ObjectID = "Lyt-Hw-B4k"; */
+"Lyt-Hw-B4k.text" = "เช็คเอ้าท์";
+
+/* Class = "WKInterfaceLabel"; text = "Loading upcoming booking"; ObjectID = "Mev-Eg-6FZ"; */
+"Mev-Eg-6FZ.text" = "กำลังโหลดข้อมูล";
+
+/* Class = "WKInterfaceLabel"; text = "No upcoming bookings - book a stay on your iPhone now!"; ObjectID = "pct-Eo-eXM"; */
+"pct-Eo-eXM.text" = "ไม่มีข้อมูลการจอง จองโรงแรมผ่าน iPhone ของคุณ";
+
+/* Class = "WKInterfaceLabel"; text = "Map"; ObjectID = "rr5-gm-ao1"; */
+"rr5-gm-ao1.text" = "แผนที่";
+
+/* Class = "WKInterfaceLabel"; text = "Red Planet"; ObjectID = "S9u-ST-CqK"; */
+"S9u-ST-CqK.text" = "Red Planet";
+
+/* Class = "WKInterfaceLabel"; text = "Check-in"; ObjectID = "WRh-a4-taZ"; */
+"WRh-a4-taZ.text" = "เช็คอิน";
+
+

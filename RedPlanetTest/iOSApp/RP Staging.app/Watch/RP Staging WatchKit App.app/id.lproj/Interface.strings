@@ -1,0 +1,43 @@
+/* Class = "WKInterfaceLabel"; text = "Room Type"; ObjectID = "aji-rf-zwE"; */
+"aji-rf-zwE.text" = "Tipe Kamar";
+
+/* Class = "WKInterfaceLabel"; text = "Upcoming Booking"; ObjectID = "B2o-5X-23d"; */
+"B2o-5X-23d.text" = "Pesanan berikutnya ";
+
+/* Class = "WKInterfaceLabel"; text = "Please login on iPhone"; ObjectID = "BWG-DG-W4S"; */
+"BWG-DG-W4S.text" = "Silahkan log in melalui iPhone ";
+
+/* Class = "WKInterfaceLabel"; text = "Unkown error Sorry"; ObjectID = "gdh-Hh-7nC"; */
+"gdh-Hh-7nC.text" = "Terjadi sebuah kesalahan";
+"Something went wrong" = "Terjadi sebuah kesalahan";
+
+"iPhone is not reachable" = "Iphone tidak dalam jangkauan";
+
+/* Class = "WKInterfaceButton"; title = "Reload"; ObjectID = "Gqx-dI-nY3"; */
+"Gqx-dI-nY3.title" = "Memuat kembali ";
+
+/* Class = "WKInterfaceLabel"; text = "Upcoming Booking"; ObjectID = "grk-Fs-2bE"; */
+"grk-Fs-2bE.text" = "Pesanan Baru";
+
+/* Class = "WKInterfaceButton"; title = "Reload"; ObjectID = "GRR-dx-UcX"; */
+"GRR-dx-UcX.title" = "Memuat kembali ";
+
+/* Class = "WKInterfaceLabel"; text = "Check-out"; ObjectID = "Lyt-Hw-B4k"; */
+"Lyt-Hw-B4k.text" = "Check-out";
+
+/* Class = "WKInterfaceLabel"; text = "Loading upcoming booking"; ObjectID = "Mev-Eg-6FZ"; */
+"Mev-Eg-6FZ.text" = "Memuat pemesanan baru";
+
+/* Class = "WKInterfaceLabel"; text = "No upcoming bookings - book a stay on your iPhone now!"; ObjectID = "pct-Eo-eXM"; */
+"pct-Eo-eXM.text" = "Tidak ada pesanan baru - pesan sekarang melalui Iphone anda";
+
+/* Class = "WKInterfaceLabel"; text = "Map"; ObjectID = "rr5-gm-ao1"; */
+"rr5-gm-ao1.text" = "Peta";
+
+/* Class = "WKInterfaceLabel"; text = "Red Planet"; ObjectID = "S9u-ST-CqK"; */
+"S9u-ST-CqK.text" = "Red Planet";
+
+/* Class = "WKInterfaceLabel"; text = "Check-in"; ObjectID = "WRh-a4-taZ"; */
+"WRh-a4-taZ.text" = "Check-in";
+
+
