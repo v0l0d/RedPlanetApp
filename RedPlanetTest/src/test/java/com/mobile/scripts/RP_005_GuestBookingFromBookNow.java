@@ -42,14 +42,12 @@ public class RP_005_GuestBookingFromBookNow extends LoginHelper{
 			 Reporter.failureReport("Search for Hotels", "Failed");
 		 }
 		 click(PickRoomPageLocators.bookNowButton, "bookNowButton");
-		 //Thread.sleep(5000);
 		 isElementDisplayed(BookPageLocators.contiuneButton);	 
 			 click(BookPageLocators.contiuneButton, "contiuneButton");
 			 //fill guest details
 			 BookingPageHelper.populateGuestDetails("", fName, lName, email, "");
 			 //fill payment details
 			 BookingPageHelper.populatePaymentDetails(cardHolder, cardNum, expMonth, expYear, cvv);
-		 Thread.sleep(15000);
 		 if(!status){
 			if(isElementDisplayed(BookPageLocators.errorPayment)){
 				String err = driver.findElement(BookPageLocators.inValidError).getAttribute("value").trim();

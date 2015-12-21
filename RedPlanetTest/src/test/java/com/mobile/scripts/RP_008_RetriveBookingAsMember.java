@@ -45,7 +45,6 @@ public class RP_008_RetriveBookingAsMember extends LoginHelper{
 		 click(PickRoomPageLocators.bookNowButton, "bookNowButton");
 		 waitForElementPresent(BookPageLocators.contiuneButton, "contiuneButton");	 
 		 click(BookPageLocators.contiuneButton, "contiuneButton");
-			 Thread.sleep(2000);
 			 BookingPageHelper.populateGuestDetails("", fName, lName, email, "");
 			 BookingPageHelper.populatePaymentDetails(cardHolder, cardNum, expMonth, expYear, cvv);
 		 waitForElementPresent(BookPageLocators.doneButton, "doneButton");

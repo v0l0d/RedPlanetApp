@@ -62,7 +62,6 @@ public class RP_018_TestDeepLinks extends LoginHelper{
 					((IOSDriver) driver).context(currContext);
 					Reporter.SuccessReport("validate switch to web context", 
 							" Successfull switched to web context"+currContext);
-					//Thread.sleep(10000);
 					System.out.println("++"+driver.getTitle());
 					Iosdriver.navigate().to("redplanet://in_stay_mode");
 					Reporter.SuccessReport("validate load deep link url", 

@@ -15,10 +15,6 @@ public class BookingPageHelper extends HomePageHelper {
 				Character.toString(randCharList.charAt(rand2)));
 		System.out.println("rand generated value "+randGen);
 		try {
-			waitForElementPresent(BookPageLocators.guestDetailsFrame,
-					"guestDetailsFrame");
-			//scrollToElement(locator)
-			
 			waitForElementPresent(BookPageLocators.firstNameInput,
 					"firstNameInput");
 			if(fName.length()>0){
@@ -68,7 +64,6 @@ public class BookingPageHelper extends HomePageHelper {
 			waitForElementPresent(BookPageLocators.conditionsCheck, "conditionsCheck");
 			click(BookPageLocators.conditionsCheck, "conditionsCheck");
 			Iosdriver.hideKeyboard();
-			Thread.sleep(1000);
 			waitForElementPresent(BookPageLocators.bookButton, "bookButton");
 			click(BookPageLocators.bookButton, "bookButton");
 		}catch(Exception e){

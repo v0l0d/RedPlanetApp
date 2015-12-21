@@ -31,7 +31,6 @@ public class SignUpHelper extends SignUpEmailLocators{
 				  "verifyInputField");*/
 		  waitForElementPresent(SignUpEmailLocators.signUpButton, "signUpButton");
 		  click(SignUpEmailLocators.signUpButton, "signUpButton");
-		  Thread.sleep(8000);
 		  //if(waitForElementPresent(AccountPageLocators.accountScreenTitle,"accountScreenTitle")){
 			  res = true;
 		  //}
@@ -60,7 +59,6 @@ public class SignUpHelper extends SignUpEmailLocators{
 		  scrollToText("Sign up");
 		  waitForElementPresent(SignUpEmailLocators.signUpButton, "signUpButton");
 		  click(SignUpEmailLocators.signUpButton, "signUpButton");
-		  Thread.sleep(5000);
 		  res = true;
 	  }catch(Exception e){
 			e.printStackTrace();

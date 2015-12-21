@@ -33,7 +33,6 @@ public class RP_011_TestForgotPassword  extends LoginHelper{
 		  validateUserLogin();
 		  waitForElementPresent(AccountPageLocators.logInButton,"logInButton");
 		  click(AccountPageLocators.logInButton,"logInButton");
-		  Thread.sleep(2000);
 		  waitForElementPresent(LoginPageLocators.forgotPasswrod, "forgotPasswrod");
 		  Thread.sleep(2000);
 		  ForgotPasswordHelper.navigateToForgotPasswordScreen();
@@ -51,7 +50,6 @@ public class RP_011_TestForgotPassword  extends LoginHelper{
 		  if(status){
 			  type(ForgotPasswordLocators.emailInputField, email, "emailInputField");
 			  click(ForgotPasswordLocators.resetPasswordButton, "resetPasswordButton");
-			  Thread.sleep(2000);
 			 if(description.contains("valid email ID")){
 			  waitForElementPresent(LoginPageLocators.signInButton, "signInButton");
 			  ForgotPasswordHelper.ResetPasswordViaGmail(gmailUrl, email, password, newPass);

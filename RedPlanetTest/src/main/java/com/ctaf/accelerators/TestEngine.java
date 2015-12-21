@@ -76,6 +76,7 @@ public class TestEngine extends HtmlReportSupport {
 
 	public static AppiumDriver AndroidDriver2 = null;
 	public static AppiumDriver Iosdriver = null;
+	public static String bundleID = null;
 	//***************************************************************************************************
 
 	/*
@@ -159,20 +160,6 @@ public class TestEngine extends HtmlReportSupport {
 		if(browser.equalsIgnoreCase("iphone")){
 			try {
 				// ---------------------------------------------------
-				//System.out.println(System.getProperty("user.home")+"/Log/RPMob_" + timeStamp + ".log");
-				String logFile = System.getProperty("user.dir")+"/Logs/RPMob_"+System.currentTimeMillis()+".log";
-				System.out.println("In iphone block");
-			/*while (true) {
-				if (RedPlanetUtils.startAppiumForiOS(logFile)) {
-					break;
-				}
-			}
-			if ((new File(logFile).exists())) {
-				System.out.println("Log File Created by Appium at path : " + System.getProperty("user.dir")
-						+ "/Log/RPMob_" + timeStamp + ".log");
-			}
-			Thread.sleep(10000);*/
-				// -----------------------------------------------------
 				DeviceName = configProps.getProperty("iOSDeviceName");
 				String device = configProps.getProperty("Device");
 				String appPath = configProps.getProperty("appPath");
@@ -184,7 +171,7 @@ public class TestEngine extends HtmlReportSupport {
 				File app = new File(temp2);
 				String platformVer = configProps.getProperty("platformVersion");
 				String udid = configProps.getProperty("UDID");
-				String bundleID = configProps.getProperty("BundleID");
+				bundleID = configProps.getProperty("BundleID");
 				DesiredCapabilities capabilitiesForAppium = new DesiredCapabilities();
 				//System.out.println("DeviceName is : " + DeviceName);
 				capabilitiesForAppium.setCapability("deviceName",device);
@@ -198,6 +185,7 @@ public class TestEngine extends HtmlReportSupport {
 				capabilitiesForAppium.setCapability("locationServicesAuthorized", true);
 				capabilitiesForAppium.setCapability("autoLaunch", true);
 				capabilitiesForAppium.setCapability("fullReset", false);
+				capabilitiesForAppium.setCapability("noReset", true);
 				capabilitiesForAppium.setCapability("waitForAppScript",
 						"target.elements().length > 0; $.delay(30000); $.acceptAlert();");			
 				if((DeviceName.contains("Simulator"))||((udid.length()==0))){
@@ -215,11 +203,7 @@ public class TestEngine extends HtmlReportSupport {
 						capabilitiesForAppium);
 				driver = Iosdriver;
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-				//Iosdriver.lockScreen(2);
-				if(ActionEngine.isElementDisplayed(By.name("OK"))){
-					driver.findElement(By.name("OK")).click();				
-				}
-				//((JavascriptExecutor) driver).executeScript("UIATarget.localTarget().frontMostApp().alert().defaultButton().tap()");
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -249,10 +233,8 @@ public class TestEngine extends HtmlReportSupport {
 						DeviceName);
 				capabilitiesForAppium.setCapability("platformVersion",OSVersion);
 				capabilitiesForAppium.setCapability("platformName","Android");
-				//capabilitiesForAppium.setCapability("newCommandTimeout","120000");
-				//capabilitiesForAppium.setCapability("autoWebview", "true");
 				capabilitiesForAppium.setCapability("autoWebviewTimeout","1000");
-				//capabilitiesForAppium.setCapability("noReset", false);
+				capabilitiesForAppium.setCapability("noReset", false);
 				capabilitiesForAppium.setCapability("appPackage", AppPackage);
 				capabilitiesForAppium.setCapability("appActivity", AppActivity);
 				
@@ -277,16 +259,13 @@ public class TestEngine extends HtmlReportSupport {
 		
 		HtmlReportSupport.createHtmlSummaryReport(browser, url);
 		closeSummaryReport();
+		if (browser.equalsIgnoreCase("iphone")) {
+			//Iosdriver.removeApp(bundleID);
+		}
 		driver.quit();
 		}catch(Exception e){
 			e.printStackTrace();
-		} /*finally {
-			if (browser.contains("Android")) {
-				RedPlanetUtils.stopAppium();
-			} else if (browser.contains("iPhone")) {
-				RedPlanetUtils.stopAppiumForIos();
-			}
-		}*/
+		}
 	}
 	
 

@@ -18,7 +18,6 @@ public class LoginHelper extends HomePageHelper {
 			waitForElementPresent(LoginPageLocators.signInButton,
 					"signInButton");
 			click(LoginPageLocators.signInButton, "signInButton");
-			Thread.sleep(3000);
 			//if(waitForElementPresent(LoginPageLocators.nameFieldLable,"nameInputField")){				
 				/*res = waitForElementPresent(AccountPageLocators.accountScreenTitle,
 						"accountScreenTitle");*/

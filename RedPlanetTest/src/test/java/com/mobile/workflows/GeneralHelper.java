@@ -51,7 +51,6 @@ public class GeneralHelper extends ForgotPasswordHelper{
 			int newWdt = (dim2.width+pt2.getX());
 			System.out.println((pt2.y+dim2.getHeight())/2);
 			(Iosdriver).tap(1, (newWdt), (newHt), (int) 0.6);
-			Thread.sleep(6000);
 			if(!isElementDisplayed(PickRoomPageLocators.checkInButtonOnPickRoom)){
 				res = true;
 			}
@@ -76,16 +75,13 @@ public static String FrontDeskChat(String url,String userId,String password,Stri
 			 	waitForElementPresent(browser,FrontDeskWebLocators.password, "password");
 			 	type(browser,FrontDeskWebLocators.password, password, "password");
 			 	click(browser,FrontDeskWebLocators.signInButton, "signInButton");
-			 	Thread.sleep(5000);
 			 	waitForElementPresent(browser,FrontDeskWebLocators.chatIcon, "chatIcon");
 			 	click(browser,FrontDeskWebLocators.chatIcon, "chatIcon");
 			 	waitForElementPresent(browser,FrontDeskWebLocators.allIssuesLink, "allIssuesLink");
 			 	click(browser,FrontDeskWebLocators.allIssuesLink, "allIssuesLink");
 			 	waitForElementPresent(browser,FrontDeskWebLocators.searchInputBox, "searchInputBox");
 			 	type(browser,FrontDeskWebLocators.searchInputBox,"Test message","searchInputBox");
-			 	Thread.sleep(5000);
 			    click(browser, By.xpath(FrontDeskWebLocators.Testmessage.replace("#", "Test message")), "Testmessage");
-			    Thread.sleep(5000);
 			    waitForElementPresent(browser,FrontDeskWebLocators.textAreaForAdminChat, "textAreaForAdminChat");
 			    type(browser,FrontDeskWebLocators.textAreaForAdminChat,newMessage, "textAreaForAdminChat");
 			    waitForElementPresent(browser,FrontDeskWebLocators.replyButton, "replyButton");
@@ -110,26 +106,26 @@ public static String FrontDeskChat(String url,String userId,String password,Stri
 		return returnMessage;
 	}
 
-	public static void deepLinkHelper(String link) throws Throwable{
+	public static void deepLinkHelper(String link , Set<String> contexts) throws Throwable{
 		//HomePageHelper.navigateToMyAccount();
 		//click(LoginPageLocators.connectWithFacebookButton, "connectWithFacebookButton");							
-		Thread.sleep(20000);
 		try{
-		Set<String> contexts = ((IOSDriver) driver).getContextHandles();
+		Set<String> contexts2 = ((IOSDriver) driver).getContextHandles();
 		
-		for(String currContext : contexts){
+		for(String currContext : contexts2){
 			System.out.println("current context is :"+currContext);
 			if(currContext.contains("WEBVIEW")){
+				((IOSDriver) driver).context(currContext);
 				Reporter.SuccessReport("validate switch to web context", 
 						" Successfull switched to web context"+currContext);
-				((IOSDriver) driver).context(currContext);
 				Iosdriver.navigate().to(link);
-				Thread.sleep(1000);
+				Reporter.SuccessReport("validate load deep link url", 
+						" Successfull loaded url "+link);
 				break;
 				}
 			}
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 	}
 	
