@@ -185,7 +185,7 @@ public class TestEngine extends HtmlReportSupport {
 				capabilitiesForAppium.setCapability("locationServicesAuthorized", true);
 				capabilitiesForAppium.setCapability("autoLaunch", true);
 				capabilitiesForAppium.setCapability("fullReset", false);
-				capabilitiesForAppium.setCapability("noReset", true);
+				//capabilitiesForAppium.setCapability("noReset", true);
 				capabilitiesForAppium.setCapability("waitForAppScript",
 						"target.elements().length > 0; $.delay(30000); $.acceptAlert();");			
 				if((DeviceName.contains("Simulator"))||((udid.length()==0))){
