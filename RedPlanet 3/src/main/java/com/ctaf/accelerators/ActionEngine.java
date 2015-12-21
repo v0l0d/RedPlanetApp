@@ -84,7 +84,8 @@ public class ActionEngine extends TestEngine {
 			flag = true;
 		} catch (Exception e) {
 			Assert.assertTrue(flag,"Unable to click on "+ locatorName);
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Click", "Unable to click on "
@@ -146,7 +147,8 @@ public class ActionEngine extends TestEngine {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			//return false;
+			throw e;
 		} /*finally {
 			if (!flag) {
 				Reporter.failureReport("Check IsElementPresent ", locatorName
@@ -170,7 +172,8 @@ public class ActionEngine extends TestEngine {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			//return false;
+			throw e;
 		} /*finally {
 			if (!flag) {
 				Reporter.failureReport("Check IsElementPresent ", locatorName
@@ -295,7 +298,7 @@ public class ActionEngine extends TestEngine {
 			e.printStackTrace();   
 			Assert.assertEquals(false, true," type: Data typing action is not perform on  "+ locatorName);
                      
-			e.printStackTrace();
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Type ",
@@ -337,7 +340,8 @@ public class ActionEngine extends TestEngine {
 			return true;
 		} catch (Exception e) {
 			Assert.assertTrue(flag,"MouseOver action is not perform on " + locatorName);
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("MouseOver",
@@ -418,7 +422,8 @@ public class ActionEngine extends TestEngine {
 			return true;
 		} catch (Exception e) {
 
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("DragAndDrop ",
@@ -457,7 +462,8 @@ public class ActionEngine extends TestEngine {
 			return true;
 		} catch (Exception e) {
 
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Slider ",
@@ -498,7 +504,8 @@ public class ActionEngine extends TestEngine {
 			// driver.findElement(by1).sendKeys(Keys.DOWN);
 		} catch (Exception e) {
 
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("RightClick ",
@@ -537,6 +544,7 @@ public class ActionEngine extends TestEngine {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			bValue = false;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("WaitForTitlePresent ", "Title is wrong");
@@ -653,7 +661,8 @@ public class ActionEngine extends TestEngine {
 			return true;
 		} catch (Exception e) {
 
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Select ", value
@@ -694,7 +703,8 @@ public class ActionEngine extends TestEngine {
 			Assert.assertTrue(flag,"Option at index " + index
 					+ " is Not Selected from the DropDown" + locatorName);
 			e.printStackTrace();
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Select ", "Option at index " + index
@@ -735,7 +745,8 @@ public class ActionEngine extends TestEngine {
 					+ " is Not Selected from the DropDown "
 					+ locatorName);
 			e.printStackTrace();
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Select",
@@ -775,7 +786,8 @@ public class ActionEngine extends TestEngine {
 					+ " is Not Selected from the DropDown "
 					+ locatorName);
 			e.printStackTrace();
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Select",
@@ -819,7 +831,8 @@ public class ActionEngine extends TestEngine {
 			return true;
 		} catch (Exception e) {
 
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Select ", visibletext
@@ -986,7 +999,8 @@ public class ActionEngine extends TestEngine {
 			Assert.assertTrue(flag,"Failed to launch "
 					+ url);
 			e.printStackTrace();
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Launching URL ", "Failed to launch "
@@ -1030,6 +1044,7 @@ public class ActionEngine extends TestEngine {
 		} catch (NoSuchElementException e) {
 
 			bvalue = false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.SuccessReport("IsChecked ", locatorName
@@ -1073,7 +1088,7 @@ public class ActionEngine extends TestEngine {
 		} catch (Exception e) {
 
 			flag = false;
-
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("IsEnabled ", locatorName
@@ -1116,6 +1131,7 @@ public class ActionEngine extends TestEngine {
 			value = false;
 			Assert.assertTrue(flag,locatorName
 					+ " Element is Not Visible");
+			throw e;
 
 		} finally {
 			if (!flag) {
@@ -1159,7 +1175,7 @@ public class ActionEngine extends TestEngine {
 				flag = true;
 			}
 		} catch (Exception e) {
-
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("GetCssValue ",
@@ -1200,7 +1216,7 @@ public class ActionEngine extends TestEngine {
 					getAttribute(locator, attribute, locatorName));
 			flag = true;
 		} catch (Exception e) {
-
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("AssertValue ", locatorName
@@ -1227,7 +1243,7 @@ public class ActionEngine extends TestEngine {
 			Assert.assertTrue(isTextPresent(text));
 			flag = true;
 		} catch (Exception e) {
-
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("AssertTextPresent ", text
@@ -1490,7 +1506,8 @@ public class ActionEngine extends TestEngine {
 		}catch (Exception e) {
 			Assert.assertTrue(flag," Unable to get Attribute "+ attribute +" from "
 					+ locatorName);
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("GetAttribute ", " Unable to get Attribute "+ attribute +" from "
@@ -1565,7 +1582,8 @@ public class ActionEngine extends TestEngine {
 		} catch (Exception e) {
 			Assert.assertTrue(flag," Unable to get Text from "
 					+ locatorName);
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("GetText ", " Unable to get Text from "
@@ -1591,7 +1609,8 @@ public class ActionEngine extends TestEngine {
 		} catch (Exception e) {
 			Assert.assertTrue(flag," Unable to get Text from "
 					+ locatorName);
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("GetValue ", " Unable to get Text from "
@@ -1614,6 +1633,7 @@ public class ActionEngine extends TestEngine {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		} finally {
 
 		}
@@ -1777,7 +1797,8 @@ public class ActionEngine extends TestEngine {
 			return true;
 		} catch (Exception e) {
 
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("SelectFrame ", " Frame with index "
@@ -1805,7 +1826,8 @@ public class ActionEngine extends TestEngine {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("SelectFrame ", " Frame with Id "
@@ -1832,8 +1854,8 @@ public class ActionEngine extends TestEngine {
 			flag = true;
 			return true;
 		} catch (Exception e) {
-
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("SelectFrame ", " Frame with Name "
@@ -1858,7 +1880,8 @@ public class ActionEngine extends TestEngine {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("SelectFrame ",
@@ -1892,7 +1915,8 @@ public class ActionEngine extends TestEngine {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			return false;
+			throw e;
+			//return false;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("SelectFrame ", " The Frame "
@@ -2121,7 +2145,8 @@ public class ActionEngine extends TestEngine {
 			Assert.assertTrue(flag," Falied to locate element "+locator+
 					" 's "+attributeName+" attribute with value " + expectedAttrubuteValue);
 			e.printStackTrace();
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("waitUntilElementAttributeChanges ",
@@ -2212,6 +2237,7 @@ public class ActionEngine extends TestEngine {
 			e.printStackTrace();
 			Assert.assertTrue(flag,
 					"Failed to fetch any elements with locator \""+locator+"\"");
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("Verify getElements",
@@ -2318,7 +2344,8 @@ public class ActionEngine extends TestEngine {
 			flag = true;
 			return true;
 		} catch (NoSuchElementException e) {
-			return false;
+			//return false;
+			throw e;
 		} finally {
 			if (flag) {
 				// Reporter.SuccessReport("Type ","Data typing action is performed on"
@@ -2382,6 +2409,7 @@ public class ActionEngine extends TestEngine {
 			flag = true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("RefreshPage ",
@@ -2433,6 +2461,7 @@ public class ActionEngine extends TestEngine {
 			}
 		} catch (Exception e){
 			e.printStackTrace();
+			throw e;
 		} finally {
 			if (!flag) {
 				Reporter.failureReport("IsLinkSuccess ",

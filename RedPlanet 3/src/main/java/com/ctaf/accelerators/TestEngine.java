@@ -349,16 +349,20 @@ public class TestEngine extends HtmlReportSupport {
 					capabilitiesForAppium.setCapability("platformName","iOS");
 					capabilitiesForAppium.setCapability("platformVersion",platformVer);
 					capabilitiesForAppium.setCapability("deviceName",device);
-					capabilitiesForAppium.setCapability("bundleId", bundleID);
+					if(bundleID != null){
+					    capabilitiesForAppium.setCapability("bundleId", bundleID);
+					}
 					capabilitiesForAppium.setCapability("newCommandTimeout","6000");
 					capabilitiesForAppium.setCapability("takesScreenshot", true);
 					capabilitiesForAppium.setCapability("autoWebviewTimeout","6000");
 					//capabilitiesForAppium.setCapability("fullReset", "true");
-					if((DeviceName.contains("Simulator"))||((udid.length()==0))){
+					if(DeviceName.contains("Simulator")){
 						System.out.println("using simulator");
-						//capabilitiesForAppium.setCapability("app",appPath);
+						capabilitiesForAppium.setCapability("app",appPath);
 					}else{
 						System.out.println("using real device");
+					}
+					if(udid != null){
 						capabilitiesForAppium.setCapability("udid", udid);
 						//capabilitiesForAppium.setCapability("app",ipaPath);
 					}
