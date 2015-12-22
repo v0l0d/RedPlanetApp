@@ -102,14 +102,14 @@ public class RP_018_TestDeepLinks extends LoginHelper{
 	}	
   }
   public static void handleOpenPrompt() throws Exception{
-	  Screen screen = new Screen();
+	  	/*Screen screen = new Screen();
 		Match mat = null;
 		if(mat.compare(System.getProperty("user.dir")+"/Drivers/Open.png") != null){
-	  //BufferedImage imgScreen = screen.capture().getImage();
-	  //ImageIO.write(imgScreen, "png", new File(System.getProperty("user.dir")+"/Drivers/test.png"));
+	  BufferedImage imgScreen = screen.capture().getImage();
+	  ImageIO.write(imgScreen, "png", new File(System.getProperty("user.dir")+"/Drivers/test.png"));
 	  System.out.println("in Sikuli block");
 			screen.click(mat.compare(System.getProperty("user.dir")+"/Drivers/Open.png"));
-		}
+		}*/
   }
   
   	@DataProvider(name="testData")
