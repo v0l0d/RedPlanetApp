@@ -4,33 +4,37 @@ import com.androidMobile.scripts.testObjects.BookPageLocators;
 import com.androidMobile.scripts.testObjects.LoginPageLocators;
 import com.ctaf.support.ReportStampSupport;
 
+import java.util.Random;
+
 public class BookingPageHelper extends HomePageHelper {	
 	
 
 	public static void populateGuestDetails(String title,String fName, String lName,
 			String email,String phone) throws Throwable{	
 		String temp = "abcdefghijklmnopqrstABCDEFGHIJKLMNOP";
-		int randomval = ReportStampSupport.biRandomValue();
+		int randomVal = new Random().nextInt(36);
 		try {
-			/*waitForElementPresent(BookPageLocators.guestDetailsFrame,
-					"guestDetailsFrame");*/
-			scrollToText("Email");
-			Thread.sleep(5000);
+            //TODO[andrey]: recheck this
+            scrollToText("First Name");
 			if(fName.length()>0){
-			waitForElementPresent(BookPageLocators.firstNameInput,"firstNameInput");
-			type(BookPageLocators.firstNameInput, fName+temp.charAt(randomval), "firstNameInput");	
-			}
-			scrollToText("Email");
+//                scrollToText("First Name");
+//                waitForElementPresent(BookPageLocators.firstNameInput,"firstNameInput");
+                type(BookPageLocators.firstNameInput, fName+temp.charAt(randomVal), "firstNameInput");
+//                driver.navigate().back();
+            }
+
 			if(lName.length()>0){
-			Thread.sleep(2000);
-			waitForElementPresent(BookPageLocators.lastNameInput,"lastNameInput");
-			type(BookPageLocators.lastNameInput, lName+temp.charAt(randomval),"lastNameInput");
-			}
-			scrollToText("Email");
-			if(email.length()>0){
-			Thread.sleep(2000);
-			waitForElementPresent(BookPageLocators.EmailInput,"EmailInput");
-			type(BookPageLocators.EmailInput, email, "EmailInput");		
+//                scrollToText("Last Name");
+//                waitForElementPresent(BookPageLocators.lastNameInput,"lastNameInput");
+			    type(BookPageLocators.lastNameInput, lName+temp.charAt(randomVal),"lastNameInput");
+//                driver.navigate().back();
+            }
+
+			if(email.length()>0) {
+//                scrollToElement("Email");
+//                waitForElementPresent(BookPageLocators.EmailInput,"EmailInput");
+                type(BookPageLocators.EmailInput, email, "EmailInput");
+//                driver.navigate().back();
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -72,29 +76,33 @@ public class BookingPageHelper extends HomePageHelper {
 	public static void populatePaymentDetails(String cardHolder,String cardNum, 
 			String expMonth,String cvv) throws Throwable{		
 		try {
-			scrollToText("Cardholder's Name");	
-			
-			waitForElementPresent(BookPageLocators.cardHolderInput,"cardHolder");
-			if(cardHolder.length()>0){
-			Thread.sleep(6000);
-			type(BookPageLocators.cardHolderInput, cardHolder, "cardHolder");	
-			waitForElementPresent(BookPageLocators.cardNumInput,"cardNum");
-			}
+
+//            scrollToText("Cardholder's Name");
+            if(cardHolder.length()>0){
+                scrollToText("Cardholder's Name");
+//                waitForElementPresent(BookPageLocators.cardNumInput,"cardNum");
+    			type(BookPageLocators.cardHolderInput, cardHolder, "cardHolder");
+//                driver.navigate().back();
+            }
 			if(cardNum.length()>0){
-			Thread.sleep(6000);
-			type(BookPageLocators.cardNumInput, cardNum,"cardNum");
-			}
+                scrollToText("Card Number");
+//                waitForElementPresent(BookPageLocators.cardNumInput,"cardNumInput");
+                type(BookPageLocators.cardNumInput, cardNum,"cardNum");
+//                driver.navigate().back();
+            }
 			if(expMonth.length()>0){
-			waitForElementPresent(BookPageLocators.expMonthInput,"expMonthInput");
-			Thread.sleep(6000);
-			type(BookPageLocators.expMonthInput, expMonth, "expMonth");	
-			waitForElementPresent(BookPageLocators.cvvNumInput,"cvvNumInput");
-			}
+                scrollToText("Expiration Month");
+//                waitForElementPresent(BookPageLocators.expMonthInput,"expMonthInput");
+                type(BookPageLocators.expMonthInput, expMonth, "expMonth");
+//                driver.navigate().back();
+            }
 			if(cvv.length()>0){
-			Thread.sleep(6000);
-			type(BookPageLocators.cvvNumInput, cvv, "cvvNumInput");
+//                scrollToText("Book");
+                waitForElementPresent(BookPageLocators.cvvNumInput,"cvvNumInput");
+                type(BookPageLocators.cvvNumInput, cvv, "cvvNumInput");
+//                driver.navigate().back();
 			}
-			scrollToText("Book");
+
 			click(BookPageLocators.conditionsCheck, "conditionsCheck");
 			click(BookPageLocators.bookButton, "bookButton");
 		}catch(Exception e){

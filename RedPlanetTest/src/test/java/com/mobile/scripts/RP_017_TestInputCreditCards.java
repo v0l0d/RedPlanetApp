@@ -35,7 +35,6 @@ public class RP_017_TestInputCreditCards extends LoginHelper{
 	     selectDestination(country, city);
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		 click(HomePageLocators.searchButton, "searchButton");
-		 Thread.sleep(10000);		 
 		 if(isElementDisplayed(PickRoomPageLocators.pickRoomPage)){
 			 Reporter.SuccessReport("Search for Hotels", "Successful");
 		 }else

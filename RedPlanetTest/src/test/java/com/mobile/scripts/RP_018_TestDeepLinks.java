@@ -1,22 +1,5 @@
 package com.mobile.scripts;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.List;
-import java.util.Set;
-
-import javax.imageio.ImageIO;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Match;
-import org.sikuli.script.Screen;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
 import com.ctaf.accelerators.TestEngine;
 import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
@@ -25,13 +8,12 @@ import com.mobile.scripts.testObjects.AboutUsLocators;
 import com.mobile.scripts.testObjects.AccountPageLocators;
 import com.mobile.scripts.testObjects.FacebookLoginLocators;
 import com.mobile.scripts.testObjects.HomePageLocators;
-import com.mobile.scripts.testObjects.InHousePhoneLocators;
-import com.mobile.scripts.testObjects.LoginPageLocators;
-import com.mobile.scripts.testObjects.PickRoomPageLocators;
-import com.mobile.workflows.GeneralHelper;
 import com.mobile.workflows.LoginHelper;
-
 import io.appium.java_client.ios.IOSDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import java.util.Set;
 
 public class RP_018_TestDeepLinks extends LoginHelper{
 	ExcelReader xlsDeepLinks = new ExcelReader(configProps.getProperty("TestData"),
@@ -62,7 +44,6 @@ public class RP_018_TestDeepLinks extends LoginHelper{
 					((IOSDriver) driver).context(currContext);
 					Reporter.SuccessReport("validate switch to web context", 
 							" Successfull switched to web context"+currContext);
-					//Thread.sleep(10000);
 					System.out.println("++"+driver.getTitle());
 					Iosdriver.navigate().to("redplanet://in_stay_mode");
 					Reporter.SuccessReport("validate load deep link url", 
@@ -103,14 +84,14 @@ public class RP_018_TestDeepLinks extends LoginHelper{
 	}	
   }
   public static void handleOpenPrompt() throws Exception{
-	  Screen screen = new Screen();
+	  	/*Screen screen = new Screen();
 		Match mat = null;
 		if(mat.compare(System.getProperty("user.dir")+"/Drivers/Open.png") != null){
-	  //BufferedImage imgScreen = screen.capture().getImage();
-	  //ImageIO.write(imgScreen, "png", new File(System.getProperty("user.dir")+"/Drivers/test.png"));
+	  BufferedImage imgScreen = screen.capture().getImage();
+	  ImageIO.write(imgScreen, "png", new File(System.getProperty("user.dir")+"/Drivers/test.png"));
 	  System.out.println("in Sikuli block");
 			screen.click(mat.compare(System.getProperty("user.dir")+"/Drivers/Open.png"));
-		}
+		}*/
   }
   
   	@DataProvider(name="testData")

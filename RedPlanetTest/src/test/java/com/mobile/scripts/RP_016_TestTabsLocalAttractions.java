@@ -78,8 +78,6 @@ public class RP_016_TestTabsLocalAttractions extends LoginHelper{
 		}else{
 			 Reporter.failureReport("Verify events  tab ","Failed");
 		} 
-	
-		Thread.sleep(10000);
 			 if(count>0){
 				 Reporter.SuccessReport(description, "Successful ");
 			 }else

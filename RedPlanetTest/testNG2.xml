@@ -8,23 +8,23 @@
 		<classes>			
 		
 			<class name="com.androidMobile.scripts.RP_001_TestLoginFromMyAccount" />
-			<class name="com.androidMobile.scripts.RP_002_TestLogInFromBookingScreen" />
-			<class name="com.androidMobile.scripts.RP_003_TestSearchHotels" />
-			<class name="com.androidMobile.scripts.RP_004_TestGuestBookingFromHome" />
+			<!--<class name="com.androidMobile.scripts.RP_002_TestLogInFromBookingScreen" />-->
+			<!--<class name="com.androidMobile.scripts.RP_003_TestSearchHotels" />-->
+			<!--<class name="com.androidMobile.scripts.RP_004_TestGuestBookingFromHome" />-->
 			
-			<class name="com.androidMobile.scripts.RP_005_TestGuestBookingFromBookNow" />
-			<class name="com.androidMobile.scripts.RP_006_TestBookingAsAMember" />
-			<class name="com.androidMobile.scripts.RP_007_RetriveBookingAsGuest" />
-			<class name="com.androidMobile.scripts.RP_008_RetriveBookingAsMember" />
-			<class name="com.androidMobile.scripts.RP_009_TestSignUpUser" />
-			<class name="com.androidMobile.scripts.RP_011_Forgot_Password" />
-			<class name="com.androidMobile.scripts.RP_012_TestSocialLinksInAboutUs" />
-			<class name="com.androidMobile.scripts.RP_013_TestFooterLinksInAboutUs" />
-			<class name="com.androidMobile.scripts.RP_014_TestInHousePhone" />
-			<class name="com.androidMobile.scripts.RP_015_TestChatWithFrontDesk" />
-			<class name="com.androidMobile.scripts.RP_016_TestTabsLocalAttractions" />
-			<class name="com.androidMobile.scripts.RP_017_TestInputCreditCards" />
-			
+			<!--<class name="com.androidMobile.scripts.RP_005_TestGuestBookingFromBookNow" />-->
+			<!--<class name="com.androidMobile.scripts.RP_006_TestBookingAsAMember" />-->
+			<!--<class name="com.androidMobile.scripts.RP_007_RetriveBookingAsGuest" />-->
+			<!--<class name="com.androidMobile.scripts.RP_008_RetriveBookingAsMember" />-->
+			<!--<class name="com.androidMobile.scripts.RP_009_TestSignUpUser" />-->
+			<!--<class name="com.androidMobile.scripts.RP_011_Forgot_Password" />-->
+			<!--<class name="com.androidMobile.scripts.RP_012_TestSocialLinksInAboutUs" />-->
+			<!--<class name="com.androidMobile.scripts.RP_013_TestFooterLinksInAboutUs" />-->
+			<!--<class name="com.androidMobile.scripts.RP_014_TestInHousePhone" />-->
+			<!--<class name="com.androidMobile.scripts.RP_015_TestChatWithFrontDesk" />-->
+			<!--<class name="com.androidMobile.scripts.RP_016_TestTabsLocalAttractions" />-->
+			<!--<class name="com.androidMobile.scripts.RP_017_TestInputCreditCards" />-->
+			<!---->
 		</classes>
 	</test>
 

@@ -26,7 +26,6 @@ public class RP_009_TestSignUp extends LoginHelper{
 	      navigateToMyAccount();
 	      validateUserLogin();
 	      click(AccountPageLocators.signUpButton, "signUpButton");
-		  Thread.sleep(2000);
 		  SignUpHelper.SignUp(firstName, lastName, emailId, password);
 		  //verify user already loggedIn, if yes sign out
 		  if(status){		 

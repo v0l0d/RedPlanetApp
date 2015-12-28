@@ -9,8 +9,7 @@ import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.support.ReportStampSupport;
 
 public class Reporter extends TestEngine {
-	public static ConfiguratorSupport configProps = new ConfiguratorSupport(
-			"config.properties");
+
 	static String timeStamp = ReportStampSupport.timeStamp().replace(":", "_")
 			.replace(".", "_");
 

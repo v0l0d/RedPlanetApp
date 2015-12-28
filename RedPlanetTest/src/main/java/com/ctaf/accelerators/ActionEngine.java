@@ -81,11 +81,18 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try {
-			driver.findElement(locator).click();
-			Thread.sleep(1000);
-			flag = true;
+            WebElement element = driver.findElement(locator);
+            if (element != null) {
+                element.click();
+                Thread.sleep(100);
+                flag = true;
+            } else {
+                flag = false;
+            }
+
+
 		} catch (Exception e) {
-			Assert.assertTrue(flag,"Unable to click on "+ locatorName);
+			Assert.assertTrue(flag, "Unable to click on " + locatorName);
 			e.printStackTrace();
 			throw e;
 		} finally {
@@ -140,14 +147,18 @@ public class ActionEngine extends TestEngine {
 
 	public static boolean scrollToText(final String text)
 			throws Throwable {
-		boolean flag = false;
+//        System.out.println(" before populateGuestDetails " + (System.currentTimeMillis() - timeOnStart) / 1000);
+        long timeOnStart = System.currentTimeMillis();
+        boolean flag = false;
 		try {
 			if(browser.toLowerCase().contains("iphone")){
 				Iosdriver.scrollTo(text);
 			}else if(browser.toLowerCase().contains("android")){
 				AndroidDriver2.scrollTo(text);
 			}
-			flag = true;
+            System.out.println(" scrolling time to  " + text + " " + (System.currentTimeMillis() - timeOnStart) / 1000);
+
+            flag = true;
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -194,12 +205,13 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try {
-			wait = new WebDriverWait(driver, 180);
-			flag = wait.until(new ExpectedCondition<Boolean>() {
+			wait = new WebDriverWait(driver, 5);
+            //TODO[andrey]: think about error below
+			/*flag = wait.until(new ExpectedCondition<Boolean>() {
 				public Boolean apply(WebDriver arg0) {
 					return  driver.findElement(by).getText().length() != 0;
 				}
-			});
+			});*/
 		} catch (Exception e) {
 			Assert.assertTrue(flag,
 					"waitForElementHasSomeText : Falied to locate element"+locator
@@ -290,15 +302,18 @@ public class ActionEngine extends TestEngine {
 	public static boolean type(By locator, String testdata, String locatorName)
 			throws Throwable {
 		boolean flag = false;
-		try { 
+        long timeOnStart = System.currentTimeMillis();
+//        System.out.println(" before firstNameInput " + (System.currentTimeMillis() - timeOnStart) / 1000);
+        try {
 			WebElement we = driver.findElement(locator);
 			we.clear();
 			//driver.findElement(locator).click(); //temp
 			/*Actions act = new Actions(driver);
 			act.sendKeys(driver.findElement(locator), testdata).build().perform();*/
-			we.sendKeys(testdata);
+            System.out.println(" time of typing before sendKeys " + locatorName + " " + (System.currentTimeMillis() - timeOnStart) / 1000);
+            we.sendKeys(testdata);
 			flag = true;
-
+            System.out.println(" time of typing before Reporter " + locatorName + " " + (System.currentTimeMillis() - timeOnStart) / 1000);
 		} catch (Exception e) {
 			e.printStackTrace();   
 			Assert.assertEquals(false, true," type: Data typing action is not perform on  "+ locatorName);
@@ -315,6 +330,7 @@ public class ActionEngine extends TestEngine {
 								+ " with data is " + testdata);
 			}
 		}
+        System.out.println(" time of typing " + locatorName + " " + (System.currentTimeMillis() - timeOnStart) / 1000);
 		return flag;
 	}
 
@@ -557,6 +573,55 @@ public class ActionEngine extends TestEngine {
 		return bValue;
 	}
 
+    /**
+     * Wait for an ElementPresent
+     *
+     * @param locator
+     *            : Action to be performed on element (Get it from Object
+     *            repository)
+     *
+     * @return Whether or not the element is displayed
+     */
+    public static boolean waitForElementPresent(By by, String locator, long waitTimeInSeconds)
+            throws Throwable {
+        boolean flag = false;
+        try {
+            if (driver == null) {
+                logger.info("Driver can't be null");
+                System.out.println("Driver can't be null");
+//                Thread.sleep(5000);
+            }
+//            Assert.assertNull(driver, "Driver can't be null");
+            wait = new WebDriverWait(driver, waitTimeInSeconds);
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
+            boolean enabled = element.getSize().getHeight()>0;
+            //TODO[andrey]: find better solution for element visible/present
+            if(enabled){
+                flag = true;
+            }else {
+//                driver.wait(50);
+            }
+        } catch (Exception e) {
+
+            Assert.assertTrue(flag,"waitForElementPresent : Falied to locate element "+locator);
+
+            e.printStackTrace();
+
+            return false;
+        } finally {
+            if (!flag) {
+                Reporter.failureReport("WaitForElementPresent ",
+                        "Falied to locate element " + locator);
+            } else if (b && flag) {
+                Reporter.SuccessReport("WaitForElementPresent ",
+                        "Successfully located element " + locator);
+            }
+        }
+
+        return flag;
+
+    }
+
 	/**
 	 * Wait for an ElementPresent
 	 * 
@@ -568,35 +633,7 @@ public class ActionEngine extends TestEngine {
 	 */
 	public static boolean waitForElementPresent(By by, String locator)
 			throws Throwable {
-		boolean flag = false;
-		try {
-				wait = new WebDriverWait(driver, 180);
-				WebElement  element =  null;
-					element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
-				    boolean enabled = element.getSize().getHeight()>0;
-				    if(enabled){ 
-				    	flag = true;
-				    }else {
-				    	driver.wait(50);
-					}
-		} catch (Exception e) {
-			
-			Assert.assertTrue(flag,"waitForElementPresent : Falied to locate element "+locator);
-
-			e.printStackTrace();
-			
-			return false;
-		} finally {
-			if (!flag) {
-				Reporter.failureReport("WaitForElementPresent ",
-						"Falied to locate element " + locator);
-			} else if (b && flag) {
-				Reporter.SuccessReport("WaitForElementPresent ",
-						"Successfully located element " + locator);
-			}
-		}
-
-		return flag;
+		return waitForElementPresent(by, locator, 3);
 
 	}
 
@@ -1649,6 +1686,11 @@ public class ActionEngine extends TestEngine {
 	 * 
 	 */
 	public static void screenShot(String fileName) throws Throwable {
+        if (driver == null) {
+            logger.info("Driver can't be null (screenShot)");
+            System.out.println("Driver can't be null (screenShot)");
+            Thread.sleep(5000);
+        }
 		File scrFile = ((TakesScreenshot) driver)
 				.getScreenshotAs(OutputType.FILE);
 		try {
@@ -1940,7 +1982,7 @@ public class ActionEngine extends TestEngine {
 	public static void ImplicitWait() {
 
 		driver.manage().timeouts().implicitlyWait(180, TimeUnit.SECONDS);
-		 wait = new WebDriverWait(driver,240);
+		 wait = new WebDriverWait(driver,5);
 		 wait.until(docReadyState);
 		 try {
 			Thread.sleep(5000);
@@ -1952,7 +1994,7 @@ public class ActionEngine extends TestEngine {
 
 	public static boolean waitUntilTextPresents(By by, String 
 			expectedText, String locator) throws Throwable {
-		wait = new WebDriverWait(driver, 160);
+		wait = new WebDriverWait(driver, 5);
 		boolean flag = false;
 		
 		try {
@@ -2006,7 +2048,7 @@ public class ActionEngine extends TestEngine {
 	 */
 	public static WebDriverWait driverwait() {
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 5);
 		return wait;
 	}
 
@@ -2023,7 +2065,7 @@ public class ActionEngine extends TestEngine {
 	public static boolean waitForVisibilityOfElement(By by, String locator)
 			throws Throwable {
 		boolean flag = false;
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 5);
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 			flag = true;
@@ -2097,7 +2139,7 @@ public class ActionEngine extends TestEngine {
 	public static boolean waitForInVisibilityOfElement(By by, String locator)
 			throws Throwable {
 		boolean flag = false;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 5);
 		try {
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
 			flag = true;
@@ -2132,7 +2174,7 @@ public class ActionEngine extends TestEngine {
 			    	//driver.wait(50);
 				}
 			 }*/
-			wait = new WebDriverWait(driver, 180);
+			wait = new WebDriverWait(driver, 5);
 			flag = wait.until(new ExpectedCondition<Boolean>() {
 				public Boolean apply(WebDriver arg0) {
 					return  driver.findElement(by).getAttribute(attributeName).
@@ -2165,7 +2207,7 @@ public class ActionEngine extends TestEngine {
 	public static boolean waitForTextOnElementIsPresent(By by,String expectedText ,String locator)
 			throws Throwable {
 		boolean flag = false;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 5);
 		try {
 			wait.until(ExpectedConditions.textToBePresentInElement(by,expectedText));
 			flag = true;
@@ -2188,7 +2230,7 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try {
-				wait = new WebDriverWait(driver, 180);
+				wait = new WebDriverWait(driver, 5);
 				List<WebElement>  element =  null;
 				for(int i = 0; i < 300; i++){
 					element = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
@@ -2312,7 +2354,8 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try {
-			 WebDriverWait newWait = new WebDriverWait(driver,40);
+            //TODO: create constant for waiting
+			 WebDriverWait newWait = new WebDriverWait(driver,5);
 				WebElement element = null;
 				element  = newWait.until(ExpectedConditions.presenceOfElementLocated(loc));
 					flag = element.isDisplayed();
@@ -2326,6 +2369,7 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try {
+            //TODO[andrey]: fix
 			driver.manage().timeouts().implicitlyWait(50, TimeUnit.MILLISECONDS);
 			 flag  = driver.findElement((loc)).isDisplayed();
 			 if(flag){

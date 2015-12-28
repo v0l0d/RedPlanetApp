@@ -41,18 +41,15 @@ public class RP_006_BookingAsAMember extends LoginHelper{
 	     selectDestination(country, city);
 		 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		 click(HomePageLocators.searchButton, "searchButton");
-		 Thread.sleep(10000);		 
 		 if(isElementDisplayed(PickRoomPageLocators.pickRoomPage)){
 			 Reporter.SuccessReport("Search for Hotels", "Successful");
 		 }else
 			 Reporter.failureReport("Search for Hotels", "Failed");
 		 click(PickRoomPageLocators.bookNowButton, "bookNowButton");
-		 Thread.sleep(5000);
 		 isElementDisplayed(BookPageLocators.contiuneButton);	 
 			 click(BookPageLocators.contiuneButton, "contiuneButton");
 			 BookingPageHelper.populateGuestDetails("", fName, lName, email, "");
 			 BookingPageHelper.populatePaymentDetails(cardHolder, cardNum, expMonth, expYear, cvv);
-		 Thread.sleep(15000);
 		 if(!status){
 			if(isElementDisplayed(BookPageLocators.errorPayment)){
 				String err = driver.findElement(BookPageLocators.inValidError).getAttribute("value").trim();

@@ -1,18 +1,15 @@
-package com.ctaf.accelerators;       
+package com.ctaf.accelerators;
 
-import java.io.File;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
+import com.ctaf.support.ConfiguratorSupport;
+import com.ctaf.support.ExcelReader;
+import com.ctaf.support.HtmlReportSupport;
+import com.ctaf.support.ReportStampSupport;
+import com.ctaf.utilities.RedPlanetUtils;
+import com.ctaf.utilities.Reporter;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -27,20 +24,19 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import com.androidMobile.scripts.testObjects.ForgotPasswordLocators;
 import com.ctaf.support.ConfiguratorSupport;
 import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.support.ReportStampSupport;
 import com.ctaf.utilities.Reporter;
-import com.mobile.scripts.testObjects.FacebookLoginLocators;
-import com.mobile.scripts.testObjects.HomePageLocators;
-//import com.redplanet.utils.RedPlanetUtils;
-import com.redplanet.utils.RedPlanetUtils;
-
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
+import java.io.File;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class TestEngine extends HtmlReportSupport {
 	public static Logger logger = Logger.getLogger(TestEngine.class.getName());
@@ -76,6 +72,7 @@ public class TestEngine extends HtmlReportSupport {
 
 	public static AppiumDriver AndroidDriver2 = null;
 	public static AppiumDriver Iosdriver = null;
+	public static String bundleID = null;
 	//***************************************************************************************************
 
 	/*
@@ -155,7 +152,7 @@ public class TestEngine extends HtmlReportSupport {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
+		
 		if(browser.equalsIgnoreCase("iphone")){
 			try {
 				// ---------------------------------------------------
@@ -176,7 +173,7 @@ public class TestEngine extends HtmlReportSupport {
 				DeviceName = configProps.getProperty("iOSDeviceName");
 				String device = configProps.getProperty("Device");
 				String appPath = configProps.getProperty("appPath");
-
+				
 				String ipaPath = configProps.getProperty("ipaPath");
 				String temp = System.getProperty("user.dir")+ipaPath;
 				String temp2 = System.getProperty("user.dir")+appPath;
@@ -184,7 +181,7 @@ public class TestEngine extends HtmlReportSupport {
 				File app = new File(temp2);
 				String platformVer = configProps.getProperty("platformVersion");
 				String udid = configProps.getProperty("UDID");
-				String bundleID = configProps.getProperty("BundleID");
+				bundleID = configProps.getProperty("BundleID");
 				DesiredCapabilities capabilitiesForAppium = new DesiredCapabilities();
 				//System.out.println("DeviceName is : " + DeviceName);
 				capabilitiesForAppium.setCapability("deviceName",device);
@@ -197,14 +194,15 @@ public class TestEngine extends HtmlReportSupport {
 				capabilitiesForAppium.setCapability("autoWebviewTimeout","6000");
 				capabilitiesForAppium.setCapability("locationServicesAuthorized", true);
 				capabilitiesForAppium.setCapability("autoLaunch", true);
-				capabilitiesForAppium.setCapability("fullReset", false);
+				//capabilitiesForAppium.setCapability("fullReset", false);
+				//capabilitiesForAppium.setCapability("noReset", true);
 				capabilitiesForAppium.setCapability("waitForAppScript",
-						"target.elements().length > 0; $.delay(30000); $.acceptAlert();");
+						"target.elements().length > 0; $.delay(30000); $.acceptAlert();");			
 				if((DeviceName.contains("Simulator"))||((udid.length()==0))){
 					System.out.println("using simulator");
 					System.out.println("app Path "+app.getCanonicalPath());
 					capabilitiesForAppium.setCapability("app",app.getCanonicalPath());
-
+					
 				}else{
 					System.out.println("+++++using real device   "+groupNames+"+++++");
 					capabilitiesForAppium.setCapability("udid", udid);
@@ -216,9 +214,9 @@ public class TestEngine extends HtmlReportSupport {
 				driver = Iosdriver;
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 				//Iosdriver.lockScreen(2);
-				if(ActionEngine.isElementDisplayed(By.name("OK"))){
-					driver.findElement(By.name("OK")).click();
-				}
+				/*if(ActionEngine.isElementDisplayed(By.name("OK"))){
+					driver.findElement(By.name("OK")).click();				
+				}*/
 				//((JavascriptExecutor) driver).executeScript("UIATarget.localTarget().frontMostApp().alert().defaultButton().tap()");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -231,17 +229,7 @@ public class TestEngine extends HtmlReportSupport {
 				String AppActivity = configProps.getProperty("appActivity");
 				String OSVersion =  configProps.getProperty("OSVersion");
 				// ---------------------------------------------------
-				System.out.println("Starting Appium Server....");
-				String logFile = "C:/Log/RPMob_" + timeStamp + ".log";
-				if(configProps.getProperty("AutoStart").equals("true")){
-					while (!(new File(logFile).exists())) {
-						RedPlanetUtils.startAppium(logFile);
-					}
-					if ((new File(logFile).exists())) {
-						Reporter.SuccessReport("StartAppiumServer",
-							"Successfully started Appium Server");
-					}
-				}
+				
 				// -----------------------------------------------------
 				DesiredCapabilities capabilitiesForAppium = new DesiredCapabilities();
 				System.out.println("DeviceName is : " + DeviceName);
@@ -255,13 +243,13 @@ public class TestEngine extends HtmlReportSupport {
 				//capabilitiesForAppium.setCapability("noReset", false);
 				capabilitiesForAppium.setCapability("appPackage", AppPackage);
 				capabilitiesForAppium.setCapability("appActivity", AppActivity);
-
+				
 				AndroidDriver2 = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
 						capabilitiesForAppium);
 				AndroidDriver2.resetApp();
 				driver = (AndroidDriver2);
 				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -277,6 +265,9 @@ public class TestEngine extends HtmlReportSupport {
 		
 		HtmlReportSupport.createHtmlSummaryReport(browser, url);
 		closeSummaryReport();
+		if (browser.equalsIgnoreCase("iphone")) {
+			//Iosdriver.removeApp(bundleID);
+		}
 		driver.quit();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -408,12 +399,13 @@ public class TestEngine extends HtmlReportSupport {
 			}else if(browser.equalsIgnoreCase("iphone")){
 				boolean apprun = false;
 				try {
-						if(driver.findElement(FacebookLoginLocators.redPlanetApplication)==null){
+						/*if(driver.findElement(By.xpath("//UIAApplication[@name='RP Staging']"))==null){
 							Iosdriver.launchApp();
 						}else{
 							apprun = true;
-						}
-
+						}*/
+					Iosdriver.resetApp();
+						
 				} catch (Exception e) {
 				}
 				try{
@@ -422,9 +414,9 @@ public class TestEngine extends HtmlReportSupport {
 					}else{
 						System.out.println("iOS App is already launched");
 					}
-
+					
 				}catch(Exception e){
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}else if (browser.equalsIgnoreCase("Android")) {
 				try {
@@ -453,7 +445,7 @@ public class TestEngine extends HtmlReportSupport {
 		testName = method.getName();
 		logger.info("Current Test : "+testName);
 	}
-
+		
 	@AfterMethod(alwaysRun = true)
 	public static void tearDownMethod() throws Throwable
 	{
@@ -473,9 +465,14 @@ public class TestEngine extends HtmlReportSupport {
 		}catch(Exception e){
 			e.printStackTrace();
 		} finally {
-			if ((browser.toLowerCase().contains("iphone"))|
-					(browser.toLowerCase().contains("android"))) {
-				Iosdriver.closeApp();
+			if (browser.toLowerCase().contains("iphone")) {
+                Iosdriver.closeApp();
+            } else if (browser.toLowerCase().contains("android")) {
+                if (AndroidDriver2 != null) {
+                    //TODO[andrey]: think about closing app after each testcase
+                    System.out.println("end of test");
+//                    AndroidDriver2.closeApp();
+                }
 				//RedPlanetUtils.stopAppiumForIos();
 			}else{
 				driver.quit();

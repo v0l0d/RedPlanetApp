@@ -54,17 +54,14 @@ public class RP_010_ConnectWithFacebook extends LoginHelper{
 						Reporter.SuccessReport("validate Page Title", " Successfull found page Title "+title);
 						waitForElementPresent(FacebookLoginLocators.oKFacebookButton, "oKFacebookButton");
 						click(FacebookLoginLocators.oKFacebookButton, "oKFacebookButton");
-						Thread.sleep(10000);
 						break;
 					}
 					waitForElementPresent(FacebookLoginLocators.emailForFacebookLogin, "emailForFacebookLogin");
 					type(FacebookLoginLocators.emailForFacebookLogin, FBemail, "emailForFacebookLogin");
 					type(FacebookLoginLocators.passwordForFacebookLogin, FBpassword, "passwordForFacebookLogin");
 					click(FacebookLoginLocators.loginButtonForFacebookLogin, "loginButtonForFacebookLogin");
-					Thread.sleep(6000);
 					waitForElementPresent(FacebookLoginLocators.oKFacebookButton, "oKFacebookButton");
 					click(FacebookLoginLocators.oKFacebookButton, "oKFacebookButton");
-					Thread.sleep(10000);
 					break;
 				}
 			}

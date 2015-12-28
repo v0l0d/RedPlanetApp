@@ -99,7 +99,6 @@ public class HomePageHelper extends HomePageLocators {
 			waitForElementPresent(HomePageLocators.reirieveBookingsMenuLink, "reirieveBookingsMenuLink");
 			click(HomePageLocators.reirieveBookingsMenuLink, "reirieveBookingsMenuLink");
 			*/
-			Thread.sleep(6000);
 			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable1);
 			if(we.size()==0){
 				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable2);
@@ -131,7 +130,6 @@ public class HomePageHelper extends HomePageLocators {
 			click(HomePageLocators.mainMenuIcon,"mainMenuIcon");
 			/*waitForElementPresent(HomePageLocators.aboutUsMenuLink, "aboutUsMenuLink");
 			click(HomePageLocators.aboutUsMenuLink, "aboutUsMenuLink");*/
-			Thread.sleep(6000);
 			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable1);
 			if(we.size()==0){
 				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable2);
@@ -162,7 +160,6 @@ public class HomePageHelper extends HomePageLocators {
 			click(HomePageLocators.mainMenuIcon,"mainMenuIcon");
 			/*waitForElementPresent(HomePageLocators.bookNowMenuLink, "bookNowMenuLink");
 			click(HomePageLocators.bookNowMenuLink, "bookNowMenuLink");*/
-			Thread.sleep(6000);
 			List<WebElement> we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable1);
 			if(we.size()==0){
 				we = ((IOSDriver)Iosdriver).findElementsByIosUIAutomation(sideMenuUITable2);
@@ -195,13 +192,11 @@ public class HomePageHelper extends HomePageLocators {
 	public void validateUserLogin() throws Throwable{
 		
 		try{
-			Thread.sleep(2000);
 			if(!(isElementDisplayed(AccountPageLocators.logInButton))){					    
 				scrollToText("SIGN OUT");
 				waitForElementPresent(AccountPageLocators.signOutButton, 
 						  "signOutButton");
 				  click(AccountPageLocators.signOutButton, "signOutButton");
-				  Thread.sleep(2000);
 			  }
 		}catch(Exception e){
 			e.printStackTrace();

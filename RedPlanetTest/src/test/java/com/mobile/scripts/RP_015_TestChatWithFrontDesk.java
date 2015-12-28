@@ -39,7 +39,6 @@ public class RP_015_TestChatWithFrontDesk  extends LoginHelper{
 		  handelWelcomeDashboardDialog();
 		  waitForElementPresent(HomePageLocators.chatWithFrontDeskButton, "chatWithFrontDeskButton");
 		  click(HomePageLocators.chatWithFrontDeskButton, "chatWithFrontDeskButton");
-		  Thread.sleep(2000);
 			  waitForElementPresent(InHousePhoneLocators.textAreaForChat, "textAreaForChat");
 			  click(InHousePhoneLocators.textInputField, "textInputField");
 			  type(InHousePhoneLocators.textInputField, testMessage, "textInputField");

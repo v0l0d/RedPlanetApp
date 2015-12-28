@@ -1,13 +1,10 @@
 package com.androidMobile.workflows;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.androidMobile.scripts.testObjects.AboutUsLocators;
 import com.androidMobile.scripts.testObjects.HomePageLocators;
 import com.androidMobile.scripts.testObjects.LoginPageLocators;
 import com.androidMobile.scripts.testObjects.RetrieveBookingLocators;
+import org.openqa.selenium.By;
 
 
 public class HomePageHelper extends HomePageLocators {	
@@ -16,6 +13,7 @@ public class HomePageHelper extends HomePageLocators {
 	public static boolean handleSplashDialog() throws Throwable{
 		boolean res = false;
 		try {
+            Thread.sleep(4000);
 			//waitForElementPresent(HomePageLocators.redPlanetMainFrame,"redPlanetMainFrame");
 			if(isElementDisplayedTemp(HomePageLocators.closeWatchPopUp)){
 				click(HomePageLocators.closeWatchPopUp,"closeWatchPopUp");
@@ -60,20 +58,20 @@ public class HomePageHelper extends HomePageLocators {
 		boolean res = false;
 		try {
 			  //handleSplashDialog();
-			waitForElementPresent(HomePageLocators.chooseLocation, "chooseLocation");
+			waitForElementPresent(HomePageLocators.chooseLocation, "chooseLocation", 10);
 			click(HomePageLocators.chooseLocation, "chooseLocation");
-			Thread.sleep(2000);
+//			Thread.sleep(2000);
 			waitForElementPresent(By.xpath(HomePageLocators.locationCountryName.replace("#", country.trim())),
 					"locationCountryName");
 			click(By.xpath(HomePageLocators.locationCountryName.replace("#", country.trim())),
 					"locationCountryName");
-			Thread.sleep(2000);
+//			Thread.sleep(1000);
 			waitForElementPresent(By.xpath(HomePageLocators.locationCityName.replace("#", city.trim())),
 					"locationCityName");
 			click(By.xpath(HomePageLocators.locationCityName.replace("#", city.trim())), "locationCityName");
-			Thread.sleep(2000);
+//			Thread.sleep(2000);
 			handleRateAppPopUp();
-			res = waitForElementPresent(HomePageLocators.checkInLink, "checkInLink");
+			res = waitForElementPresent(HomePageLocators.checkInLink, "checkInLink", 2);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -85,10 +83,10 @@ public class HomePageHelper extends HomePageLocators {
 		try {
 			waitForElementPresent(HomePageLocators.mainMenuIcon,"mainMenuIcon");
 			click(HomePageLocators.mainMenuIcon,"mainMenuIcon");
-			Thread.sleep(2000);
+//			Thread.sleep(2000);
 			waitForElementPresent(HomePageLocators.bookNowMenuLink, "bookNowMenuLink");
 			click(HomePageLocators.bookNowMenuLink, "bookNowMenuLink");
-			Thread.sleep(2000);
+//			Thread.sleep(2000);
 			handleRateAppPopUp();
 			res = waitForElementPresent(HomePageLocators.chooseLocation, "chooseLocation");
 		}catch(Exception e){
@@ -115,12 +113,13 @@ public class HomePageHelper extends HomePageLocators {
 	public boolean navigateToMyAccount() throws Throwable{
 		boolean res = false;
 		try {
-			waitForElementPresent(HomePageLocators.mainMenuIcon,"mainMenuIcon");
+//            Thread.sleep(2000);
+			waitForElementPresent(HomePageLocators.mainMenuIcon,"mainMenuIcon", 10);
 			click(HomePageLocators.mainMenuIcon,"mainMenuIcon");
-			Thread.sleep(2000);
+//			Thread.sleep(2000);
 			waitForElementPresent(HomePageLocators.myAccountMenuLink, "myAccountMenuLink");
 			click(HomePageLocators.myAccountMenuLink, "myAccountMenuLink");
-			Thread.sleep(2000);
+//			Thread.sleep(2000);
 			//res = waitForElementPresent(AccountPageLocators.userName, "nameInputField");
 		}catch(Exception e){
 			e.printStackTrace();

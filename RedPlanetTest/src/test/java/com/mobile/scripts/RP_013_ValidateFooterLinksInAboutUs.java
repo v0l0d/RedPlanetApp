@@ -18,9 +18,7 @@ public class RP_013_ValidateFooterLinksInAboutUs extends LoginHelper{
 		  //verify user already loggedIn, if yes signout
 		  handelSplashScreen();
 		  //handleSplashDialog();
-		  navigateToMyAccount();
 		  navigateToAboutUs();		  
-		  Thread.sleep(2000);		  //Privacy Policy
 		  scrollToText("Terms of Use");
 		  	waitForElementPresent(AboutUsLocators.privacypolicyLink,"privacypolicyLink");
 		  	click(AboutUsLocators.privacypolicyLink,"privacypolicyLink");
@@ -36,7 +34,6 @@ public class RP_013_ValidateFooterLinksInAboutUs extends LoginHelper{
 				  handelSplashScreen();
 				  //handleSplashDialog();
 				  navigateToAboutUs();		  
-				  Thread.sleep(2000);		  //Privacy Policy
 				  scrollToText("Terms of Use");
 				  waitForElementPresent(AboutUsLocators.termsNcondiLink,"termsNcondiLink");
 				  click(AboutUsLocators.termsNcondiLink,"termsNcondiLink");

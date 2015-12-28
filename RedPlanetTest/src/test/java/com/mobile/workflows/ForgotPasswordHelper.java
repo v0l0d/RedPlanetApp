@@ -58,7 +58,6 @@ public class ForgotPasswordHelper extends GmailLocators {
 			 	waitForElementPresent(browser,GmailLocators.passwordInputField, "password");
 			 	type(browser,GmailLocators.passwordInputField, password, "password");
 			 	click(browser,GmailLocators.signInButton, "signInButton");
-			 	Thread.sleep(5000);
 			 	waitForElementPresent(browser,GmailLocators.composeNewMailButton, "composeButton");
 			 	click(browser,GmailLocators.mailItemFromRedPlanetHotels, "mailItem");
 			 	String oldTab = browser.getWindowHandle();

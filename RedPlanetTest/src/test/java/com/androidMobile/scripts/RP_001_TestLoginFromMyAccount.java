@@ -1,6 +1,7 @@
 package com.androidMobile.scripts;
 
 
+import com.androidMobile.scripts.testObjects.LoginPageLocators;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -41,6 +42,13 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 				}else{
 					Reporter.failureReport("validate Login with "+description+":", "Failed");
 				}
+
+                if (!waitForElementPresent(LoginPageLocators.signInButton,
+                        "signInButton")) {
+                    driver.navigate().back();
+                }
+
+                driver.navigate().back();
 			}
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -51,7 +59,7 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 		@DataProvider(name="testData")
 		public Object[][] createdata1() {
 		    return (Object[][]) new Object[][] { 
-		    		{xlsLogin.getCellValue("InvalidCredentials", "email"),xlsLogin.getCellValue("InvalidCredentials", "password"),"Invalid credentials",false},		    		
+		    		{xlsLogin.getCellValue("InvalidCredentials", "email"),xlsLogin.getCellValue("InvalidCredentials", "password"),"Invalid credentials",false},
 		    		{xlsLogin.getCellValue("InvalidPassword", "email"),xlsLogin.getCellValue("InvalidPassword", "password"),"Invalid password and valid email",false},
 		    		{xlsLogin.getCellValue("invalidEmail", "email"),xlsLogin.getCellValue("InvalidEmail", "password"),"Invalid email and valid password",false},
 		    		{"","","Blank Email and blank password",false},

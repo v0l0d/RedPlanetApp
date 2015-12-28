@@ -36,7 +36,6 @@ public class RP_014_TestInHousePhone  extends LoginHelper{
 		  handelWelcomeDashboardDialog();
 		  waitForElementPresent(HomePageLocators.chatWithFrontDeskButton, "chatWithFrontDeskButton");
 		  click(HomePageLocators.inHousePhoneButton, "inHousePhoneButton");
-		  Thread.sleep(2000);
 		  if(isElementDisplayedTemp(HomePageLocators.microPhonePopUp)){
 				click(HomePageLocators.microPhonePopUp, "microPhonePopUp");
 			}
