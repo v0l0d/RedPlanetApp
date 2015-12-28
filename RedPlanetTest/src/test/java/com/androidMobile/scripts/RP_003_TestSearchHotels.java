@@ -21,6 +21,11 @@ public class RP_003_TestSearchHotels extends LoginHelper{
 		 TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
 				description);
 		 handleSplashDialog();
+        navigateToMyAccount();
+        handleRateAppPopUp();
+        logOut();
+        navigateToBookNow();
+        handleRateAppPopUp();
 		 selectDestination(country, city);
 		 if(description.contains("Select Destination")){
 			 if((isElementPresent(By.xpath(HomePageLocators.locationCityName.replace("#", city.trim())),
@@ -45,13 +50,15 @@ public class RP_003_TestSearchHotels extends LoginHelper{
 	}catch(Exception e) {
 		e.printStackTrace();
 		Reporter.failureReport(description, "Failed with exception");
-	}	
+	} finally {
+        driver.navigate().back();
+    }
   }
   	@DataProvider(name="testData")
 	public Object[][] createdata1() {
   		return (Object[][]) new Object[][] { 
-  				 {xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
- 				"Verify Select Destination"},
+//  				 {xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
+// 				"Verify Select Destination"},
 			  {xlsSearch.getCellValue("country", "Value"),xlsSearch.getCellValue("city", "Value"),
 				"Verify Search Hotels"}};
 	}

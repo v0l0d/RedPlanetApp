@@ -1,14 +1,14 @@
-package com.ctaf.accelerators;       
+package com.ctaf.accelerators;
 
-import java.io.File;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
+import com.ctaf.support.ConfiguratorSupport;
+import com.ctaf.support.ExcelReader;
+import com.ctaf.support.HtmlReportSupport;
+import com.ctaf.support.ReportStampSupport;
+import com.ctaf.utilities.RedPlanetUtils;
+import com.ctaf.utilities.Reporter;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -29,12 +29,14 @@ import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.support.ReportStampSupport;
 import com.ctaf.utilities.Reporter;
-//import com.redplanet.utils.RedPlanetUtils;
-//import com.redplanet.utils.RedPlanetUtils;
-
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
+import java.io.File;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class TestEngine extends HtmlReportSupport {
 	public static Logger logger = Logger.getLogger(TestEngine.class.getName());
@@ -463,9 +465,14 @@ public class TestEngine extends HtmlReportSupport {
 		}catch(Exception e){
 			e.printStackTrace();
 		} finally {
-			if ((browser.toLowerCase().contains("iphone"))|
-					(browser.toLowerCase().contains("android"))) {
-				Iosdriver.closeApp();
+			if (browser.toLowerCase().contains("iphone")) {
+                Iosdriver.closeApp();
+            } else if (browser.toLowerCase().contains("android")) {
+                if (AndroidDriver2 != null) {
+                    //TODO[andrey]: think about closing app after each testcase
+                    System.out.println("end of test");
+//                    AndroidDriver2.closeApp();
+                }
 				//RedPlanetUtils.stopAppiumForIos();
 			}else{
 				driver.quit();

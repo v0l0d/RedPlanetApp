@@ -1,7 +1,5 @@
 package com.androidMobile.scripts;
 
-import io.appium.java_client.ios.IOSDriver;
-
 import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,7 +12,6 @@ import com.ctaf.accelerators.TestEngine;
 import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.utilities.Reporter;
-import com.sun.javafx.iio.ios.IosDescriptor;
 
 public class RP_014_TestInHousePhone  extends LoginHelper{
 	ExcelReader xlsInHouse = new ExcelReader(configProps.getProperty("TestData"),

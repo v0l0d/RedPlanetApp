@@ -24,6 +24,9 @@ public class RP_002_TestLogInFromBookingScreen  extends LoginHelper{
 					description);	
 		  handleSplashDialog();
 		  //verify user already loggedIn, if yes signout
+          navigateToMyAccount();
+          handleRateAppPopUp();
+          logOut();
 		  navigateToBookNow();
 		  handleRateAppPopUp();
 		  selectDestination(country, city);
@@ -48,7 +51,10 @@ public class RP_002_TestLogInFromBookingScreen  extends LoginHelper{
 	  }catch (Exception e) {
 			e.printStackTrace();
 			Reporter.failureReport("LogIn", "Failed");
-		}
+		} finally {
+          driver.navigate().back();
+          driver.navigate().back();
+      }
   }
   
   @DataProvider(name="testData")

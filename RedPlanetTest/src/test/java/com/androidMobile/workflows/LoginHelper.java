@@ -46,20 +46,17 @@ public class LoginHelper extends HomePageHelper {
 				waitForElementPresent(LoginPageLocators.emailFieldForLogin,
 						"emailField");
 				type(LoginPageLocators.emailFieldForLogin, email, "emailField");
-				waitForElementPresent(LoginPageLocators.passwordFieldForLogin,
-						"passwordFieldForLogin");
+//				waitForElementPresent(LoginPageLocators.passwordFieldForLogin,
+//						"passwordFieldForLogin");
 				type(LoginPageLocators.passwordFieldForLogin, password,
 						"passwordFieldForLogin");
-				waitForElementPresent(LoginPageLocators.signInButton,
-						"signInButton");
+//				waitForElementPresent(LoginPageLocators.signInButton,
+//						"signInButton");
 				click(LoginPageLocators.signInButton, "signInButton");
 				handleRateAppPopUp();
-				if(!(isElementDisplayed(LoginPageLocators.nameInputField))){				
-					/*waitForElementPresent(LoginPageLocators.okayButtonOnErrorpop,
-							"okayButtonOnErrorpop");
-					click(LoginPageLocators.okayButtonOnErrorpop, "okayButtonOnErrorpop");*/
-					driver.navigate().back();
-				}
+                waitForElementPresent(LoginPageLocators.okayButtonOnErrorpop,
+                        "okayButtonOnErrorpop", 5);
+                click(LoginPageLocators.okayButtonOnErrorpop, "OKAY");
 			}catch(Exception e){
 				e.printStackTrace();				
 				return false;
@@ -134,6 +131,7 @@ public class LoginHelper extends HomePageHelper {
 		try {
 			if(!(isElementDisplayed(AccountPageLocators.logInButton))){					  
 				 System.out.println("User logged in");
+                Thread.sleep(1000);
 				 waitForElementPresent(AccountPageLocators.signOutButton, 
 						  "sinOutButton");
 				  click(AccountPageLocators.signOutButton, "sinOutButton");

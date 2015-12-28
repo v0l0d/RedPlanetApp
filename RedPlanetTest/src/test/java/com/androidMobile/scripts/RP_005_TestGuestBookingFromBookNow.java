@@ -97,7 +97,7 @@ public class RP_005_TestGuestBookingFromBookNow extends LoginHelper{
 				 xlsSearch.getCellValue("email", "Value"),xlsSearch.getCellValue("cardHolder", "Value"),
 				 xlsSearch.getCellValue("cardNum", "Value"),xlsSearch.getCellValue("expirationmonth", "Value"),
 				 xlsSearch.getCellValue("cvv", "Value"),
-				  "Validate booking of a Hotel as Guest from Booking screen with valid details"}
+				  "Validate booking of a Hotel as Guest from Booking screen with Valid details"}
 			
 			 };
 	}
