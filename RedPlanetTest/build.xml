@@ -20,7 +20,7 @@
 		<path id="classpath_jars">
 
 			<!--<file file="${user.home}/.m2/repository/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3.jar"/>-->
-			<fileset dir="${ws.jars}" includes="**/*.jar" excludesfile="${user.home}/.m2/repository/com/google/collections/google-collections/1.0/*"/>
+			<fileset dir="${ws.jars}" includes="**/*.jar" excludesfile="${user.home}/.m2/repository/com/google/collections/google-collections/1.0/google-collections-1.0.jar"/>
 			<!-- <fileset dir="libs" includes="**/*.jar"/> -->
 
 		</path>
