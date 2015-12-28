@@ -19,7 +19,8 @@
 	<target name="setClassPath" unless="test.classpath">
 		<path id="classpath_jars">
 
-			<fileset dir="${ws.jars}" includes="**/*.jar"/>
+			<!--<file file="${user.home}/.m2/repository/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3.jar"/>-->
+			<fileset dir="${ws.jars}" includes="**/*.jar" excludesfile="${user.home}/.m2/repository/com/google/collections/google-collections/1.0/*">
 			<!-- <fileset dir="libs" includes="**/*.jar"/> -->
 
 		</path>
@@ -38,7 +39,11 @@
 			<os family="windows" />
 		</condition>
 		<taskdef name="testng" classpath="${test.classpath}"
-    	               classname="org.testng.TestNGAntTask" />
+    	               classname="org.testng.TestNGAntTask" >
+			<classpath>
+				<pathelement location="${user.home}/.m2/repository/org/testng/testng/6.8/testng-6.8.jar"/>
+			</classpath>
+		</taskdef>
 
 	</target>
 
@@ -49,6 +54,9 @@
 	<!-- clean -->
 	<target name="clean" description="clean">
 		<delete dir="${test.dest}"/>
+		<delete includeemptydirs="true" quiet="true">
+		    <fileset dir="${ng.result}" includes="**/*"/>
+	    </delete>
 	</target>
 
 	<!-- compile -->
@@ -79,9 +87,6 @@
 	<!-- run -->
 	<target name="runall" depends="compile" description="runall">
 
-		<delete includeemptydirs="true" quiet="true">
-			<fileset dir="${ng.result}" includes="**/*"/>
-		</delete>
 		<testng classpath="${test.classpath}:${test.dest}" suitename="suite1" haltOnfailure="false">
 			<classpath refid="test.run"/>
 
