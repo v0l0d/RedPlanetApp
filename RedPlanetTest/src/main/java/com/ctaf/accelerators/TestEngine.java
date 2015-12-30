@@ -193,6 +193,7 @@ public class TestEngine extends HtmlReportSupport {
 				capabilitiesForAppium.setCapability("takesScreenshot", true);
 				capabilitiesForAppium.setCapability("autoWebviewTimeout","6000");
 				capabilitiesForAppium.setCapability("locationServicesAuthorized", true);
+				capabilitiesForAppium.setCapability("nativeInstrumentsLib", true);
 				capabilitiesForAppium.setCapability("autoLaunch", true);
 				//capabilitiesForAppium.setCapability("fullReset", false);
 				//capabilitiesForAppium.setCapability("noReset", true);
