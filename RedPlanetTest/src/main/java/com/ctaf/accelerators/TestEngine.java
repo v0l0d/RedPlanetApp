@@ -228,10 +228,13 @@ public class TestEngine extends HtmlReportSupport {
 				// -----------------------------------------------------
 				DesiredCapabilities capabilitiesForAppium = new DesiredCapabilities();
 				System.out.println("DeviceName is : " + DeviceName);
-                String androidApkPath = System.getProperty("user.dir") + configProps.getProperty("androidApkPath");
-				if (new File(androidApkPath).exists()) {
-                    capabilitiesForAppium.setCapability("app", androidApkPath);
+                String androidApkPath = new File(System.getProperty("user.dir"), configProps.getProperty("androidApkPath")).toString();
+                System.out.println("!!!!!!!!!!!!!!!!!!+++++++++++ checking for existing " + androidApkPath);
+                if (new File(androidApkPath).exists()) {
+                    System.out.println("!!!!!!!!!!!!!!!!!! file exists " + androidApkPath);
+                    capabilitiesForAppium.setCapability("app", "androidApkPath");
                 }
+                capabilitiesForAppium.setCapability("nativeInstrumentsLib", true);
                 capabilitiesForAppium.setCapability("deviceName", DeviceName);
 				capabilitiesForAppium.setCapability("platformVersion",OSVersion);
 				capabilitiesForAppium.setCapability("platformName","Android");
