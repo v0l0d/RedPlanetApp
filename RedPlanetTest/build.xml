@@ -20,8 +20,14 @@
 		<path id="classpath_jars">
 
             <fileset dir="${ws.jars}" includes="**/*.jar">
-                <include name="**/org/apache/httpcomponents/**" if="4.3"/>
-                <exclude name="**/com/google/collections/**"/>
+                <exclude name="org/apache/httpcomponents/**"/>
+                <exclude name="com/google/collections/**"/>
+            </fileset>
+            <fileset dir="${ws.jars}/org/apache/httpcomponents/" >
+                <include name="httpclient/4.3.3/**"/>
+                <include name="httpcomponents-client/4.3.3/**"/>
+                <include name="httpcomponents-core/4.3.2/**"/>
+                <include name="httpcore/4.3.2/**"/>
             </fileset>
 
         </path>
