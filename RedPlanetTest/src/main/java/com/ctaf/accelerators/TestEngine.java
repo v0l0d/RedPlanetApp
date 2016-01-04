@@ -204,7 +204,7 @@ public class TestEngine extends HtmlReportSupport {
 					System.out.println("ipa Path "+ipa.getCanonicalPath());
 					capabilitiesForAppium.setCapability("app",ipa);
 				}
-				Iosdriver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),
+				Iosdriver = new IOSDriver(new URL("http://127.0.0.1:4725/wd/hub"),
 						capabilitiesForAppium);
 				driver = Iosdriver;
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
