@@ -4,7 +4,6 @@ import com.ctaf.support.ConfiguratorSupport;
 import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.support.ReportStampSupport;
-import com.ctaf.utilities.RedPlanetUtils;
 import com.ctaf.utilities.Reporter;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -24,11 +23,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import com.ctaf.support.ConfiguratorSupport;
-import com.ctaf.support.ExcelReader;
-import com.ctaf.support.HtmlReportSupport;
-import com.ctaf.support.ReportStampSupport;
-import com.ctaf.utilities.Reporter;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -234,8 +228,7 @@ public class TestEngine extends HtmlReportSupport {
 				// -----------------------------------------------------
 				DesiredCapabilities capabilitiesForAppium = new DesiredCapabilities();
 				System.out.println("DeviceName is : " + DeviceName);
-				capabilitiesForAppium.setCapability("deviceName",
-						DeviceName);
+				capabilitiesForAppium.setCapability("deviceName", DeviceName);
 				capabilitiesForAppium.setCapability("platformVersion",OSVersion);
 				capabilitiesForAppium.setCapability("platformName","Android");
 				//capabilitiesForAppium.setCapability("newCommandTimeout","120000");
@@ -245,16 +238,14 @@ public class TestEngine extends HtmlReportSupport {
 				capabilitiesForAppium.setCapability("appPackage", AppPackage);
 				capabilitiesForAppium.setCapability("appActivity", AppActivity);
 				
-				AndroidDriver2 = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
-						capabilitiesForAppium);
-				AndroidDriver2.resetApp();
-				driver = (AndroidDriver2);
-				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-				
+				AndroidDriver2 = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilitiesForAppium);
+                AndroidDriver2.resetApp();
+                driver = (AndroidDriver2);
+                driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-		}
+            }
+        }
 	}
 
 	
@@ -269,7 +260,9 @@ public class TestEngine extends HtmlReportSupport {
 		if (browser.equalsIgnoreCase("iphone")) {
 			//Iosdriver.removeApp(bundleID);
 		}
-		driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
 		}catch(Exception e){
 			e.printStackTrace();
 		} /*finally {
@@ -444,7 +437,7 @@ public class TestEngine extends HtmlReportSupport {
 		PassNum = 0;
 		FailNum = 0;
 		testName = method.getName();
-		logger.info("Current Test : "+testName);
+		logger.info("Current Test : " + testName);
 	}
 		
 	@AfterMethod(alwaysRun = true)
