@@ -594,7 +594,7 @@ public class ActionEngine extends TestEngine {
 //            Assert.assertNull(driver, "Driver can't be null");
             wait = new WebDriverWait(driver, waitTimeInSeconds);
             WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
-            boolean enabled = element.getSize().getHeight()>0;
+            boolean enabled = element.isDisplayed();
             //TODO[andrey]: find better solution for element visible/present
             if(enabled){
                 flag = true;
