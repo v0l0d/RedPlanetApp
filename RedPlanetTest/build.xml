@@ -19,11 +19,12 @@
 	<target name="setClassPath" unless="test.classpath">
 		<path id="classpath_jars">
 
-			<!--<file file="${user.home}/.m2/repository/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3.jar"/>-->
-			<fileset dir="${ws.jars}" includes="**/*.jar"/>
-			<!-- <fileset dir="libs" includes="**/*.jar"/> -->
+            <fileset dir="${ws.jars}" includes="**/*.jar">
+                <include name="**/org/apache/httpcomponents/**" if="4.3"/>
+                <exclude name="**/com/google/collections/**"/>
+            </fileset>
 
-		</path>
+        </path>
 		<pathconvert pathsep=":" 
             property="test.classpath" 
             refid="classpath_jars"/>
@@ -138,9 +139,14 @@
 		</target>
 	<!-- Android -->
 			<target name="Android" depends="compile" description="Android">
-				<testng classpath="${test.classpath}:${test.dest}" groups="Android"
-								suitename="RedPlanetAndroid" haltOnfailure="no" >
-					<xmlfileset dir="${ws.home}" includes="testNG2.xml" />
+				<testng
+                    classpath="${test.classpath}:${test.dest}"
+                    groups="Android"
+                    suitename="RedPlanetAndroid"
+                    haltOnfailure="no" >
+					<xmlfileset
+                            dir="${ws.home}"
+                            includes="testNG2.xml" />
 				</testng>
 			</target>
 
