@@ -228,7 +228,11 @@ public class TestEngine extends HtmlReportSupport {
 				// -----------------------------------------------------
 				DesiredCapabilities capabilitiesForAppium = new DesiredCapabilities();
 				System.out.println("DeviceName is : " + DeviceName);
-				capabilitiesForAppium.setCapability("deviceName", DeviceName);
+                String androidApkPath = System.getProperty("user.dir") + configProps.getProperty("androidApkPath");
+				if (new File(androidApkPath).exists()) {
+                    capabilitiesForAppium.setCapability("app", androidApkPath);
+                }
+                capabilitiesForAppium.setCapability("deviceName", DeviceName);
 				capabilitiesForAppium.setCapability("platformVersion",OSVersion);
 				capabilitiesForAppium.setCapability("platformName","Android");
 				//capabilitiesForAppium.setCapability("newCommandTimeout","120000");

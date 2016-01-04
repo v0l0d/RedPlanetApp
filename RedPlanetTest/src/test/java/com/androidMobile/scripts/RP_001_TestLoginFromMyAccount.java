@@ -16,14 +16,14 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 		 * Verify Login functionality from My Account screen
 		 */
 
-	    ExcelReader xlsLogin = new ExcelReader(configProps.getProperty("TestData"),"RP_001");
+	    ExcelReader xlsLogin = new ExcelReader(configProps.getProperty("AndroidTestData"),"RP_ANDR_001");
 		@Test(dataProvider = "testData")
-		public  void testTestLoginFromMyAccount (String email, String password, String description, 
+		public void testTestLoginFromMyAccount (String email, String password, String description,
 				boolean res) throws Throwable {
 			try{
             System.out.println("RP_001_TestLoginFromMyAccount " + configProps.getProperty("TestData"));
 			TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
-			handleSplashDialog();			
+			handleSplashDialog();
 			navigateToMyAccount();
 			handleRateAppPopUp();
 			logOut();
@@ -54,11 +54,11 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 				Reporter.failureReport("LogIn", "Failed");
 			}
 		}
-		
+
 		@DataProvider(name="testData")
 		public Object[][] createdata1() {
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!createdata1");
-		    return (Object[][]) new Object[][] { 
+		    return (Object[][]) new Object[][] {
 		    		{xlsLogin.getCellValue("InvalidCredentials", "email"),xlsLogin.getCellValue("InvalidCredentials", "password"),"Invalid credentials",false},
 		    		{xlsLogin.getCellValue("InvalidPassword", "email"),xlsLogin.getCellValue("InvalidPassword", "password"),"Invalid password and valid email",false},
 		    		{xlsLogin.getCellValue("invalidEmail", "email"),xlsLogin.getCellValue("InvalidEmail", "password"),"Invalid email and valid password",false},
