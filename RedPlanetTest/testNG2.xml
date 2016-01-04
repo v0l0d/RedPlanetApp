@@ -3,11 +3,15 @@
 <suite name="RedPlanetAndroid" allow-return-values="true" verbose="2">
 
 	<test name="Grouping" preserve-order="true">
-	
 
-		<classes>			
+
+		<classes>
 		
-			<class name="com.androidMobile.scripts.RP_001_TestLoginFromMyAccount" />
+			<class name="com.androidMobile.scripts.RP_001_TestLoginFromMyAccount">
+                <methods>
+                    <include name="testTestLoginFromMyAccount" />
+                </methods>
+            </class>
 			<!--<class name="com.androidMobile.scripts.RP_002_TestLogInFromBookingScreen" />-->
 			<!--<class name="com.androidMobile.scripts.RP_003_TestSearchHotels" />-->
 			<!--<class name="com.androidMobile.scripts.RP_004_TestGuestBookingFromHome" />-->

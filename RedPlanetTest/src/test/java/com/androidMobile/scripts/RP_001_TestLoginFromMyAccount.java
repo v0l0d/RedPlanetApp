@@ -1,26 +1,27 @@
 package com.androidMobile.scripts;
 
 
-import com.androidMobile.scripts.testObjects.LoginPageLocators;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
 import com.androidMobile.scripts.testObjects.AccountPageLocators;
+import com.androidMobile.scripts.testObjects.HomePageLocators;
 import com.androidMobile.workflows.LoginHelper;
 import com.ctaf.accelerators.TestEngine;
 import com.ctaf.support.ExcelReader;
 import com.ctaf.support.HtmlReportSupport;
 import com.ctaf.utilities.Reporter;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 		/*
 		 * Verify Login functionality from My Account screen
 		 */
-	ExcelReader xlsLogin = new ExcelReader(configProps.getProperty("TestData"),"RP_ANDR_001");
+
+	    ExcelReader xlsLogin = new ExcelReader(configProps.getProperty("TestData"),"RP_001");
 		@Test(dataProvider = "testData")
 		public  void testTestLoginFromMyAccount (String email, String password, String description, 
 				boolean res) throws Throwable {
 			try{
+            System.out.println("RP_001_TestLoginFromMyAccount " + configProps.getProperty("TestData"));
 			TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
 			handleSplashDialog();			
 			navigateToMyAccount();
@@ -42,13 +43,11 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 				}else{
 					Reporter.failureReport("validate Login with "+description+":", "Failed");
 				}
-
-                if (!waitForElementPresent(LoginPageLocators.signInButton,
-                        "signInButton")) {
+                //TODO[andrey]: change code below to method which unlogin user and go to default activity
+                while (!isElementDisplayedTemp(HomePageLocators.mainMenuIcon)) {
                     driver.navigate().back();
+                    Thread.sleep(2000);
                 }
-
-                driver.navigate().back();
 			}
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -58,6 +57,7 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 		
 		@DataProvider(name="testData")
 		public Object[][] createdata1() {
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!createdata1");
 		    return (Object[][]) new Object[][] { 
 		    		{xlsLogin.getCellValue("InvalidCredentials", "email"),xlsLogin.getCellValue("InvalidCredentials", "password"),"Invalid credentials",false},
 		    		{xlsLogin.getCellValue("InvalidPassword", "email"),xlsLogin.getCellValue("InvalidPassword", "password"),"Invalid password and valid email",false},
@@ -66,5 +66,3 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 		    		{xlsLogin.getCellValue("ValidCredentials", "email"),xlsLogin.getCellValue("ValidCredentials", "password"),"Valid email and valid password",true}};
 		}
 }
-
-
