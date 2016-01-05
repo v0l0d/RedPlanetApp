@@ -589,24 +589,13 @@ public class ActionEngine extends TestEngine {
             if (driver == null) {
                 logger.info("Driver can't be null");
                 System.out.println("Driver can't be null");
-//                Thread.sleep(5000);
             }
-//            Assert.assertNull(driver, "Driver can't be null");
             wait = new WebDriverWait(driver, waitTimeInSeconds);
             WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
-            boolean enabled = element.isDisplayed();
-            //TODO[andrey]: find better solution for element visible/present
-            if(enabled){
-                flag = true;
-            }else {
-//                driver.wait(50);
-            }
+            flag = element.isDisplayed();
         } catch (Exception e) {
-
             Assert.assertTrue(flag,"waitForElementPresent : Falied to locate element "+locator);
-
             e.printStackTrace();
-
             return false;
         } finally {
             if (!flag) {
@@ -617,9 +606,7 @@ public class ActionEngine extends TestEngine {
                         "Successfully located element " + locator);
             }
         }
-
         return flag;
-
     }
 
 	/**
@@ -633,7 +620,7 @@ public class ActionEngine extends TestEngine {
 	 */
 	public static boolean waitForElementPresent(By by, String locator)
 			throws Throwable {
-		return waitForElementPresent(by, locator, 3);
+		return waitForElementPresent(by, locator, 5);
 
 	}
 
@@ -2370,7 +2357,7 @@ public class ActionEngine extends TestEngine {
 		boolean flag = false;
 		try {
             //TODO[andrey]: fix
-			driver.manage().timeouts().implicitlyWait(50, TimeUnit.MILLISECONDS);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			 flag  = driver.findElement((loc)).isDisplayed();
 			 if(flag){
 				 System.out.println("found the element "+loc);

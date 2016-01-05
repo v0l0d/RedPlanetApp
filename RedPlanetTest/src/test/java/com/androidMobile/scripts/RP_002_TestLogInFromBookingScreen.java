@@ -14,33 +14,30 @@ import com.ctaf.utilities.Reporter;
 
 public class RP_002_TestLogInFromBookingScreen  extends LoginHelper{
 	
-	ExcelReader xlsLogin = new ExcelReader(configProps.getProperty("TestData"),
+	ExcelReader xlsLogin = new ExcelReader(configProps.getProperty("AndroidTestData"),
 			"RP_ANDR_002");
 		@Test(dataProvider = "testData")
   public void testLogInFromBookingScreen(String country,String city,
 		  String email,String password,String description) throws Throwable {
 	  try{
-		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, 
-					description);	
+		  TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
 		  handleSplashDialog();
 		  //verify user already loggedIn, if yes signout
           navigateToMyAccount();
           handleRateAppPopUp();
+          handleSplashDialog();
           logOut();
 		  navigateToBookNow();
 		  handleRateAppPopUp();
 		  selectDestination(country, city);
-		  waitForElementPresent(HomePageLocators.searchButton, 
-				  "searchButton");
+		  waitForElementPresent(HomePageLocators.searchButton, "searchButton");
 		  click(HomePageLocators.searchButton, "searchButton");
 		  handleRateAppPopUp();
-		  waitForElementPresent(PickRoomPageLocators.pickRoomPage, 
-				  "pickRoomPage");
+		  waitForElementPresent(PickRoomPageLocators.pickRoomPage, "pickRoomPage", 10);
 		  click(PickRoomPageLocators.bookNowButton, "bookNowButton");
 		  handleRateAppPopUp();
-		  waitForElementPresent(BookPageLocators.contiuneButton, 
-				  "contiuneButton");
-		  click(BookPageLocators.logInButton, "logInButton");
+          waitForElementPresent(BookPageLocators.contiuneButton,  "contiuneButton");
+          click(BookPageLocators.signUpField, "signUpField");
 		  handleRateAppPopUp();
 		  userlogin(email, password);
 		  if(waitForElementPresent(BookPageLocators.guestDetailsFrame, "guestDetailsFrame")){

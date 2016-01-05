@@ -21,7 +21,7 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 		public void testTestLoginFromMyAccount (String email, String password, String description,
 				boolean res) throws Throwable {
 			try{
-            System.out.println("RP_001_TestLoginFromMyAccount " + configProps.getProperty("TestData"));
+            System.out.println("RP_001_TestLoginFromMyAccount " + configProps.getProperty("AndroidTestData"));
 			TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
 			handleSplashDialog();
 			navigateToMyAccount();

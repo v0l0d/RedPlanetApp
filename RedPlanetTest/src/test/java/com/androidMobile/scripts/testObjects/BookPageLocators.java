@@ -17,6 +17,7 @@ public class BookPageLocators extends ActionEngine{
 	public static By firstNameInput = By.xpath("//*[@text='First Name']");
 	public static By lastNameInput = By.xpath("//*[@text='Last Name']");
 	public static By EmailInput = By.xpath("//*[@text='Email']");
+    public static By signUpField = By.xpath("//*[@text='SIGN UP NOW']");
 	public static By cardHolderInput = By
 			.xpath("//*[@resource-id='com.redplanethotels.staging:id/payment_holder']");
 	public static By cardNumInput = By

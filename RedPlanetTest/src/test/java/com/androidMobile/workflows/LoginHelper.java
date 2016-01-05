@@ -12,7 +12,7 @@ public class LoginHelper extends HomePageHelper {
 		boolean res = false;
 		try {
 			waitForElementPresent(LoginPageLocators.emailFieldForLogin,
-					"emailField");
+					"emailField", 10);
 			type(LoginPageLocators.emailFieldForLogin, email, "emailField");
 			waitForElementPresent(LoginPageLocators.passwordFieldForLogin,
 					"passwordFieldForLogin");
