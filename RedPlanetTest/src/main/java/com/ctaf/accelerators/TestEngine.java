@@ -232,7 +232,7 @@ public class TestEngine extends HtmlReportSupport {
                 System.out.println("!!!!!!!!!!!!!!!!!!+++++++++++ checking for existing " + androidApkPath);
                 if (new File(androidApkPath).exists()) {
                     System.out.println("!!!!!!!!!!!!!!!!!! file exists " + androidApkPath);
-                    capabilitiesForAppium.setCapability("app", "androidApkPath");
+                    capabilitiesForAppium.setCapability("app", androidApkPath);
                 }
                 capabilitiesForAppium.setCapability("nativeInstrumentsLib", true);
                 capabilitiesForAppium.setCapability("deviceName", DeviceName);
