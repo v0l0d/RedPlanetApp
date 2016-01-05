@@ -71,7 +71,7 @@ public class HomePageHelper extends HomePageLocators {
 			click(By.xpath(HomePageLocators.locationCityName.replace("#", city.trim())), "locationCityName");
 //			Thread.sleep(2000);
 			handleRateAppPopUp();
-			res = waitForElementPresent(HomePageLocators.checkInLink, "checkInLink", 2);
+			res = waitForElementPresent(HomePageLocators.checkInLink, "checkInLink", 10);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -114,7 +114,7 @@ public class HomePageHelper extends HomePageLocators {
 		boolean res = false;
 		try {
 //            Thread.sleep(2000);
-			waitForElementPresent(HomePageLocators.mainMenuIcon,"mainMenuIcon", 10);
+			waitForElementPresent(HomePageLocators.mainMenuIcon,"mainMenuIcon", 20);
 			click(HomePageLocators.mainMenuIcon,"mainMenuIcon");
 //			Thread.sleep(2000);
 			waitForElementPresent(HomePageLocators.myAccountMenuLink, "myAccountMenuLink");

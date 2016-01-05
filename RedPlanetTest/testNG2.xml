@@ -12,7 +12,12 @@
                     <include name="testTestLoginFromMyAccount" />
                 </methods>
             </class>
-			<!--<class name="com.androidMobile.scripts.RP_002_TestLogInFromBookingScreen" />-->
+			<class name="com.androidMobile.scripts.RP_002_TestLogInFromBookingScreen">
+                <methods>
+                    <include name="testLogInFromBookingScreen" />
+                </methods>
+            </class>
+
 			<!--<class name="com.androidMobile.scripts.RP_003_TestSearchHotels" />-->
 			<!--<class name="com.androidMobile.scripts.RP_004_TestGuestBookingFromHome" />-->
 			

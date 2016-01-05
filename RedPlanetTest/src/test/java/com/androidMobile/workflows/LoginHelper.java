@@ -55,7 +55,7 @@ public class LoginHelper extends HomePageHelper {
 				click(LoginPageLocators.signInButton, "signInButton");
 				handleRateAppPopUp();
                 waitForElementPresent(LoginPageLocators.okayButtonOnErrorpop,
-                        "okayButtonOnErrorpop", 5);
+                        "okayButtonOnErrorpop", 20);
                 click(LoginPageLocators.okayButtonOnErrorpop, "OKAY");
 			}catch(Exception e){
 				e.printStackTrace();				
@@ -129,14 +129,14 @@ public class LoginHelper extends HomePageHelper {
 	public boolean logOut() throws Throwable{
 		boolean res = false;
 		try {
-			if(!(isElementDisplayed(AccountPageLocators.logInButton))){					  
+			if(!(isElementDisplayed(AccountPageLocators.logInButton))){
 				 System.out.println("User logged in");
                 Thread.sleep(1000);
 				 waitForElementPresent(AccountPageLocators.signOutButton, 
 						  "sinOutButton");
 				  click(AccountPageLocators.signOutButton, "sinOutButton");
 				  Thread.sleep(2000);
-			  }
+			}
 			if(waitForElementPresent(AccountPageLocators.logInButton,"logInButton")){				
 				/*res = waitForElementPresent(AccountPageLocators.accountScreenTitle,
 						"accountScreenTitle");*/
