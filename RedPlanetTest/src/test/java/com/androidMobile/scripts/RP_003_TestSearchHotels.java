@@ -48,17 +48,21 @@ public class RP_003_TestSearchHotels extends LoginHelper {
                 } else {
                     Reporter.failureReport(description, "Failed");
                 }
-                driver.navigate().back();
             }
         } catch (Exception e) {
             e.printStackTrace();
             Reporter.failureReport(description, "Failed with exception");
+        } finally {
+            while (!isElementDisplayedTemp(HomePageLocators.mainMenuIcon)) {
+                driver.navigate().back();
+                Thread.sleep(2000);
+            }
         }
     }
 
     @DataProvider(name = "testData")
     public Object[][] createdata1() {
-        return (Object[][]) new Object[][]{
+        return new Object[][]{
                 {xlsSearch.getCellValue("country", "Value"), xlsSearch.getCellValue("city", "Value"),
                         VERIFY_SELECT_DESTINATION},
                 {xlsSearch.getCellValue("country", "Value"), xlsSearch.getCellValue("city", "Value"),
