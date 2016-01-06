@@ -36,6 +36,7 @@ public class RP_002_TestLogInFromBookingScreen  extends LoginHelper{
 		  waitForElementPresent(PickRoomPageLocators.pickRoomPage, "pickRoomPage", 10);
 		  click(PickRoomPageLocators.bookNowButton, "bookNowButton");
 		  handleRateAppPopUp();
+          waitForElementPresent(BookPageLocators.contiuneButton, "contiuneButton", 10);
           scrollToText("Login");
           waitForElementPresent(BookPageLocators.logInButton, "logInButton");
           click(BookPageLocators.logInButton, "logInButton");

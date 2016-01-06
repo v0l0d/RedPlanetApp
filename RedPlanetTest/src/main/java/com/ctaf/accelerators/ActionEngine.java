@@ -161,7 +161,9 @@ public class ActionEngine extends TestEngine {
             flag = true;
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
+            System.out.println(" !!!!!!!!!!!!!!!!!!!+++++++++ error on scrolling to " + text
+                    + " with time " + (System.currentTimeMillis() - timeOnStart) / 1000);
+            e.printStackTrace();
 			//return false;
 			throw e;
 		} /*finally {
