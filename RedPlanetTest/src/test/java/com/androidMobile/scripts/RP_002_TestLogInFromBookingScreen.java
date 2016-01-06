@@ -36,9 +36,10 @@ public class RP_002_TestLogInFromBookingScreen  extends LoginHelper{
 		  waitForElementPresent(PickRoomPageLocators.pickRoomPage, "pickRoomPage", 10);
 		  click(PickRoomPageLocators.bookNowButton, "bookNowButton");
 		  handleRateAppPopUp();
-          waitForElementPresent(BookPageLocators.contiuneButton,  "contiuneButton");
-          click(BookPageLocators.signUpField, "signUpField");
-		  handleRateAppPopUp();
+          scrollToText("Login");
+          waitForElementPresent(BookPageLocators.logInButton, "logInButton");
+          click(BookPageLocators.logInButton, "logInButton");
+          handleRateAppPopUp();
 		  userlogin(email, password);
 		  if(waitForElementPresent(BookPageLocators.guestDetailsFrame, "guestDetailsFrame")){
 			  Reporter.SuccessReport("Validate login from Booking page", "Successful");			  
