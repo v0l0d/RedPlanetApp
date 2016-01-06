@@ -7,19 +7,22 @@
 
 		<classes>
 		
-			<class name="com.androidMobile.scripts.RP_001_TestLoginFromMyAccount">
+			<!--<class name="com.androidMobile.scripts.RP_001_TestLoginFromMyAccount">
                 <methods>
                     <include name="testTestLoginFromMyAccount" />
                 </methods>
-            </class>
+            </class>-->
 			<class name="com.androidMobile.scripts.RP_002_TestLogInFromBookingScreen">
                 <methods>
                     <include name="testLogInFromBookingScreen" />
                 </methods>
             </class>
-
-			<!--<class name="com.androidMobile.scripts.RP_003_TestSearchHotels" />-->
-			<!--<class name="com.androidMobile.scripts.RP_004_TestGuestBookingFromHome" />-->
+			<class name="com.androidMobile.scripts.RP_003_TestSearchHotels">
+                <methods>
+                    <include name="testSearchHotels" />
+                </methods>
+            </class>
+            <!--<class name="com.androidMobile.scripts.RP_004_TestGuestBookingFromHome" />-->
 			
 			<!--<class name="com.androidMobile.scripts.RP_005_TestGuestBookingFromBookNow" />-->
 			<!--<class name="com.androidMobile.scripts.RP_006_TestBookingAsAMember" />-->
