@@ -14,8 +14,8 @@ import com.ctaf.utilities.Reporter;
 
 public class RP_003_TestSearchHotels extends LoginHelper {
 
-    private static final String VERIFY_SELECT_DESTINATION = "Verify Select Destination";
     private static final String VERIFY_SEARCH_HOTELS = "Verify Search Hotels";
+    private static final String VERIFY_SELECT_DESTINATION = "Verify Select Destination";
 
     ExcelReader xlsSearch = new ExcelReader(configProps.getProperty("AndroidTestData"), "RP_ANDR_003");
 
@@ -48,12 +48,11 @@ public class RP_003_TestSearchHotels extends LoginHelper {
                 } else {
                     Reporter.failureReport(description, "Failed");
                 }
+                driver.navigate().back();
             }
         } catch (Exception e) {
             e.printStackTrace();
             Reporter.failureReport(description, "Failed with exception");
-        } finally {
-            driver.navigate().back();
         }
     }
 
