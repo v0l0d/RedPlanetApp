@@ -25,7 +25,7 @@ public class BookPageLocators extends ActionEngine{
 	public static By expMonthInput = By
 			.xpath("//*[@resource-id='com.redplanethotels.staging:id/payment_exp_month_and_year']");
 	public static By cvvNumInput = By
-			.xpath("//*[@resource-id='com.redplanethotels.staging:id/payment_cvv']");
+			.xpath("//*[@resource-id='com.redplanethotels.staging:id/payment_cvc']");
 	public static By conditionsCheck = By
 			.xpath("//*[@resource-id='com.redplanethotels.staging:id/confirm_tac_cb']");
 	public static By bookedCity = By.xpath("//*[@resource-id='com.redplanethotels.staging:id/confirmed_tv_hotel_name']");

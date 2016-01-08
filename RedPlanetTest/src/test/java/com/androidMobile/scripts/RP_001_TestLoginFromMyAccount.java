@@ -21,12 +21,8 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 		public void testTestLoginFromMyAccount (String email, String password, String description,
 				boolean res) throws Throwable {
 			try{
-            System.out.println("RP_001_TestLoginFromMyAccount " + configProps.getProperty("AndroidTestData"));
-			TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
-			handleSplashDialog();
-			navigateToMyAccount();
-			handleRateAppPopUp();
-			logOut();
+            TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
+            logOutAndGotToMainScreen();
 			click(AccountPageLocators.logInButton, "logInButton");
 			handleRateAppPopUp();
 			if(res){
@@ -43,11 +39,6 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 				}else{
 					Reporter.failureReport("validate Login with "+description+":", "Failed");
 				}
-                //TODO[andrey]: change code below to method which unlogin user and go to default activity
-                while (!isElementDisplayedTemp(HomePageLocators.mainMenuIcon)) {
-                    driver.navigate().back();
-                    Thread.sleep(2000);
-                }
 			}
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -56,9 +47,8 @@ public class RP_001_TestLoginFromMyAccount extends LoginHelper{
 		}
 
 		@DataProvider(name="testData")
-		public Object[][] createdata1() {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!createdata1");
-		    return (Object[][]) new Object[][] {
+		public Object[][] createData() {
+		    return new Object[][] {
 		    		{xlsLogin.getCellValue("InvalidCredentials", "email"),xlsLogin.getCellValue("InvalidCredentials", "password"),"Invalid credentials",false},
 		    		{xlsLogin.getCellValue("InvalidPassword", "email"),xlsLogin.getCellValue("InvalidPassword", "password"),"Invalid password and valid email",false},
 		    		{xlsLogin.getCellValue("invalidEmail", "email"),xlsLogin.getCellValue("InvalidEmail", "password"),"Invalid email and valid password",false},

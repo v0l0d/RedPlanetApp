@@ -24,47 +24,29 @@ public class RP_004_TestGuestBookingFromHome extends LoginHelper {
     public void testGuestBookingFromHome(String country, String city, String fName, String lName, String email,
                                          String cardHolder, String cardNum, String expMonth, String cvv, String description) throws Throwable {
         try {
-            long timeOnStart = System.currentTimeMillis();
             TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
-            //TODO add to all scripts method for navigate mainActivity screen and logout
-            handleRateAppPopUp();
-            System.out.println(" after 1st handleRateAppPopUp " + (System.currentTimeMillis() - timeOnStart) / 1000);
-            navigateToMyAccount();
-            System.out.println(" after navigateToMyAccount " + (System.currentTimeMillis() - timeOnStart) / 1000);
-            handleRateAppPopUp();
-            logOut();
-            System.out.println(" after logOut " + (System.currentTimeMillis() - timeOnStart) / 1000);
+            logOutAndGotToMainScreen();
             navigateToBookNow();
             handleRateAppPopUp();
-            System.out.println(" after navigateToBookNow " + (System.currentTimeMillis() - timeOnStart) / 1000);
             selectDestination(country, city);
             handleRateAppPopUp();
-            System.out.println(" after selectDestination " + (System.currentTimeMillis() - timeOnStart) / 1000);
             waitForElementPresent(HomePageLocators.searchButton, "searchButton");
             click(HomePageLocators.searchButton, "searchButton");
             handleRateAppPopUp();
-            System.out.println(" after searchButton " + (System.currentTimeMillis() - timeOnStart) / 1000);
             if (waitForElementPresent(PickRoomPageLocators.pickRoomPage, "pickRoomPage")) {
                 Reporter.SuccessReport("Search for Hotels", "Successful");
             } else {
                 Reporter.failureReport("Search for Hotels", "Failed");
             }
-            System.out.println(" after pickRoomPage " + (System.currentTimeMillis() - timeOnStart) / 1000);
             click(PickRoomPageLocators.bookNowButton, "bookNowButton");
             handleRateAppPopUp();
-            System.out.println(" after bookNowButton " + (System.currentTimeMillis() - timeOnStart) / 1000);
             waitForElementPresent(BookPageLocators.contiuneButton, "contiuneButton");
             click(BookPageLocators.contiuneButton, "contiuneButton");
-            System.out.println(" after contiuneButton " + (System.currentTimeMillis() - timeOnStart) / 1000);
             handleRateAppPopUp();
             BookingPageHelper.populateGuestDetails("", fName, lName, email, "");
-            System.out.println(" after populateGuestDetails " + (System.currentTimeMillis() - timeOnStart) / 1000);
-            //click(BookPageLocators.guestRadioButton, "guestRadioButton");
             BookingPageHelper.populatePaymentDetails(cardHolder, cardNum, expMonth, cvv);
             handleRateAppPopUp();
-            System.out.println(" after populatePaymentDetails " + (System.currentTimeMillis() - timeOnStart) / 1000);
             if (description.equals(VALID_DATA)) {
-//             Thread.sleep(5000); //TODO need to recheck this value
                 waitForElementPresent(BookPageLocators.doneButton, "doneButton", 10);
                 if (isElementDisplayed(BookPageLocators.bookingCode)) {
                     String bookingCode = driver.findElement(BookPageLocators.bookingCode).getText().trim();
@@ -96,16 +78,11 @@ public class RP_004_TestGuestBookingFromHome extends LoginHelper {
         } catch (Exception e) {
             e.printStackTrace();
             Reporter.failureReport(description, "Failed with exception");
-        } finally {
-            while (!isElementDisplayedTemp(HomePageLocators.mainMenuIcon)) {
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
         }
     }
 
     @DataProvider(name = "testData")
-    public Object[][] createdata1() {
+    public Object[][] createData() {
         return new Object[][]{
                 {xlsGuestBook.getCellValue("country", "Value"), xlsGuestBook.getCellValue("city", "Value"),
                         xlsGuestBook.getCellValue("fName", "Value"), xlsGuestBook.getCellValue("lName", "Value"),

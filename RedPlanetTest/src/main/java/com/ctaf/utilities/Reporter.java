@@ -34,10 +34,18 @@ public class Reporter extends TestEngine {
 		}
 	}
 
+    public static void createReport(String stepDescription, boolean isSuccess)
+            throws Throwable{
+        if (isSuccess) {
+            SuccessReport(stepDescription, "Successful");
+        } else {
+            failureReport(stepDescription, "Failed");
+        }
+    }
+
 	public static void SuccessReport(String strStepName, String strStepDes)
 			throws Throwable {
-		int intReporterType = Integer.parseInt(configProps
-				.getProperty("reportsType"));
+		int intReporterType = Integer.parseInt(configProps.getProperty("reportsType"));
 		switch (intReporterType) {
 		case 1:
 

@@ -27,11 +27,11 @@
                     <include name="testSearchHotels" />
                 </methods>
             </class>
-			<!--<class name="com.androidMobile.scripts.RP_005_TestGuestBookingFromBookNow" >-->
-                <!--<methods>-->
-                    <!--<include name="testGuestBookingFromBookNow" />-->
-                <!--</methods>-->
-            <!--</class>-->
+			<class name="com.androidMobile.scripts.RP_005_TestGuestBookingFromBookNow" >
+                <methods>
+                    <include name="testGuestBookingFromBookNow" />
+                </methods>
+            </class>
 			<!--<class name="com.androidMobile.scripts.RP_006_TestBookingAsAMember" />-->
 			<!--<class name="com.androidMobile.scripts.RP_007_RetriveBookingAsGuest" />-->
 			<!--<class name="com.androidMobile.scripts.RP_008_RetriveBookingAsMember" />-->

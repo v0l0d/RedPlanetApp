@@ -21,12 +21,7 @@ public class RP_002_TestLogInFromBookingScreen extends LoginHelper {
                                            String email, String password, String description) throws Throwable {
         try {
             TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
-            handleSplashDialog();
-            //verify user already loggedIn, if yes signout
-            navigateToMyAccount();
-            handleRateAppPopUp();
-            handleSplashDialog();
-            logOut();
+            logOutAndGotToMainScreen();
             navigateToBookNow();
             handleRateAppPopUp();
             selectDestination(country, city);
@@ -50,16 +45,11 @@ public class RP_002_TestLogInFromBookingScreen extends LoginHelper {
         } catch (Exception e) {
             e.printStackTrace();
             Reporter.failureReport("LogIn", "Failed");
-        } finally {
-            while (!isElementDisplayedTemp(HomePageLocators.mainMenuIcon)) {
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
         }
     }
 
     @DataProvider(name = "testData")
-    public Object[][] createdata1() {
+    public Object[][] createData() {
         return new Object[][]{
                 {xlsLogin.getCellValue("country", "Value"), xlsLogin.getCellValue("city", "Value"),
                         xlsLogin.getCellValue("email", "Value"), xlsLogin.getCellValue("password", "Value"),

@@ -23,10 +23,7 @@ public class RP_003_TestSearchHotels extends LoginHelper {
     public void testSearchHotels(String country, String city, String description) throws Throwable {
         try {
             TestEngine.testDescription.put(HtmlReportSupport.tc_name, description);
-            handleSplashDialog();
-            navigateToMyAccount();
-            handleRateAppPopUp();
-            logOut();
+            logOutAndGotToMainScreen();
             navigateToBookNow();
             handleRateAppPopUp();
             selectDestination(country, city);
@@ -52,16 +49,11 @@ public class RP_003_TestSearchHotels extends LoginHelper {
         } catch (Exception e) {
             e.printStackTrace();
             Reporter.failureReport(description, "Failed with exception");
-        } finally {
-            while (!isElementDisplayedTemp(HomePageLocators.mainMenuIcon)) {
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
         }
     }
 
     @DataProvider(name = "testData")
-    public Object[][] createdata1() {
+    public Object[][] createData() {
         return new Object[][]{
                 {xlsSearch.getCellValue("country", "Value"), xlsSearch.getCellValue("city", "Value"),
                         VERIFY_SELECT_DESTINATION},

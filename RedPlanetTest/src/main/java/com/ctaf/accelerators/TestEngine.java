@@ -445,6 +445,7 @@ public class TestEngine extends HtmlReportSupport {
 		FailNum = 0;
 		testName = method.getName();
 		logger.info("Current Test : " + testName);
+		System.out.println("Current Test : " + this.getClass().getSimpleName() + "-" + testName);
 	}
 		
 	@AfterMethod(alwaysRun = true)
