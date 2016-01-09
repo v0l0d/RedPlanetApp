@@ -143,7 +143,7 @@ public class ActionEngine extends TestEngine {
                     try { //TODO code below may occurs exceptions about not found element
                         AndroidDriver2.scrollTo(text);
                         break;
-                    } catch(Exception e) {
+                    } catch(org.openqa.selenium.NoSuchElementException e) {
                         System.out.println("Not found element " + i + " times");
                     }
                 }
