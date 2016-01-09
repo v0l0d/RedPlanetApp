@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" > 
 
-<suite name="RedPlanetAndroid" allow-return-values="true" verbose="2">
+<suite name="RedPlanetAndroid" allow-return-values="true" verbose="2" parallel="false">
 
 	<test name="Grouping" preserve-order="true">
 
@@ -9,7 +9,7 @@
 		
 			<class name="com.androidMobile.scripts.RP_001_TestLoginFromMyAccount">
                 <methods>
-                    <include name="testTestLoginFromMyAccount" />
+                    <include name="testLoginFromMyAccount" />
                 </methods>
             </class>
 			<class name="com.androidMobile.scripts.RP_002_TestLogInFromBookingScreen">
@@ -24,7 +24,7 @@
             </class>
             <class name="com.androidMobile.scripts.RP_004_TestGuestBookingFromHome" >
                 <methods>
-                    <include name="testSearchHotels" />
+                    <include name="testGuestBookingFromHome" />
                 </methods>
             </class>
 			<class name="com.androidMobile.scripts.RP_005_TestGuestBookingFromBookNow" >

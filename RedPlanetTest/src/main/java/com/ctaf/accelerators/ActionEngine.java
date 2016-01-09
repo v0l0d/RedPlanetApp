@@ -3,27 +3,8 @@
  */
 package com.ctaf.accelerators;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
+import com.ctaf.utilities.Reporter;
 import io.appium.java_client.ios.IOSDriver;
-
-import java.awt.Dimension;
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
-
-import javax.imageio.ImageIO;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
@@ -34,16 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -52,7 +24,17 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import com.ctaf.utilities.Reporter;
+import javax.imageio.ImageIO;
+import java.awt.Dimension;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 /**
  *  ActionEngine is a wrapper class of Selenium actions
@@ -60,6 +42,8 @@ import com.ctaf.utilities.Reporter;
 @SuppressWarnings("deprecation")
 public class ActionEngine extends TestEngine {
 	public static WebDriverWait wait;
+
+    public static final int WAIT_OF_SCROLLING_TO = 3 * 60 * 1000;
 
 	static boolean b = true; // /Boolean.parseBoolean(bool);
 
@@ -84,6 +68,7 @@ public class ActionEngine extends TestEngine {
             WebElement element = driver.findElement(locator);
             if (element != null) {
                 element.click();
+                System.out.println("clicked on " + locatorName);
                 Thread.sleep(100);
                 flag = true;
             } else {
@@ -147,35 +132,30 @@ public class ActionEngine extends TestEngine {
 
 	public static boolean scrollToText(final String text)
 			throws Throwable {
-//        System.out.println(" before populateGuestDetails " + (System.currentTimeMillis() - timeOnStart) / 1000);
         long timeOnStart = System.currentTimeMillis();
-        boolean flag = false;
 		try {
-			if(browser.toLowerCase().contains("iphone")){
+            System.out.println(" start of scroll to " + text);
+            if(browser.toLowerCase().contains("iphone")){
 				Iosdriver.scrollTo(text);
-			}else if(browser.toLowerCase().contains("android")){
-				AndroidDriver2.scrollTo(text);
-			}
-            System.out.println(" scrolling time to  " + text + " " + (System.currentTimeMillis() - timeOnStart) / 1000);
+			}else if(browser.toLowerCase().contains("android")) {
 
-            flag = true;
+                for(int i = 0; System.currentTimeMillis() - timeOnStart > WAIT_OF_SCROLLING_TO; i++) {
+                    try { //TODO code below may occurs exceptions about not found element
+                        AndroidDriver2.scrollTo(text);
+                        break;
+                    } catch(Exception e) {
+                        System.out.println("Not found element " + i + " times");
+                    }
+                }
+            }
+            System.out.println(" scrolling time to " + text + " " + (System.currentTimeMillis() - timeOnStart) / 1000);
 			return true;
 		} catch (Exception e) {
-            System.out.println(" !!!!!!!!!!!!!!!!!!!+++++++++ error on scrolling to " + text
+            System.out.println(" !!!!!!!!!!!!!!!!!!! error on scrolling to " + text
                     + " with time " + (System.currentTimeMillis() - timeOnStart) / 1000);
             e.printStackTrace();
-			//return false;
-			throw e;
-		} /*finally {
-			if (!flag) {
-				Reporter.failureReport("Check IsElementPresent ", locatorName
-						+ " Element is not present on the page");
-				Assert.assertTrue(flag,"Unable find the element "+ locatorName);
-			} else if (b && flag) {
-				Reporter.SuccessReport("IsElementPresent ",
-						"Able to locate element " + locatorName);
-			}
-		}*/
+            return false;
+        }
 	}
 	public static boolean scrollToElement(final String locator)
 			throws Throwable {
@@ -183,7 +163,7 @@ public class ActionEngine extends TestEngine {
 		try {
 			System.out.println("scrolling to element : "+ locator);
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
-			executor.executeScript("mobile: scrollTo", new HashMap<String, String>() {{ put("element", 
+			executor.executeScript("mobile: scrollTo", new HashMap<String, String>() {{ put("element",
 					((RemoteWebElement) driver.findElement(By.xpath(locator))).getId()); }});
 			flag = true;
 			return true;
@@ -202,7 +182,7 @@ public class ActionEngine extends TestEngine {
 			}
 		}*/
 	}
-	
+
 	public static boolean waitForElementHasSomeText(final By by, String locator)
 			throws Throwable {
 		boolean flag = false;
@@ -312,7 +292,6 @@ public class ActionEngine extends TestEngine {
 			//driver.findElement(locator).click(); //temp
 			/*Actions act = new Actions(driver);
 			act.sendKeys(driver.findElement(locator), testdata).build().perform();*/
-            System.out.println(" time of typing before sendKeys " + locatorName + " " + (System.currentTimeMillis() - timeOnStart) / 1000);
             we.sendKeys(testdata);
 			flag = true;
             System.out.println(" time of typing before Reporter " + locatorName + " " + (System.currentTimeMillis() - timeOnStart) / 1000);

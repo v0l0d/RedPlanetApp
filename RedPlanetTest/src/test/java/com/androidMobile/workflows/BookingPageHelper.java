@@ -64,11 +64,11 @@ public class BookingPageHelper extends HomePageHelper {
                 if (!isElementDisplayedTemp(BookPageLocators.cvvNumInput)) {
                     scrollToText("CVC");
                 }
-                type(BookPageLocators.cvvNumInput, cvv, "cvvNumInput");
+                type(BookPageLocators.cvvNumInput, cvv, "cvcNumInput");
             }
 
             if (!isElementDisplayedTemp(BookPageLocators.bookButton)) {
-                scrollToText("BOOK");
+                scrollToText("Book");
             }
             click(BookPageLocators.conditionsCheck, "conditionsCheck");
             click(BookPageLocators.bookButton, "bookButton");
@@ -77,4 +77,37 @@ public class BookingPageHelper extends HomePageHelper {
             click(LoginPageLocators.okayButtonOnErrorpop, "okayButtonOnErrorpop");
         }
     }
+/*
+    public class UiScrollable extends UiScrollable {
+
+        public UiScrollable(UiSelector container) {
+            super(container);
+        }
+
+        @Override
+        public boolean scrollIntoView(UiSelector selector) throws UiObjectNotFoundException {
+            if (exists(getSelector().childSelector(selector))) {
+                return (true);
+            } else {
+                System.out.println("It doesn't exist on this page");
+                // we will need to reset the search from the beginning to start search
+                scrollToBeginning(getMaxSearchSwipes());
+                if (exists(getSelector().childSelector(selector))) {
+                    return (true);
+                }
+                for (int x = 0; x < getMaxSearchSwipes(); x++) {
+                    System.out.println("I'm going forward a page: " + x);
+                    if(!scrollForward() && x!=0) { // x!=0 is the hack
+                        return false;
+                    }
+
+                    if(exists(getSelector().childSelector(selector))) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+    }*/
 }

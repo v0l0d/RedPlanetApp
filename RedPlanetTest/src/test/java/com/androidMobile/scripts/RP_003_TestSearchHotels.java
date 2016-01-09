@@ -40,11 +40,7 @@ public class RP_003_TestSearchHotels extends LoginHelper {
                 waitForElementPresent(HomePageLocators.searchButton, "searchButton");
                 click(HomePageLocators.searchButton, "searchButton");
                 handleRateAppPopUp();
-                if (isElementDisplayed(PickRoomPageLocators.pickRoomPage)) {
-                    Reporter.SuccessReport(description, "Successful");
-                } else {
-                    Reporter.failureReport(description, "Failed");
-                }
+                Reporter.createReport(description, isElementDisplayed(PickRoomPageLocators.pickRoomPage));
             }
         } catch (Exception e) {
             e.printStackTrace();

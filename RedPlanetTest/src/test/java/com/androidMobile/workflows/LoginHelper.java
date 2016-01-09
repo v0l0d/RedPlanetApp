@@ -129,7 +129,7 @@ public class LoginHelper extends HomePageHelper {
     public boolean logOut() throws Throwable {
         boolean res = false;
         try {
-            if (!(isElementDisplayed(AccountPageLocators.logInButton))) {
+            if (!(isElementDisplayedTemp(AccountPageLocators.logInButton))) {
                 System.out.println("User logged in");
                 scrollToText("SIGN OUT");
                 waitForElementPresent(AccountPageLocators.signOutButton, "sinOutButton");

@@ -241,6 +241,7 @@ public class TestEngine extends HtmlReportSupport {
 				//capabilitiesForAppium.setCapability("newCommandTimeout","120000");
 				//capabilitiesForAppium.setCapability("autoWebview", "true");
 				capabilitiesForAppium.setCapability("autoWebviewTimeout","1000");
+                capabilitiesForAppium.setCapability("newCommandTimeout", "1000");
 				//capabilitiesForAppium.setCapability("noReset", false);
 				capabilitiesForAppium.setCapability("appPackage", AppPackage);
 				capabilitiesForAppium.setCapability("appActivity", AppActivity);
