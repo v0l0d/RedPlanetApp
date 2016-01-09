@@ -139,8 +139,8 @@ public class ActionEngine extends TestEngine {
 				Iosdriver.scrollTo(text);
 			}else if(browser.toLowerCase().contains("android")) {
 
-                for(int i = 0; System.currentTimeMillis() - timeOnStart > WAIT_OF_SCROLLING_TO; i++) {
-                    try { //TODO code below may occurs exceptions about not found element
+                for(int i = 0; System.currentTimeMillis() - timeOnStart < WAIT_OF_SCROLLING_TO; i++) {
+                    try {
                         AndroidDriver2.scrollTo(text);
                         break;
                     } catch(org.openqa.selenium.NoSuchElementException e) {
