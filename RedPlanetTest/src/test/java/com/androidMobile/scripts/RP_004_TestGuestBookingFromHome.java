@@ -40,7 +40,7 @@ public class RP_004_TestGuestBookingFromHome extends LoginHelper {
             }
             click(PickRoomPageLocators.bookNowButton, "bookNowButton");
             handleRateAppPopUp();
-            waitForElementPresent(BookPageLocators.contiuneButton, "contiuneButton");
+            waitForElementPresent(BookPageLocators.contiuneButton, "contiuneButton", 10);
             click(BookPageLocators.contiuneButton, "contiuneButton");
             handleRateAppPopUp();
             BookingPageHelper.populateGuestDetails("", fName, lName, email, "");
