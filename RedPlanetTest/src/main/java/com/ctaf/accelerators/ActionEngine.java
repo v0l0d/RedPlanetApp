@@ -43,7 +43,7 @@ import java.util.concurrent.TimeUnit;
 public class ActionEngine extends TestEngine {
 	public static WebDriverWait wait;
 
-    public static final int WAIT_OF_SCROLLING_TO = 3 * 60 * 1000;
+    public static final int WAIT_OF_SCROLLING_TO = 10 * 60 * 1000;;
 
 	static boolean b = true; // /Boolean.parseBoolean(bool);
 
@@ -134,7 +134,7 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
         long timeOnStart = System.currentTimeMillis();
 		try {
-            System.out.println(" start of scroll to " + text);
+            System.out.println("start scrolling to " + text);
             if(browser.toLowerCase().contains("iphone")){
 				Iosdriver.scrollTo(text);
 			}else if(browser.toLowerCase().contains("android")) {
@@ -2337,7 +2337,6 @@ public class ActionEngine extends TestEngine {
 			throws Throwable {
 		boolean flag = false;
 		try {
-            //TODO[andrey]: fix
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			 flag  = driver.findElement((loc)).isDisplayed();
 			 if(flag){
