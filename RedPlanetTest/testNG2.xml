@@ -59,7 +59,11 @@
 
 			<!--<class name="com.androidMobile.scripts.RP_012_TestSocialLinksInAboutUs" />-->
 			<!--<class name="com.androidMobile.scripts.RP_013_TestFooterLinksInAboutUs" />-->
-			<!--<class name="com.androidMobile.scripts.RP_014_TestInHousePhone" />-->
+			<class name="com.androidMobile.scripts.RP_014_TestInHousePhone" >
+                <methods>
+                    <include name="testInHousePhone" />
+                </methods>
+            </class>
 			<!--<class name="com.androidMobile.scripts.RP_015_TestChatWithFrontDesk" />-->
 			<!--<class name="com.androidMobile.scripts.RP_016_TestTabsLocalAttractions" />-->
 			<class name="com.androidMobile.scripts.RP_017_TestInputCreditCards" >
