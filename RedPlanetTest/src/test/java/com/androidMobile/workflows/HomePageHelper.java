@@ -13,18 +13,20 @@ public class HomePageHelper extends HomePageLocators {
 	public static boolean handleSplashDialog() throws Throwable{
 		boolean res = false;
 		try {
-            Thread.sleep(4000);
+//            Thread.sleep(4000);
 			//waitForElementPresent(HomePageLocators.redPlanetMainFrame,"redPlanetMainFrame");
 			if(isElementDisplayedTemp(HomePageLocators.closeWatchPopUp)){
 				click(HomePageLocators.closeWatchPopUp,"closeWatchPopUp");
 			}
+//            System.out.println("========++++++++++++ searching for instayPopupClose");
 			if(isElementDisplayedTemp(LoginPageLocators.instayPopupClose)){
-				click(LoginPageLocators.instayPopupClose, "instayPopupClose");
+//                System.out.println("========++++++++++++ found instayPopupClose");
+                click(LoginPageLocators.instayPopupClose, "instayPopupClose");
 			}
 			if(isElementDisplayedTemp(LoginPageLocators.addPopupClose)){
 				click(LoginPageLocators.addPopupClose, "addPopupClose");
 			}
-			Thread.sleep(1000);
+//			Thread.sleep(1000);
 			res = true;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -100,10 +102,10 @@ public class HomePageHelper extends HomePageLocators {
 		try {
 			waitForElementPresent(HomePageLocators.mainMenuIcon,"mainMenuIcon");
 			click(HomePageLocators.mainMenuIcon,"mainMenuIcon");
-			Thread.sleep(2000);
+//			Thread.sleep(2000);
 			waitForElementPresent(HomePageLocators.homeMenuLink, "homeMenuLink");
 			click(HomePageLocators.homeMenuLink, "homeMenuLink");
-			Thread.sleep(2000);
+//			Thread.sleep(2000);
 			handleRateAppPopUp();
 		}catch(Exception e){
 			e.printStackTrace();

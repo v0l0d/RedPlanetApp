@@ -69,7 +69,7 @@ public class ActionEngine extends TestEngine {
             if (element != null) {
                 element.click();
                 System.out.println("clicked on " + locatorName);
-                Thread.sleep(100);
+//                Thread.sleep(100);
                 flag = true;
             } else {
                 flag = false;

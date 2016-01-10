@@ -66,7 +66,6 @@ public class LoginHelper extends HomePageHelper {
 
     //Login with credentials
     public boolean userlogin(String email, String password) throws Throwable {
-        boolean res = false;
         try {
             waitForElementPresent(LoginPageLocators.emailFieldForLogin,
                     "emailField");
@@ -80,7 +79,6 @@ public class LoginHelper extends HomePageHelper {
                     "signInButton");
             click(LoginPageLocators.signInButton, "signInButton");
             handleRateAppPopUp();
-            res = true;
         } catch (Exception e) {
             //e.printStackTrace();
             if (isElementDisplayed(LoginPageLocators.instayPopupClose)) {
@@ -89,8 +87,7 @@ public class LoginHelper extends HomePageHelper {
             click(LoginPageLocators.okayButtonOnErrorpop, "okayButtonOnErrorpop");
             return false;
         }
-        System.out.println(res);
-        return res;
+        return true;
     }
 
     //Forgot password
@@ -153,7 +150,6 @@ public class LoginHelper extends HomePageHelper {
         handleSplashDialog();
         while (!isElementDisplayedTemp(HomePageLocators.mainMenuIcon)) {
             driver.navigate().back();
-//            Thread.sleep(2000);
         }
         navigateToMyAccount();
         handleRateAppPopUp();

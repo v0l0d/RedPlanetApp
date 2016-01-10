@@ -46,7 +46,7 @@ public class RP_005_TestGuestBookingFromBookNow extends LoginHelper {
             BookingPageHelper.populatePaymentDetails(cardHolder, cardNum, expMonth, cvv);
             handleRateAppPopUp();
             if (description.equals(VALID_DATA)) {
-                waitForElementPresent(BookPageLocators.doneButton, "doneButton");
+                waitForElementPresent(BookPageLocators.doneButton, "doneButton", 10);
                 if (isElementDisplayed(BookPageLocators.bookingCode)) {
                     String bookingCode = driver.findElement(BookPageLocators.bookingCode).getText().trim();
                     Reporter.SuccessReport(description, "Successful" + " Booking code is: " + bookingCode);
