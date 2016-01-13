@@ -186,6 +186,7 @@ public class TestEngine extends HtmlReportSupport {
 				capabilitiesForAppium.setCapability("newCommandTimeout",6000);
 				capabilitiesForAppium.setCapability("takesScreenshot", true);
 				capabilitiesForAppium.setCapability("autoWebviewTimeout",6000);
+				capabilitiesForAppium.setCapability("launchTimeout",600000); //system is slow. so that's ok
 				capabilitiesForAppium.setCapability("locationServicesAuthorized", true);
 				capabilitiesForAppium.setCapability("nativeInstrumentsLib", true);
 				capabilitiesForAppium.setCapability("autoLaunch", true);
